@@ -1,8 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <curl/curl.h>
-#include "include/nlohmann/json.hpp"
-#include "Apixu.cpp"
+#include "Apixu.h"
 #include "Condition.h"
 
 int main() {
@@ -12,8 +10,8 @@ int main() {
     }
 
     const string k = string(apiKey);
-    auto apixu = new Apixu(k);
-    vector<Condition> conditions = apixu->conditions();
+    auto apixu = new Apixu::Apixu(k);
+    vector<Apixu::Condition> conditions = apixu->conditions();
 
     for (const auto& c : conditions) {
         cout << "condition" << endl;
