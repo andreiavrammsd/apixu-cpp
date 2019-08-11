@@ -11,6 +11,7 @@ int main() {
 
     const string k = string(apiKey);
     auto apixu = new Apixu::Apixu(k);
+
     vector<Apixu::Condition> conditions = apixu->conditions();
 
     for (const auto& c : conditions) {
@@ -20,6 +21,12 @@ int main() {
         cout << "\tnight: " << c.getNight() << endl;
         cout << "\ticon: " << c.getIcon() << endl << endl;
     }
+
+    Apixu::CurrentWeather currentWeather = apixu->current("zalau");
+    cout << "location" << endl;
+    cout << "\tname = " << currentWeather.getLocation().getName() << endl;
+    cout << "\tregion = " << currentWeather.getLocation().getRegion() << endl;
+    cout << "\tcountry = " << currentWeather.getLocation().getCountry() << endl;
 
     return 0;
 }
