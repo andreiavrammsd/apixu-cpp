@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -lcurl")
 
-add_executable(apixu_dev main.cpp)
+add_executable(apixu_dev main.cpp Apixu.cpp Condition.cpp Condition.h)
 
 target_link_libraries(apixu_dev curl)
 
