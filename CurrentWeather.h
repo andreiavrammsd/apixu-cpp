@@ -3,6 +3,7 @@
 
 #include "include/nlohmann/json.hpp"
 #include "Location.h"
+#include "Current.h"
 
 namespace Apixu {
     using nlohmann::json;
@@ -12,16 +13,18 @@ namespace Apixu {
         CurrentWeather() = default;
         virtual ~CurrentWeather() = default;
 
+        const Location & getLocation() const;
+        const Current & getCurrent() const;
+
     private:
         Location location;
+        Current current;
         friend void from_json(const json & j, CurrentWeather & cw);
-
-    public:
-        const Location & getLocation() const;
     };
 
     inline void from_json(const json & j, CurrentWeather& cw) {
         cw.location = j.at("location").get<Location>();
+        cw.current = j.at("current").get<Current>();
     }
 }
 

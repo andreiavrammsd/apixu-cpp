@@ -1,6 +1,10 @@
 #include "Location.h"
 
 namespace Apixu {
+    const int *Location::getId() const {
+        return id;
+    }
+
     const string &Location::getName() const {
         return name;
     }
@@ -21,15 +25,27 @@ namespace Apixu {
         return lon;
     }
 
-    const string &Location::getTzId() const {
-        return tzId;
+    const string *Location::getUrl() const {
+        return url;
     }
 
-    int64_t Location::getLocaltimeEpoch() const {
+    const string* Location::getTimezone() const {
+        return timezone;
+    }
+
+    int64_t* Location::getLocaltimeEpoch() const {
         return localtimeEpoch;
     }
 
-    const string &Location::getLocaltime() const {
+    struct tm Location::getLocaltime() const {
         return localtime;
+    }
+
+    Location::~Location() {
+//        delete id;
+//        delete url;
+//        delete timezone;
+//        delete localtimeEpoch;
+//        delete localtime;
     }
 }
