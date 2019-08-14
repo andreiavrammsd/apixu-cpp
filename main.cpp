@@ -5,13 +5,12 @@
 #include "Location.h"
 
 int main() {
-    char *apiKey = getenv("APIXUKEY");
+    const char *apiKey = getenv("APIXUKEY");
     if (apiKey == nullptr) {
         throw "APIXUKEY not set";
     }
 
-    const string k = string(apiKey);
-    auto apixu = new Apixu::Apixu(k);
+    auto apixu = new Apixu::Apixu(apiKey);
 
 //    vector<Apixu::Condition> conditions = apixu->conditions();
 //

@@ -1,17 +1,34 @@
+#include <sstream>
+#include <iostream>
 #include "Apixu.h"
 #include "include/nlohmann/json.hpp"
 
 namespace Apixu {
-    Apixu::Apixu(const string &apiKey) : apiKey(apiKey) {}
+    Apixu::Apixu(string apiKey) : apiKey(move(apiKey)) {}
 
     vector<Condition> Apixu::conditions() {
-        return json::parse(get(docWeatherConditionsURL));
+        return json::parse(get(DOC_WEATHER_CONDITIONS_URL));
     }
 
     CurrentWeather Apixu::current(const string& q) {
         map<string, string> params;
         params["q"] = q;
         return json::parse(get(url("current", params)));
+    }
+
+    string Apixu::url(const string& method, const map<string, string>& params) {
+        ostringstream url;
+        url << API_URL << method << "." << API_FORMAT << "?" << API_KEY_PARAM << "=" << apiKey << "&";
+
+        for (auto iter = params.begin(); iter != params.end();) {
+            url << iter->first << "=" << iter->second;
+            if (next(iter) != params.end()) {
+                url << "&";
+            }
+            ++iter;
+        }
+
+        return url.str();
     }
 
     string Apixu::get(const string &url) {
@@ -25,17 +42,6 @@ namespace Apixu {
         res = curl_easy_perform(curl);
         curl_easy_cleanup(curl);
         return readBuffer;
-    }
-
-    string Apixu::url(const string& method, const map<string, string>& params) {
-        string url = "https://api.apixu.com/v1/";
-        url += method;
-        url += ".json?key=" + apiKey;
-        for (auto const &p : params) {
-            url += "&" + p.first + "=" + p.second;
-        }
-
-        return url;
     }
 
     size_t Apixu::writeCallback(void *contents, size_t size, size_t nmemb, void *userp) {
