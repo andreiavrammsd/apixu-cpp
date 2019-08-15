@@ -11,10 +11,6 @@ namespace Apixu {
 
         class CurrentWeather {
         public:
-            CurrentWeather() = default;
-
-            virtual ~CurrentWeather() = default;
-
             const Location &getLocation() const {
                 return location;
             }

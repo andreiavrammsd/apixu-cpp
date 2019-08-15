@@ -12,8 +12,6 @@ namespace Apixu {
     namespace Response {
         class Location {
         public:
-            Location() = default;
-
             const int *getId() const {
                 return id;
             }

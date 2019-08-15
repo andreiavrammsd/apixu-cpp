@@ -17,4 +17,9 @@ https://github.com/nlohmann/json
 
 ### TODO
 - build linux, win, mac
-- sudo apt install valgrind
+
+```
+sudo add-apt-repository ppa:hola-launchpad/valgrind
+sudo apt-get update
+sudo apt install valgrind
+```

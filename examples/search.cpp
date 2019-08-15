@@ -9,14 +9,14 @@ using namespace Apixu::Response;
 
 int main() {
     const char *apiKey = getenv("APIXUKEY");
-    if (apiKey == nullptr) {
+    if (!apiKey) {
         cout << "APIXUKEY not set";
         return 1;
     }
 
     auto apixu = new Apixu::Apixu(apiKey);
 
-    vector<Location> locations = apixu->search("hida, salaj");
+    vector<Location> locations = apixu->search("Koln, Germany");
 
     for (const auto& loc : locations) {
         cout << "id = " << *loc.getId() << endl;
@@ -25,9 +25,7 @@ int main() {
         cout << "country = " << loc.getCountry() << endl;
         cout << "lat = " << loc.getLat() << endl;
         cout << "lon = " << loc.getLon() << endl;
-        if (loc.getUrl()) {
-            cout << "url = " << *loc.getUrl() << endl;
-        }
+        cout << "url = " << *loc.getUrl() << endl;
         cout << endl;
     }
 

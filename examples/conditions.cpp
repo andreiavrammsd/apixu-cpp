@@ -9,7 +9,7 @@ using namespace Apixu::Response;
 
 int main() {
     const char *apiKey = getenv("APIXUKEY");
-    if (apiKey == nullptr) {
+    if (!apiKey) {
         cout << "APIXUKEY not set";
         return 1;
     }

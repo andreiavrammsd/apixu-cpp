@@ -13,10 +13,6 @@ namespace Apixu {
     namespace Response {
         class Current {
         public:
-            Current() = default;
-
-            virtual ~Current() = default;
-
             int *getLastUpdatedEpoch() const {
                 return lastUpdatedEpoch;
             }
@@ -33,8 +29,8 @@ namespace Apixu {
                 return tempF;
             }
 
-            bool *getIsDay() const {
-                return isDay;
+            bool *isDay() const {
+                return day;
             }
 
             const CurrentCondition &getCondition() const {
@@ -114,7 +110,7 @@ namespace Apixu {
             struct tm lastUpdated{};
             float *tempC{};
             float *tempF{};
-            bool *isDay{};
+            bool *day{};
             CurrentCondition condition;
             float *windMph{};
             float *windKph{};
@@ -155,7 +151,7 @@ namespace Apixu {
             }
 
             if (j.contains("is_day")) {
-                c.isDay = new bool(j.at("is_day").get<int>());
+                c.day = new bool(j.at("is_day").get<int>());
             }
 
             c.condition = j.at("condition").get<CurrentCondition>();
