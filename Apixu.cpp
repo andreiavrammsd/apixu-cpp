@@ -2,6 +2,12 @@
 #include <iostream>
 #include "Apixu.h"
 #include "include/nlohmann/json.hpp"
+#include "Exception/ApiException.cpp"
+#include "Exception/FatalErrorException.cpp"
+#include "Error.h"
+
+using namespace Apixu::Exception;
+using namespace std;
 
 namespace Apixu {
     Apixu::Apixu(string apiKey) : apiKey(move(apiKey)) {}
@@ -32,15 +38,41 @@ namespace Apixu {
     }
 
     string Apixu::get(const string &url) {
-        auto curl = curl_easy_init();
-        CURLcode res;
+        CURL* curl = curl_easy_init();
+        if (!curl) {
+            throw FatalErrorException("Cannot init curl");
+        }
+
         string readBuffer;
+        curl_easy_setopt(curl, CURLOPT_USERAGENT, USER_AGENT.c_str());
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-        res = curl_easy_perform(curl);
+
+        CURLcode res = curl_easy_perform(curl);
+        if (res != CURLE_OK) {
+            throw FatalErrorException(curl_easy_strerror(res));
+        }
+
+        int responseCode;
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
+
         curl_easy_cleanup(curl);
+
+        if (responseCode >= 500) {
+            throw FatalErrorException("Internal Server Error");
+        } else if (responseCode >= 400) {
+            ErrorResponse errRes;
+            try {
+                errRes = json::parse(readBuffer);
+            } catch (json::parse_error &e) {
+                throw FatalErrorException(e.what());
+            }
+
+            throw ApiException(errRes.getError().getCode(), errRes.getError().getMessage());
+        }
+
         return readBuffer;
     }
 

@@ -19,13 +19,14 @@ namespace Apixu {
     private:
         const string apiKey;
 
-        string API_URL = "https://api.apixu.com/v1/";
-        string API_FORMAT = "json";
-        string API_KEY_PARAM = "key";
-        string DOC_WEATHER_CONDITIONS_URL = "https://www.apixu.com/doc/Apixu_weather_conditions.json";
+        const string API_URL = "https://api.apixu.com/v1/";
+        const string API_FORMAT = "json";
+        const string API_KEY_PARAM = "key";
+        const string DOC_WEATHER_CONDITIONS_URL = "https://www.apixu.com/doc/Apixu_weather_conditions.json";
+        const string USER_AGENT = "Apixu C++/0.1.0";
 
         string url(const string &method, const map<string, string> &params);
-        static string get(const string &url);
+        string get(const string &url);
         static size_t writeCallback(void *contents, size_t size, size_t nmemb, void *userp);
     };
 }

@@ -3,6 +3,8 @@
 #include "Apixu.h"
 #include "Condition.h"
 #include "Location.h"
+#include "Exception/ApiException.cpp"
+#include "Exception/FatalErrorException.cpp"
 
 int main() {
     const char *apiKey = getenv("APIXUKEY");
@@ -22,7 +24,16 @@ int main() {
 //        cout << "\ticon: " << c.getIcon() << endl << endl;
 //    }
 
-    Apixu::CurrentWeather currentWeather = apixu->current("zalau");
+    Apixu::CurrentWeather currentWeather;
+    try {
+        currentWeather = apixu->current("zalau");
+    } catch (Apixu::Exception::ApiException &e) {
+        cout << e.getCode() << " " << e.getMessage();
+        return 1;
+    } catch (const Apixu::Exception::FatalErrorException& e) {
+        cout << e.what();
+        return 1;
+    }
 
     cout << "location" << endl;
 
