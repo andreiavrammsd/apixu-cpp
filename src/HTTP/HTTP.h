@@ -1,5 +1,5 @@
-#ifndef APIXU_DEV_HTTP_H
-#define APIXU_DEV_HTTP_H
+#ifndef APIXU_HTTP_H
+#define APIXU_HTTP_H
 
 
 #include <string>
@@ -44,4 +44,4 @@ namespace Apixu {
 }
 
 
-#endif //APIXU_DEV_HTTP_H
+#endif //APIXU_HTTP_H

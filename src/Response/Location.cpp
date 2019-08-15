@@ -1,8 +1,8 @@
-#ifndef APIXU_DEV_LOCATION_CPP
-#define APIXU_DEV_LOCATION_CPP
+#ifndef APIXU_LOCATION_CPP
+#define APIXU_LOCATION_CPP
 
 #include <string>
-#include "../include/nlohmann/json.hpp"
+#include "../../include/nlohmann/json.hpp"
 #include "../Time.h"
 
 using namespace std;
@@ -103,4 +103,4 @@ namespace Apixu {
     }
 }
 
-#endif //APIXU_DEV_LOCATION_CPP
+#endif //APIXU_LOCATION_CPP

@@ -1,6 +1,5 @@
 #include <sstream>
 #include "Apixu.h"
-#include "include/nlohmann/json.hpp"
 #include "Exception/ApiException.cpp"
 #include "Response/Error.cpp"
 

@@ -1,8 +1,8 @@
-#ifndef APIXU_DEV_CURRENTCONDITION_CPP
-#define APIXU_DEV_CURRENTCONDITION_CPP
+#ifndef APIXU_CURRENTCONDITION_CPP
+#define APIXU_CURRENTCONDITION_CPP
 
 
-#include "../include/nlohmann/json.hpp"
+#include "../../include/nlohmann/json.hpp"
 
 using namespace std;
 using nlohmann::json;
@@ -39,4 +39,4 @@ namespace Apixu {
     }
 }
 
-#endif //APIXU_DEV_CURRENTCONDITION_CPP
+#endif //APIXU_CURRENTCONDITION_CPP

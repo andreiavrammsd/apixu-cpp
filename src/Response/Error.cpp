@@ -1,8 +1,8 @@
-#ifndef APIXU_DEV_ERROR_CPP
-#define APIXU_DEV_ERROR_CPP
+#ifndef APIXU_ERROR_CPP
+#define APIXU_ERROR_CPP
 
 
-#include "../include/nlohmann/json.hpp"
+#include "../../include/nlohmann/json.hpp"
 
 using namespace std;
 using nlohmann::json;
@@ -49,4 +49,4 @@ namespace Apixu {
     }
 }
 
-#endif //APIXU_DEV_ERROR_CPP
+#endif //APIXU_ERROR_CPP

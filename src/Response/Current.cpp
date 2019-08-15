@@ -1,8 +1,8 @@
-#ifndef APIXU_DEV_CURRENT_CPP
-#define APIXU_DEV_CURRENT_CPP
+#ifndef APIXU_CURRENT_CPP
+#define APIXU_CURRENT_CPP
 
 
-#include "../include/nlohmann/json.hpp"
+#include "../../include/nlohmann/json.hpp"
 #include "../Time.h"
 #include "CurrentCondition.cpp"
 
@@ -231,4 +231,4 @@ namespace Apixu {
     }
 }
 
-#endif //APIXU_DEV_CURRENT_CPP
+#endif //APIXU_CURRENT_CPP

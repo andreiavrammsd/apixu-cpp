@@ -1,5 +1,5 @@
-#ifndef APIXU_DEV_APIXU_H
-#define APIXU_DEV_APIXU_H
+#ifndef APIXU_APIXU_H
+#define APIXU_APIXU_H
 
 
 #include "Response/Condition.cpp"
@@ -35,4 +35,4 @@ namespace Apixu {
     };
 }
 
-#endif //APIXU_DEV_APIXU_H
+#endif //APIXU_APIXU_H

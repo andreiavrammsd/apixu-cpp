@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
-#include "Apixu.h"
-#include "Response/Condition.cpp"
-#include "Response/Location.cpp"
-#include "Exception/ApiException.cpp"
+#include "../src/Apixu.h"
+#include "../src/Response/Condition.cpp"
+#include "../src/Response/Location.cpp"
+#include "../src/Exception/ApiException.cpp"
 
 using namespace Apixu::Exception;
 using namespace Apixu::Response;
@@ -12,7 +12,8 @@ using namespace Apixu::HTTP;
 int main() {
     const char *apiKey = getenv("APIXUKEY");
     if (apiKey == nullptr) {
-        throw "APIXUKEY not set";
+        cout << "APIXUKEY not set";
+        return 1;
     }
 
     auto apixu = new Apixu::Apixu(apiKey);

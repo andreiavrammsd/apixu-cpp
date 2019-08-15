@@ -1,5 +1,5 @@
-#ifndef APIXU_DEV_TIME_H
-#define APIXU_DEV_TIME_H
+#ifndef APIXU_TIME_H
+#define APIXU_TIME_H
 
 #include <string>
 
@@ -13,4 +13,4 @@ namespace Apixu {
 }
 
 
-#endif //APIXU_DEV_TIME_H
+#endif //APIXU_TIME_H

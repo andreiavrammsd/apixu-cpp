@@ -1,5 +1,5 @@
-#ifndef APIXU_DEV_EXCEPTION
-#define APIXU_DEV_EXCEPTION
+#ifndef APIXU_EXCEPTION
+#define APIXU_EXCEPTION
 
 
 #include <stdexcept>
@@ -23,4 +23,4 @@ namespace Apixu {
 }
 
 
-#endif //APIXU_DEV_EXCEPTION
+#endif //APIXU_EXCEPTION

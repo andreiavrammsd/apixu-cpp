@@ -1,7 +1,7 @@
-#ifndef APIXU_DEV_CONDITION_CPP
-#define APIXU_DEV_CONDITION_CPP
+#ifndef APIXU_CONDITION_CPP
+#define APIXU_CONDITION_CPP
 
-#include "../include/nlohmann/json.hpp"
+#include "../../include/nlohmann/json.hpp"
 
 using namespace std;
 using nlohmann::json;
@@ -44,4 +44,4 @@ namespace Apixu {
     }
 }
 
-#endif //APIXU_DEV_CONDITION_CPP
+#endif //APIXU_CONDITION_CPP
