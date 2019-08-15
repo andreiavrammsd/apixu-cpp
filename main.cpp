@@ -4,10 +4,10 @@
 #include "Response/Condition.cpp"
 #include "Response/Location.cpp"
 #include "Exception/ApiException.cpp"
-#include "Exception/FatalErrorException.cpp"
 
 using namespace Apixu::Exception;
 using namespace Apixu::Response;
+using namespace Apixu::HTTP;
 
 int main() {
     const char *apiKey = getenv("APIXUKEY");
@@ -17,7 +17,16 @@ int main() {
 
     auto apixu = new Apixu::Apixu(apiKey);
 
-    vector<Condition> conditions = apixu->conditions();
+    vector<Condition> conditions;
+
+    try {
+        conditions = apixu->conditions();
+    } catch (ApiException &e) {
+        cout << "ApiException: " << e.what() << " (code: " << e.getCode() << ")";
+    } catch (ApixuException &e) {
+        cout << "ApixuException: " << e.what();
+        return 1;
+    }
 
     for (const auto& c : conditions) {
         cout << "condition" << endl;
@@ -31,10 +40,9 @@ int main() {
     try {
         currentWeather = apixu->current("zalau");
     } catch (ApiException &e) {
-        cout << e.getCode() << " " << e.getMessage();
-        return 1;
-    } catch (const FatalErrorException& e) {
-        cout << e.what();
+        cout << "ApiException: " << e.what() << " (code: " << e.getCode() << ")";
+    } catch (ApixuException &e) {
+        cout << "ApixuException: " << e.what();
         return 1;
     }
 
@@ -106,6 +114,8 @@ int main() {
         auto localt = loc.getLocaltime();
         cout << "\tlocaltime = " << localt.tm_year << localt.tm_hour << endl << endl;
     }
+
+    delete apixu;
 
     return 0;
 }

@@ -4,10 +4,11 @@
 
 #include "Response/Condition.cpp"
 #include "Response/CurrentWeather.cpp"
-#include <curl/curl.h>
+#include "HTTP/HTTP.h"
 
 using namespace std;
 using namespace Apixu::Response;
+using namespace Apixu::HTTP;
 
 namespace Apixu {
     class Apixu {
@@ -18,8 +19,11 @@ namespace Apixu {
         CurrentWeather current(const string& q);
         vector<Location> search(const string& q);
 
+        virtual ~Apixu();
+
     private:
         const string apiKey;
+        HTTP::HTTP* httpClient;
 
         const string API_URL = "https://api.apixu.com/v1/";
         const string API_FORMAT = "json";
@@ -28,7 +32,6 @@ namespace Apixu {
 
         string url(const string &method);
         string get(const string &url, const map<string, string> *params);
-        static size_t writeCallback(void *contents, size_t size, size_t nmemb, void *userp);
     };
 }
 

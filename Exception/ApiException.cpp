@@ -6,20 +6,14 @@ namespace Apixu {
     namespace Exception {
         class ApiException : public ApixuException {
         public:
-            ApiException(int code, string message) : ApixuException(), code(code), message(move(message)) {
-            }
+            ApiException(string message, int code) : ApixuException(move(message)), code(code) {}
 
             int getCode() const {
                 return code;
             }
 
-            string getMessage() {
-                return message;
-            }
-
         private:
             int code;
-            string message;
         };
     }
 }

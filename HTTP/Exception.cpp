@@ -1,18 +1,16 @@
-#include <utility>
-
-#include "ApixuException.cpp"
+#include <string>
 
 using namespace std;
 
 namespace Apixu {
-    namespace Exception {
-        class FatalErrorException : public ApixuException {
+    namespace HTTP {
+        class Exception : public exception {
         public:
-            explicit FatalErrorException(string msg) : msg(move(msg)) {}
-
+            explicit Exception(string msg) : msg(move(msg)) {}
             const char* what() const noexcept override {
                 return msg.c_str();
             }
+
         private:
             string msg;
         };
