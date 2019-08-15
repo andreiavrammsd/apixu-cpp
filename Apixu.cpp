@@ -13,41 +13,59 @@ namespace Apixu {
     Apixu::Apixu(string apiKey) : apiKey(move(apiKey)) {}
 
     vector<Condition> Apixu::conditions() {
-        return json::parse(get(DOC_WEATHER_CONDITIONS_URL));
+        return json::parse(get(DOC_WEATHER_CONDITIONS_URL, nullptr));
     }
 
     CurrentWeather Apixu::current(const string& q) {
         map<string, string> params;
+        params["key"] = apiKey;
         params["q"] = q;
-        return json::parse(get(url("current", params)));
+        return json::parse(get(url("current"), &params));
     }
 
-    string Apixu::url(const string& method, const map<string, string>& params) {
-        ostringstream url;
-        url << API_URL << method << "." << API_FORMAT << "?" << API_KEY_PARAM << "=" << apiKey << "&";
-
-        for (auto iter = params.begin(); iter != params.end();) {
-            url << iter->first << "=" << iter->second;
-            if (next(iter) != params.end()) {
-                url << "&";
-            }
-            ++iter;
-        }
-
-        return url.str();
+    vector<Location> Apixu::search(const string &q) {
+        map<string, string> params;
+        params["key"] = apiKey;
+        params["q"] = q;
+        return json::parse(get(url("search"), &params));
     }
 
-    string Apixu::get(const string &url) {
+    string Apixu::url(const string& method) {
+        return API_URL + method + "." + API_FORMAT;
+    }
+
+    string Apixu::get(const string &url, const map<string, string>* params) {
         CURL* curl = curl_easy_init();
         if (!curl) {
             throw FatalErrorException("Cannot init curl");
         }
 
-        string readBuffer;
+        ostringstream query;
+        if (params) {
+            for (auto iter = params->begin(); iter != params->end();) {
+                char *key = curl_easy_escape(curl, iter->first.c_str(), iter->first.length());
+                char *value = curl_easy_escape(curl, iter->second.c_str(), iter->second.length());
+                if (!key || !value) {
+                    throw "valeu";
+                }
+
+                query << key << "=" << value;
+                curl_free(key);
+                curl_free(value);
+
+                if (next(iter) != params->end()) {
+                    query << "&";
+                }
+                ++iter;
+            }
+        }
+
+        curl_easy_setopt(curl, CURLOPT_URL, (url + "?" + query.str()).c_str());
         curl_easy_setopt(curl, CURLOPT_USERAGENT, USER_AGENT.c_str());
-        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeCallback);
+
+        string readBuffer;
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
 
         CURLcode res = curl_easy_perform(curl);

@@ -42,9 +42,6 @@ int main() {
 
     const Location& location = currentWeather.getLocation();
 
-    if (location.getId() != nullptr) {
-        cout << "\tid = " << *location.getId() << endl;
-    }
     cout << "\tname = " << location.getName() << endl;
     cout << "\tregion = " << location.getRegion() << endl;
     cout << "\tcountry = " << location.getCountry() << endl;
@@ -85,6 +82,30 @@ int main() {
     cout << "\t\ttext " << *current.getCondition().getText() << endl;
     cout << "\t\ticon " << *current.getCondition().getIcon() << endl;
     cout << "\t\tcode " << *current.getCondition().getCode() << endl;
+
+    cout << "search" << endl;
+
+    vector<Location> locations = apixu->search("Turbuta, Salaj, Romania");
+    for (const auto& loc : locations) {
+        cout << "\tid = " << *loc.getId() << endl;
+        cout << "\tname = " << loc.getName() << endl;
+        cout << "\tregion = " << loc.getRegion() << endl;
+        cout << "\tcountry = " << loc.getCountry() << endl;
+        cout << "\tlat = " << loc.getLat() << endl;
+        cout << "\tlon = " << loc.getLon() << endl;
+        if (loc.getUrl() != nullptr) {
+            cout << "\turl = " << *loc.getUrl() << endl;
+        }
+        if (loc.getTimezone() != nullptr) {
+            cout << "\ttimezone = " << *loc.getTimezone() << endl;
+        }
+        if (loc.getLocaltimeEpoch() != nullptr) {
+            cout << "\tlocaltime epoch = " << *loc.getLocaltimeEpoch() << endl;
+        }
+
+        auto localt = loc.getLocaltime();
+        cout << "\tlocaltime = " << localt.tm_year << localt.tm_hour << endl << endl;
+    }
 
     return 0;
 }
