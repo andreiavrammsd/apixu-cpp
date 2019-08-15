@@ -27,11 +27,10 @@ int main() {
     }
 
     for (const auto& c : conditions) {
-        cout << "condition" << endl;
-        cout << "\tcode: " << c.getCode() << endl;
-        cout << "\tday: " << c.getDay() << endl;
-        cout << "\tnight: " << c.getNight() << endl;
-        cout << "\ticon: " << c.getIcon() << endl << endl;
+        cout << "code: " << c.getCode() << endl;
+        cout << "day: " << c.getDay() << endl;
+        cout << "night: " << c.getNight() << endl;
+        cout << "icon: " << c.getIcon() << endl << endl;
     }
 
     delete apixu;

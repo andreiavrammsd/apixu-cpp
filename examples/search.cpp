@@ -16,27 +16,19 @@ int main() {
 
     auto apixu = new Apixu::Apixu(apiKey);
 
-    vector<Location> locations = apixu->search("Turbuta, Salaj, Romania");
+    vector<Location> locations = apixu->search("hida, salaj");
 
     for (const auto& loc : locations) {
-        cout << "\tid = " << *loc.getId() << endl;
-        cout << "\tname = " << loc.getName() << endl;
-        cout << "\tregion = " << loc.getRegion() << endl;
-        cout << "\tcountry = " << loc.getCountry() << endl;
-        cout << "\tlat = " << loc.getLat() << endl;
-        cout << "\tlon = " << loc.getLon() << endl;
-        if (loc.getUrl() != nullptr) {
-            cout << "\turl = " << *loc.getUrl() << endl;
+        cout << "id = " << *loc.getId() << endl;
+        cout << "name = " << loc.getName() << endl;
+        cout << "region = " << loc.getRegion() << endl;
+        cout << "country = " << loc.getCountry() << endl;
+        cout << "lat = " << loc.getLat() << endl;
+        cout << "lon = " << loc.getLon() << endl;
+        if (loc.getUrl()) {
+            cout << "url = " << *loc.getUrl() << endl;
         }
-        if (loc.getTimezone() != nullptr) {
-            cout << "\ttimezone = " << *loc.getTimezone() << endl;
-        }
-        if (loc.getLocaltimeEpoch() != nullptr) {
-            cout << "\tlocaltime epoch = " << *loc.getLocaltimeEpoch() << endl;
-        }
-
-        auto localt = loc.getLocaltime();
-        cout << "\tlocaltime = " << localt.tm_year << localt.tm_hour << endl << endl;
+        cout << endl;
     }
 
     delete apixu;

@@ -54,14 +54,6 @@ namespace Apixu {
                 return localtime;
             }
 
-            ~Location() {
-//        delete id;
-//        delete url;
-//        delete timezone;
-//        delete localtimeEpoch;
-//        delete localtime;
-            }
-
         private:
             int *id{};
             string name;
@@ -87,6 +79,10 @@ namespace Apixu {
             l.country = j.at("country").get<string>();
             l.lat = j.at("lat").get<double>();
             l.lon = j.at("lon").get<double>();
+
+            if (j.contains("url")) {
+                l.url = new string(j.at("url").get<string>());
+            }
 
             if (j.contains("tz_id")) {
                 l.timezone = new string(j.at("tz_id").get<string>());
