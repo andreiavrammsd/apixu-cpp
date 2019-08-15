@@ -4,7 +4,7 @@
 #include "include/nlohmann/json.hpp"
 #include "Exception/ApiException.cpp"
 #include "Exception/FatalErrorException.cpp"
-#include "Error.h"
+#include "Response/Error.cpp"
 
 using namespace Apixu::Exception;
 using namespace std;

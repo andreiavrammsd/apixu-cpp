@@ -1,10 +1,13 @@
 #include <iostream>
 #include <vector>
 #include "Apixu.h"
-#include "Condition.h"
-#include "Location.h"
+#include "Response/Condition.cpp"
+#include "Response/Location.cpp"
 #include "Exception/ApiException.cpp"
 #include "Exception/FatalErrorException.cpp"
+
+using namespace Apixu::Exception;
+using namespace Apixu::Response;
 
 int main() {
     const char *apiKey = getenv("APIXUKEY");
@@ -14,30 +17,30 @@ int main() {
 
     auto apixu = new Apixu::Apixu(apiKey);
 
-//    vector<Apixu::Condition> conditions = apixu->conditions();
-//
-//    for (const auto& c : conditions) {
-//        cout << "condition" << endl;
-//        cout << "\tcode: " << c.getCode() << endl;
-//        cout << "\tday: " << c.getDay() << endl;
-//        cout << "\tnight: " << c.getNight() << endl;
-//        cout << "\ticon: " << c.getIcon() << endl << endl;
-//    }
+    vector<Condition> conditions = apixu->conditions();
 
-    Apixu::CurrentWeather currentWeather;
+    for (const auto& c : conditions) {
+        cout << "condition" << endl;
+        cout << "\tcode: " << c.getCode() << endl;
+        cout << "\tday: " << c.getDay() << endl;
+        cout << "\tnight: " << c.getNight() << endl;
+        cout << "\ticon: " << c.getIcon() << endl << endl;
+    }
+
+    CurrentWeather currentWeather;
     try {
         currentWeather = apixu->current("zalau");
-    } catch (Apixu::Exception::ApiException &e) {
+    } catch (ApiException &e) {
         cout << e.getCode() << " " << e.getMessage();
         return 1;
-    } catch (const Apixu::Exception::FatalErrorException& e) {
+    } catch (const FatalErrorException& e) {
         cout << e.what();
         return 1;
     }
 
     cout << "location" << endl;
 
-    const Apixu::Location& location = currentWeather.getLocation();
+    const Location& location = currentWeather.getLocation();
 
     if (location.getId() != nullptr) {
         cout << "\tid = " << *location.getId() << endl;
@@ -62,7 +65,7 @@ int main() {
 
     cout << "current weather" << endl;
 
-    const Apixu::Current& current = currentWeather.getCurrent();
+    const Current& current = currentWeather.getCurrent();
 
     if (current.getLastUpdatedEpoch()) {
         cout << "\tlast updated epoch " << *current.getLastUpdatedEpoch() << endl;

@@ -2,11 +2,12 @@
 #define APIXU_DEV_APIXU_H
 
 
-#include "Condition.h"
-#include "CurrentWeather.h"
+#include "Response/Condition.cpp"
+#include "Response/CurrentWeather.cpp"
 #include <curl/curl.h>
 
 using namespace std;
+using namespace Apixu::Response;
 
 namespace Apixu {
     class Apixu {
