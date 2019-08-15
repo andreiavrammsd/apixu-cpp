@@ -1,13 +1,11 @@
 #include <iostream>
 #include <vector>
 #include "../src/Apixu.h"
-#include "../src/Response/Condition.cpp"
 #include "../src/Response/Location.cpp"
 #include "../src/Exception/ApiException.cpp"
 
 using namespace Apixu::Exception;
 using namespace Apixu::Response;
-using namespace Apixu::HTTP;
 
 int main() {
     const char *apiKey = getenv("APIXUKEY");
@@ -17,25 +15,6 @@ int main() {
     }
 
     auto apixu = new Apixu::Apixu(apiKey);
-
-    vector<Condition> conditions;
-
-    try {
-        conditions = apixu->conditions();
-    } catch (ApiException &e) {
-        cout << "ApiException: " << e.what() << " (code: " << e.getCode() << ")";
-    } catch (ApixuException &e) {
-        cout << "ApixuException: " << e.what();
-        return 1;
-    }
-
-    for (const auto& c : conditions) {
-        cout << "condition" << endl;
-        cout << "\tcode: " << c.getCode() << endl;
-        cout << "\tday: " << c.getDay() << endl;
-        cout << "\tnight: " << c.getNight() << endl;
-        cout << "\ticon: " << c.getIcon() << endl << endl;
-    }
 
     CurrentWeather currentWeather;
     try {
@@ -91,30 +70,6 @@ int main() {
     cout << "\t\ttext " << *current.getCondition().getText() << endl;
     cout << "\t\ticon " << *current.getCondition().getIcon() << endl;
     cout << "\t\tcode " << *current.getCondition().getCode() << endl;
-
-    cout << "search" << endl;
-
-    vector<Location> locations = apixu->search("Turbuta, Salaj, Romania");
-    for (const auto& loc : locations) {
-        cout << "\tid = " << *loc.getId() << endl;
-        cout << "\tname = " << loc.getName() << endl;
-        cout << "\tregion = " << loc.getRegion() << endl;
-        cout << "\tcountry = " << loc.getCountry() << endl;
-        cout << "\tlat = " << loc.getLat() << endl;
-        cout << "\tlon = " << loc.getLon() << endl;
-        if (loc.getUrl() != nullptr) {
-            cout << "\turl = " << *loc.getUrl() << endl;
-        }
-        if (loc.getTimezone() != nullptr) {
-            cout << "\ttimezone = " << *loc.getTimezone() << endl;
-        }
-        if (loc.getLocaltimeEpoch() != nullptr) {
-            cout << "\tlocaltime epoch = " << *loc.getLocaltimeEpoch() << endl;
-        }
-
-        auto localt = loc.getLocaltime();
-        cout << "\tlocaltime = " << localt.tm_year << localt.tm_hour << endl << endl;
-    }
 
     delete apixu;
 
