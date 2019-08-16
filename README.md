@@ -17,9 +17,12 @@ https://github.com/nlohmann/json
 
 ### TODO
 - build linux, win, mac
+- clangd/clang tidy
+- coding standards
+- linter
+- tests
 
 ```
-sudo add-apt-repository ppa:hola-launchpad/valgrind
-sudo apt-get update
-sudo apt install valgrind
+docker build -f dev/Dockerfile -t apixudev .
+docker run --rm -ti -v $PWD:/src apixudev bash
 ```
