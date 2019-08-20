@@ -1,7 +1,5 @@
 #include "ApixuException.cpp"
 
-using namespace std;
-
 namespace Apixu {
     namespace Exception {
         class ApiException : public ApixuException {

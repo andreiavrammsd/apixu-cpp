@@ -1,5 +1,5 @@
-#ifndef APIXU_CURRENT_WEATHER_H
-#define APIXU_CURRENT_WEATHER_H
+#ifndef APIXU_CURRENT_WEATHER_CPP
+#define APIXU_CURRENT_WEATHER_CPP
 
 #include "../../include/nlohmann/json.hpp"
 #include "Location.cpp"
@@ -33,4 +33,4 @@ namespace Apixu {
     }
 }
 
-#endif //APIXU_CURRENT_WEATHER_H
+#endif //APIXU_CURRENT_WEATHER_CPP

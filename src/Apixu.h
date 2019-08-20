@@ -4,11 +4,15 @@
 
 #include "Response/Condition.cpp"
 #include "Response/CurrentWeather.cpp"
+#include "Response/Forecast/Forecast.cpp"
 #include "HTTP/HTTP.h"
 
-using namespace std;
-using namespace Apixu::Response;
-using namespace Apixu::HTTP;
+using std::string;
+using Apixu::Response::Condition;
+using Apixu::Response::CurrentWeather;
+using Apixu::Response::Location;
+using Apixu::Response::Forecast::Forecast;
+using Apixu::HTTP::HTTP;
 
 namespace Apixu {
     class Apixu {
@@ -18,11 +22,12 @@ namespace Apixu {
         vector<Condition> conditions();
         CurrentWeather current(const string& q);
         vector<Location> search(const string& q);
+        Forecast forecast(const string& q, int days, const int* hour = nullptr);
 
         virtual ~Apixu();
 
     private:
-        const string apiKey;
+        string apiKey;
         HTTP::HTTP* httpClient;
 
         const string API_URL = "https://api.apixu.com/v1/";

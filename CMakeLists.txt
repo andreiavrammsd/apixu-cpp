@@ -11,6 +11,10 @@ add_executable(conditions
     src/Response/CurrentWeather.cpp
     src/Response/Location.cpp
     src/Response/Current.cpp
+    src/Response/Forecast/Forecast.cpp
+    src/Response/Forecast/ForecastWeather.cpp
+    src/Response/Forecast/ForecastDay.cpp
+    src/Response/Forecast/Day.cpp
     src/Time.cpp
     src/Time.h
     src/Response/CurrentCondition.cpp
@@ -20,67 +24,103 @@ add_executable(conditions
     src/HTTP/HTTP.cpp
     src/HTTP/HTTP.h
     src/HTTP/Exception.cpp
-)
+        src/Response/Forecast/Astro.cpp src/Response/Forecast/Hour.cpp)
 
 add_executable(current
-    examples/current.cpp
-    src/Response/Condition.cpp
-    src/Apixu.cpp
-    src/Apixu.h
-    src/Response/CurrentWeather.cpp
-    src/Response/Location.cpp
-    src/Response/Current.cpp
-    src/Time.cpp
-    src/Time.h
-    src/Response/CurrentCondition.cpp
-    src/Exception/ApixuException.cpp
-    src/Exception/ApiException.cpp
-    src/Response/Error.cpp
-    src/HTTP/HTTP.cpp
-    src/HTTP/HTTP.h
-    src/HTTP/Exception.cpp
-)
+        examples/current.cpp
+        src/Response/Condition.cpp
+        src/Apixu.cpp
+        src/Apixu.h
+        src/Response/CurrentWeather.cpp
+        src/Response/Location.cpp
+        src/Response/Current.cpp
+        src/Response/Forecast/Forecast.cpp
+        src/Response/Forecast/ForecastWeather.cpp
+        src/Response/Forecast/ForecastDay.cpp
+        src/Response/Forecast/Day.cpp
+        src/Time.cpp
+        src/Time.h
+        src/Response/CurrentCondition.cpp
+        src/Exception/ApixuException.cpp
+        src/Exception/ApiException.cpp
+        src/Response/Error.cpp
+        src/HTTP/HTTP.cpp
+        src/HTTP/HTTP.h
+        src/HTTP/Exception.cpp
+        src/Response/Forecast/Astro.cpp src/Response/Forecast/Hour.cpp)
 
 add_executable(search
-    examples/search.cpp
-    src/Response/Condition.cpp
-    src/Apixu.cpp
-    src/Apixu.h
-    src/Response/CurrentWeather.cpp
-    src/Response/Location.cpp
-    src/Response/Current.cpp
-    src/Time.cpp
-    src/Time.h
-    src/Response/CurrentCondition.cpp
-    src/Exception/ApixuException.cpp
-    src/Exception/ApiException.cpp
-    src/Response/Error.cpp
-    src/HTTP/HTTP.cpp
-    src/HTTP/HTTP.h
-    src/HTTP/Exception.cpp
-)
+        examples/search.cpp
+        src/Response/Condition.cpp
+        src/Apixu.cpp
+        src/Apixu.h
+        src/Response/CurrentWeather.cpp
+        src/Response/Location.cpp
+        src/Response/Current.cpp
+        src/Response/Forecast/Forecast.cpp
+        src/Response/Forecast/ForecastWeather.cpp
+        src/Response/Forecast/ForecastDay.cpp
+        src/Response/Forecast/Day.cpp
+        src/Time.cpp
+        src/Time.h
+        src/Response/CurrentCondition.cpp
+        src/Exception/ApixuException.cpp
+        src/Exception/ApiException.cpp
+        src/Response/Error.cpp
+        src/HTTP/HTTP.cpp
+        src/HTTP/HTTP.h
+        src/HTTP/Exception.cpp
+        src/Response/Forecast/Astro.cpp src/Response/Forecast/Hour.cpp)
+
+add_executable(forecast
+        examples/forecast.cpp
+        src/Response/Condition.cpp
+        src/Apixu.cpp
+        src/Apixu.h
+        src/Response/CurrentWeather.cpp
+        src/Response/Location.cpp
+        src/Response/Current.cpp
+        src/Response/Forecast/Forecast.cpp
+        src/Response/Forecast/ForecastWeather.cpp
+        src/Response/Forecast/ForecastDay.cpp
+        src/Response/Forecast/Day.cpp
+        src/Time.cpp
+        src/Time.h
+        src/Response/CurrentCondition.cpp
+        src/Exception/ApixuException.cpp
+        src/Exception/ApiException.cpp
+        src/Response/Error.cpp
+        src/HTTP/HTTP.cpp
+        src/HTTP/HTTP.h
+        src/HTTP/Exception.cpp
+        src/Response/Forecast/Astro.cpp src/Response/Forecast/Hour.cpp)
 
 add_library(apixu STATIC
-    src/Response/Condition.cpp
-    src/Apixu.cpp
-    src/Apixu.h
-    src/Response/CurrentWeather.cpp
-    src/Response/Location.cpp
-    src/Response/Current.cpp
-    src/Time.cpp
-    src/Time.h
-    src/Response/CurrentCondition.cpp
-    src/Exception/ApixuException.cpp
-    src/Exception/ApiException.cpp
-    src/Response/Error.cpp
-    src/HTTP/HTTP.cpp
-    src/HTTP/HTTP.h
-    src/HTTP/Exception.cpp
-)
+        src/Response/Condition.cpp
+        src/Apixu.cpp
+        src/Apixu.h
+        src/Response/CurrentWeather.cpp
+        src/Response/Location.cpp
+        src/Response/Current.cpp
+        src/Response/Forecast/Forecast.cpp
+        src/Response/Forecast/ForecastWeather.cpp
+        src/Response/Forecast/ForecastDay.cpp
+        src/Response/Forecast/Day.cpp
+        src/Time.cpp
+        src/Time.h
+        src/Response/CurrentCondition.cpp
+        src/Exception/ApixuException.cpp
+        src/Exception/ApiException.cpp
+        src/Response/Error.cpp
+        src/HTTP/HTTP.cpp
+        src/HTTP/HTTP.h
+        src/HTTP/Exception.cpp
+        src/Response/Forecast/Astro.cpp src/Response/Forecast/Hour.cpp)
 
 target_link_libraries(conditions curl)
 target_link_libraries(current curl)
 target_link_libraries(search curl)
+target_link_libraries(forecast curl)
 target_link_libraries(apixu curl)
 
 #add_definitions( -DCURL_STATICLIB )

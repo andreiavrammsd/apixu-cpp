@@ -1,10 +1,15 @@
-#include <sstream>
 #include "Apixu.h"
 #include "Exception/ApiException.cpp"
 #include "Response/Error.cpp"
 
-using namespace Apixu::Exception;
-using namespace std;
+using Apixu::Exception::ApixuException;
+using Apixu::Exception::ApiException;
+using Apixu::HTTP::STATUS_INTERNAL_SERVER_ERROR;
+using Apixu::HTTP::STATUS_BAD_REQUEST;
+using Apixu::Response::ErrorResponse;
+using std::map;
+using std::string;
+using json = nlohmann::json;
 
 namespace Apixu {
     Apixu::Apixu(string apiKey) : apiKey(move(apiKey)) {
@@ -42,6 +47,22 @@ namespace Apixu {
 
         try {
             return json::parse(get(url("search"), &params));
+        } catch (exception &e) {
+            throw ApixuException(e.what());
+        }
+    }
+
+    Forecast Apixu::forecast(const string &q, int days, const int *hour) {
+        map<string, string> params;
+        params["key"] = apiKey;
+        params["q"] = q;
+        params["days"] = to_string(days);
+        if (hour) {
+            params["hour"] = to_string(*hour);
+        }
+
+        try {
+            return json::parse(get(url("forecast"), &params));
         } catch (exception &e) {
             throw ApixuException(e.what());
         }

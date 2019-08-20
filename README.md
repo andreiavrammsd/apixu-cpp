@@ -16,11 +16,17 @@ https://github.com/nlohmann/json
 ```
 
 ### TODO
+- http timeout
 - build linux, win, mac
 - clangd/clang tidy
 - coding standards
 - linter
 - tests
+- check fields names and types
+- package management
+- overload vs default arg
+- multi language
+
 
 ```
 docker build -f dev/Dockerfile -t apixudev .
