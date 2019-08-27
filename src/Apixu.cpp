@@ -76,6 +76,24 @@ namespace Apixu {
         }
     }
 
+    History Apixu::history(const string &q, const string& since, string *until) {
+        map<string, string> params;
+        params["key"] = apiKey;
+        params["q"] = q;
+        params["dt"] = since;
+        if (until) {
+            params["end_dt"] = *until;
+        }
+
+        try {
+            return json::parse(get(url("history"), &params));
+        } catch (ApiException &e) {
+            throw ApiException(e.what(), e.getCode());
+        } catch (exception &e) {
+            throw ApixuException(e.what());
+        }
+    }
+
     string Apixu::url(const string& method) {
         return API_URL + method + "." + API_FORMAT;
     }

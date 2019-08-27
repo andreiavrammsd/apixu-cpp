@@ -22,6 +22,7 @@ int main() {
         forecast = apixu->forecast("Paris", 2, &h);
     } catch (ApiException &e) {
         cout << "ApiException: " << e.what() << " (code: " << e.getCode() << ")";
+        return 1;
     } catch (ApixuException &e) {
         cout << "ApixuException: " << e.what();
         return 1;

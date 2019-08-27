@@ -9,10 +9,16 @@ C++ library for [Apixu Weather API](https://www.apixu.com/api.aspx)
 ## Development
 * CMake
 
-### Dependencies
+##### Dependencies
 ```
 sudo apt install libcurl4-openssl-dev
 https://github.com/nlohmann/json
+```
+
+#### Runtime dependencies
+```
+sudo apt update
+sudo apt install libcurl3 -y
 ```
 
 ### TODO
@@ -26,6 +32,9 @@ https://github.com/nlohmann/json
 - package management
 - overload vs default arg
 - multi language
+- implement json serialize
+- return const vector
+- std::unique_ptr
 
 
 ```

@@ -5,6 +5,7 @@
 #include "Response/Condition.cpp"
 #include "Response/CurrentWeather.cpp"
 #include "Response/Forecast/Forecast.cpp"
+#include "Response/History.cpp"
 #include "HTTP/HTTP.h"
 
 using std::string;
@@ -12,6 +13,7 @@ using Apixu::Response::Condition;
 using Apixu::Response::CurrentWeather;
 using Apixu::Response::Location;
 using Apixu::Response::Forecast::Forecast;
+using Apixu::Response::History;
 using Apixu::HTTP::HTTP;
 
 namespace Apixu {
@@ -23,6 +25,7 @@ namespace Apixu {
         CurrentWeather current(const string& q);
         vector<Location> search(const string& q);
         Forecast forecast(const string& q, int days, const int* hour = nullptr);
+        History history(const string &q, const string& since, string *until = nullptr);
 
         virtual ~Apixu();
 

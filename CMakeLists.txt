@@ -4,27 +4,28 @@ project(apixu)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(conditions
-    examples/conditions.cpp
-    src/Response/Condition.cpp
-    src/Apixu.cpp
-    src/Apixu.h
-    src/Response/CurrentWeather.cpp
-    src/Response/Location.cpp
-    src/Response/Current.cpp
-    src/Response/Forecast/Forecast.cpp
-    src/Response/Forecast/ForecastWeather.cpp
-    src/Response/Forecast/ForecastDay.cpp
-    src/Response/Forecast/Day.cpp
-    src/Time.cpp
-    src/Time.h
-    src/Response/CurrentCondition.cpp
-    src/Exception/ApixuException.cpp
-    src/Exception/ApiException.cpp
-    src/Response/Error.cpp
-    src/HTTP/HTTP.cpp
-    src/HTTP/HTTP.h
-    src/HTTP/Exception.cpp
-        src/Response/Forecast/Astro.cpp src/Response/Forecast/Hour.cpp)
+        examples/conditions.cpp
+        src/Response/Condition.cpp
+        src/Apixu.cpp
+        src/Apixu.h
+        src/Response/CurrentWeather.cpp
+        src/Response/Location.cpp
+        src/Response/Current.cpp
+        src/Response/Forecast/Forecast.cpp
+        src/Response/Forecast/ForecastWeather.cpp
+        src/Response/Forecast/ForecastDay.cpp
+        src/Response/Forecast/Day.cpp
+        src/Time.cpp
+        src/Time.h
+        src/Response/CurrentCondition.cpp
+        src/Exception/ApixuException.cpp
+        src/Exception/ApiException.cpp
+        src/Response/Error.cpp
+        src/HTTP/HTTP.cpp
+        src/HTTP/HTTP.h
+        src/HTTP/Exception.cpp
+        src/Response/Forecast/Astro.cpp
+        src/Response/Forecast/Hour.cpp src/Response/History.cpp)
 
 add_executable(current
         examples/current.cpp
@@ -47,7 +48,8 @@ add_executable(current
         src/HTTP/HTTP.cpp
         src/HTTP/HTTP.h
         src/HTTP/Exception.cpp
-        src/Response/Forecast/Astro.cpp src/Response/Forecast/Hour.cpp)
+        src/Response/Forecast/Astro.cpp
+        src/Response/Forecast/Hour.cpp src/Response/History.cpp)
 
 add_executable(search
         examples/search.cpp
@@ -70,7 +72,8 @@ add_executable(search
         src/HTTP/HTTP.cpp
         src/HTTP/HTTP.h
         src/HTTP/Exception.cpp
-        src/Response/Forecast/Astro.cpp src/Response/Forecast/Hour.cpp)
+        src/Response/Forecast/Astro.cpp
+        src/Response/Forecast/Hour.cpp src/Response/History.cpp)
 
 add_executable(forecast
         examples/forecast.cpp
@@ -93,7 +96,32 @@ add_executable(forecast
         src/HTTP/HTTP.cpp
         src/HTTP/HTTP.h
         src/HTTP/Exception.cpp
-        src/Response/Forecast/Astro.cpp src/Response/Forecast/Hour.cpp)
+        src/Response/Forecast/Astro.cpp
+        src/Response/Forecast/Hour.cpp src/Response/History.cpp)
+
+add_executable(history
+        examples/history.cpp
+        src/Response/Condition.cpp
+        src/Apixu.cpp
+        src/Apixu.h
+        src/Response/CurrentWeather.cpp
+        src/Response/Location.cpp
+        src/Response/Current.cpp
+        src/Response/Forecast/Forecast.cpp
+        src/Response/Forecast/ForecastWeather.cpp
+        src/Response/Forecast/ForecastDay.cpp
+        src/Response/Forecast/Day.cpp
+        src/Time.cpp
+        src/Time.h
+        src/Response/CurrentCondition.cpp
+        src/Exception/ApixuException.cpp
+        src/Exception/ApiException.cpp
+        src/Response/Error.cpp
+        src/HTTP/HTTP.cpp
+        src/HTTP/HTTP.h
+        src/HTTP/Exception.cpp
+        src/Response/Forecast/Astro.cpp
+        src/Response/Forecast/Hour.cpp src/Response/History.cpp)
 
 add_library(apixu STATIC
         src/Response/Condition.cpp
@@ -115,12 +143,14 @@ add_library(apixu STATIC
         src/HTTP/HTTP.cpp
         src/HTTP/HTTP.h
         src/HTTP/Exception.cpp
-        src/Response/Forecast/Astro.cpp src/Response/Forecast/Hour.cpp)
+        src/Response/Forecast/Astro.cpp
+        src/Response/Forecast/Hour.cpp src/Response/History.cpp)
 
 target_link_libraries(conditions curl)
 target_link_libraries(current curl)
 target_link_libraries(search curl)
 target_link_libraries(forecast curl)
+target_link_libraries(history curl)
 target_link_libraries(apixu curl)
 
 #add_definitions( -DCURL_STATICLIB )
