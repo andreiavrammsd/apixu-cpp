@@ -23,6 +23,8 @@ namespace Apixu {
     vector<Condition> Apixu::conditions() {
         try {
             return json::parse(get(DOC_WEATHER_CONDITIONS_URL, nullptr));
+        } catch (ApiException &e) {
+            throw ApiException(e.what(), e.getCode());
         } catch (exception &e) {
             throw ApixuException(e.what());
         }
@@ -35,6 +37,8 @@ namespace Apixu {
 
         try {
             return json::parse(get(url("current"), &params));
+        } catch (ApiException &e) {
+            throw ApiException(e.what(), e.getCode());
         } catch (exception &e) {
             throw ApixuException(e.what());
         }
@@ -47,6 +51,8 @@ namespace Apixu {
 
         try {
             return json::parse(get(url("search"), &params));
+        } catch (ApiException &e) {
+            throw ApiException(e.what(), e.getCode());
         } catch (exception &e) {
             throw ApixuException(e.what());
         }
@@ -63,6 +69,8 @@ namespace Apixu {
 
         try {
             return json::parse(get(url("forecast"), &params));
+        } catch (ApiException &e) {
+            throw ApiException(e.what(), e.getCode());
         } catch (exception &e) {
             throw ApixuException(e.what());
         }
