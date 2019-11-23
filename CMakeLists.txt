@@ -123,7 +123,7 @@ add_executable(history
         src/Response/Forecast/Astro.cpp
         src/Response/Forecast/Hour.cpp src/Response/History.cpp)
 
-add_library(apixu STATIC
+add_library(apixustatic STATIC
         src/Response/Condition.cpp
         src/Apixu.cpp
         src/Apixu.h
@@ -145,14 +145,41 @@ add_library(apixu STATIC
         src/HTTP/Exception.cpp
         src/Response/Forecast/Astro.cpp
         src/Response/Forecast/Hour.cpp src/Response/History.cpp)
+set_target_properties(apixustatic PROPERTIES OUTPUT_NAME apixu)
+
+add_library(apixushared SHARED
+        src/Response/Condition.cpp
+        src/Apixu.cpp
+        src/Apixu.h
+        src/Response/CurrentWeather.cpp
+        src/Response/Location.cpp
+        src/Response/Current.cpp
+        src/Response/Forecast/Forecast.cpp
+        src/Response/Forecast/ForecastWeather.cpp
+        src/Response/Forecast/ForecastDay.cpp
+        src/Response/Forecast/Day.cpp
+        src/Time.cpp
+        src/Time.h
+        src/Response/CurrentCondition.cpp
+        src/Exception/ApixuException.cpp
+        src/Exception/ApiException.cpp
+        src/Response/Error.cpp
+        src/HTTP/HTTP.cpp
+        src/HTTP/HTTP.h
+        src/HTTP/Exception.cpp
+        src/Response/Forecast/Astro.cpp
+        src/Response/Forecast/Hour.cpp src/Response/History.cpp)
+set_target_properties(apixushared PROPERTIES OUTPUT_NAME apixu)
 
 target_link_libraries(conditions curl)
 target_link_libraries(current curl)
 target_link_libraries(search curl)
 target_link_libraries(forecast curl)
 target_link_libraries(history curl)
-target_link_libraries(apixu curl)
 
+
+#target_link_libraries(apixushared curl)
+#target_link_libraries(apixustatic curl)
 #add_definitions( -DCURL_STATICLIB )
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -lcurl")
 

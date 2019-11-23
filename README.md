@@ -36,8 +36,8 @@ sudo apt install libcurl3 -y
 - return const vector
 - std::unique_ptr
 
-
+### Link
 ```
-docker build -f dev/Dockerfile -t apixudev .
-docker run --rm -ti -v $PWD:/src apixudev bash
+gcc -L/src/cmake-build-lib/ -Wl,-rpath=/src/cmake-build-lib/ -Wall -o testshared examples/conditions.cpp -lapixu -lstdc++ -lcurl
+gcc -L/src/cmake-build-lib/ -Wl,-rpath=/src/cmake-build-lib/ -Wall -o teststatic examples/conditions.cpp cmake-build-lib/libapixu.a -lstdc++ -lcurl
 ```

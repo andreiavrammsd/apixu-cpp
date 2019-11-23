@@ -33,9 +33,9 @@ namespace Apixu {
         string apiKey;
         HTTP::HTTP* httpClient;
 
-        const string API_URL = "https://api.apixu.com/v1/";
+        const string API_URL = "http://localhost:5000/";
         const string API_FORMAT = "json";
-        const string DOC_WEATHER_CONDITIONS_URL = "https://www.apixu.com/doc/Apixu_weather_conditions.json";
+        const string DOC_WEATHER_CONDITIONS_URL = "http://localhost:5000/conditions.json";
         const string USER_AGENT = "Apixu C++/0.1.0";
 
         string url(const string &method);
