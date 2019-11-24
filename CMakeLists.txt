@@ -72,15 +72,3 @@ add_executable(history
         src/Response/Forecast/Astro.cpp
         src/Response/Forecast/Hour.cpp)
 target_link_libraries(history curl)
-
-#target_link_libraries(apixushared curl)
-#target_link_libraries(apixustatic curl)
-#add_definitions( -DCURL_STATICLIB )
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -lcurl")
-
-#if(WIN32)
-#    add_definitions(-DCURL_STATICLIB)
-#    target_link_libraries(apixu ${CMAKE_SOURCE_DIR}/thirdparty/openssl/openssl.lib ${CMAKE_SOURCE_DIR}/thirdparty/curl/libcurl.lib)
-#else()
-#    target_link_libraries(apixu thirdparty/curl/libcurl.a)
-#endif()

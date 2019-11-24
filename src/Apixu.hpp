@@ -26,6 +26,7 @@ namespace Apixu {
     class Apixu {
     public:
         explicit Apixu(string apiKey);
+        Apixu(string apiKey, HTTP::HTTP *httpClient);
 
         vector<Condition> conditions();
 
@@ -49,6 +50,7 @@ namespace Apixu {
         const string USER_AGENT = "Apixu C++/0.1.0";
 
         string url(const string &method);
+
         string get(const string &url, const map<string, string> *params);
     };
 }

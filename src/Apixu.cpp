@@ -16,6 +16,9 @@ namespace Apixu {
         httpClient = new HTTP::Client(USER_AGENT);
     }
 
+    Apixu::Apixu(string apiKey, HTTP::HTTP *httpClient) : apiKey(move(apiKey)), httpClient(httpClient) {
+    }
+
     Apixu::~Apixu() {
         delete httpClient;
     }
@@ -30,7 +33,7 @@ namespace Apixu {
         }
     }
 
-    CurrentWeather Apixu::current(const string& q) {
+    CurrentWeather Apixu::current(const string &q) {
         map<string, string> params;
         params["key"] = apiKey;
         params["q"] = q;
@@ -76,7 +79,7 @@ namespace Apixu {
         }
     }
 
-    History Apixu::history(const string &q, const string& since, string *until) {
+    History Apixu::history(const string &q, const string &since, string *until) {
         map<string, string> params;
         params["key"] = apiKey;
         params["q"] = q;
@@ -94,11 +97,11 @@ namespace Apixu {
         }
     }
 
-    string Apixu::url(const string& method) {
+    string Apixu::url(const string &method) {
         return API_URL + method + "." + API_FORMAT;
     }
 
-    string Apixu::get(const string &url, const map<string, string>* params) {
+    string Apixu::get(const string &url, const map<string, string> *params) {
         auto response = httpClient->get(url, params);
         int status = response->getStatus();
         string body = response->getBody();
