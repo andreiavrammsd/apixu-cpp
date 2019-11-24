@@ -1,11 +1,13 @@
 #include <iostream>
 #include <vector>
-#include "../src/Apixu.h"
-#include "../src/Response/Condition.cpp"
+#include "../src/Apixu.hpp"
+#include "../src/Response/Condition.hpp"
 #include "../src/Exception/ApiException.cpp"
 
 using namespace Apixu::Exception;
 using namespace Apixu::Response;
+using std::cout;
+using std::endl;
 
 int main() {
     const char *apiKey = getenv("APIXUKEY");

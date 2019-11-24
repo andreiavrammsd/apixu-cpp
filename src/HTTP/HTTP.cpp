@@ -1,5 +1,4 @@
-#include "HTTP.h"
-
+#include "HTTP.hpp"
 #include <curl/curl.h>
 #include <sstream>
 #include <utility>

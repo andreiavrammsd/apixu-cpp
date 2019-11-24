@@ -1,13 +1,12 @@
-#ifndef APIXU_EXCEPTION
-#define APIXU_EXCEPTION
+#ifndef APIXU_EXCEPTION_APIXU_EXCEPTION_
+#define APIXU_EXCEPTION_APIXU_EXCEPTION_
 
-
-#include <stdexcept>
-
-using namespace std;
 
 namespace Apixu {
     namespace Exception {
+        using std::exception;
+        using std::string;
+
         class ApixuException : public exception {
         public:
             explicit ApixuException(string msg) : msg(move(msg)) {}
@@ -23,4 +22,4 @@ namespace Apixu {
 }
 
 
-#endif //APIXU_EXCEPTION
+#endif // APIXU_EXCEPTION_APIXU_EXCEPTION_

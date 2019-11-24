@@ -1,61 +1,33 @@
-#ifndef APIXU_FORECAST_DAY_CPP
-#define APIXU_FORECAST_DAY_CPP
-
-#include "../../../include/nlohmann/json.hpp"
-#include "Day.cpp"
-#include "Astro.cpp"
-#include "Hour.cpp"
+#include "ForecastDay.hpp"
+#include "Day.hpp"
+#include "Astro.hpp"
+#include "Hour.hpp"
 
 namespace Apixu {
     namespace Response {
         namespace Forecast {
-            using nlohmann::json;
             using std::string;
+            using std::vector;
 
-            class ForecastDay {
-            public:
-                const string &getDate() const {
-                    return date;
-                }
+            const string &ForecastDay::getDate() const {
+                return date;
+            }
 
-                time_t getDateEpoch() const {
-                    return dateEpoch;
-                }
+            time_t ForecastDay::getDateEpoch() const {
+                return dateEpoch;
+            }
 
-                const Day &getDay() const {
-                    return day;
-                }
+            const Day &ForecastDay::getDay() const {
+                return day;
+            }
 
-                const Astro &getAstro() const {
-                    return astro;
-                }
+            const Astro &ForecastDay::getAstro() const {
+                return astro;
+            }
 
-                const vector<Hour> &getHour() const {
-                    return hour;
-                }
-
-            private:
-                string date;
-                time_t dateEpoch;
-                Day day;
-                Astro astro;
-                vector<Hour> hour;
-
-                friend void from_json(const json &j, ForecastDay &f);
-            };
-
-            inline void from_json(const json &j, ForecastDay &f) {
-                f.date = j.at("date").get<string>();
-                f.dateEpoch = j.at("date_epoch").get<time_t>();
-                f.day = j.at("day").get<Day>();
-                f.astro = j.at("astro").get<Astro>();
-
-                if (j.contains("hour")) {
-                    f.hour = j.at("hour").get<vector<Hour>>();
-                }
+            const vector<Hour> &ForecastDay::getHour() const {
+                return hour;
             }
         }
     }
 }
-
-#endif //APIXU_FORECAST_DAY_CPP

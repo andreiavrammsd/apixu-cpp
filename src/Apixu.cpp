@@ -1,4 +1,4 @@
-#include "Apixu.h"
+#include "Apixu.hpp"
 #include "Exception/ApiException.cpp"
 #include "Response/Error.cpp"
 
@@ -7,11 +7,11 @@ using Apixu::Exception::ApiException;
 using Apixu::HTTP::STATUS_INTERNAL_SERVER_ERROR;
 using Apixu::HTTP::STATUS_BAD_REQUEST;
 using Apixu::Response::ErrorResponse;
-using std::map;
-using std::string;
-using json = nlohmann::json;
 
 namespace Apixu {
+    using std::exception;
+    using std::to_string;
+
     Apixu::Apixu(string apiKey) : apiKey(move(apiKey)) {
         httpClient = new HTTP::Client(USER_AGENT);
     }

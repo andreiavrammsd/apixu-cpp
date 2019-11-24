@@ -1,14 +1,20 @@
-#ifndef APIXU_APIXU_H
-#define APIXU_APIXU_H
+#ifndef APIXU_APIXU_HPP_
+#define APIXU_APIXU_HPP_
 
 
-#include "Response/Condition.cpp"
-#include "Response/CurrentWeather.cpp"
-#include "Response/Forecast/Forecast.cpp"
-#include "Response/History.cpp"
-#include "HTTP/HTTP.h"
+#include <string>
+#include <vector>
+#include <map>
+#include "Response/Condition.hpp"
+#include "Response/CurrentWeather.hpp"
+#include "Response/Location.hpp"
+#include "Response/Forecast/Forecast.hpp"
+#include "Response/History.hpp"
+#include "HTTP/HTTP.hpp"
 
 using std::string;
+using std::vector;
+using std::map;
 using Apixu::Response::Condition;
 using Apixu::Response::CurrentWeather;
 using Apixu::Response::Location;
@@ -22,16 +28,20 @@ namespace Apixu {
         explicit Apixu(string apiKey);
 
         vector<Condition> conditions();
-        CurrentWeather current(const string& q);
-        vector<Location> search(const string& q);
-        Forecast forecast(const string& q, int days, const int* hour = nullptr);
-        History history(const string &q, const string& since, string *until = nullptr);
+
+        CurrentWeather current(const string &q);
+
+        vector<Location> search(const string &q);
+
+        Forecast forecast(const string &q, int days, const int *hour = nullptr);
+
+        History history(const string &q, const string &since, string *until = nullptr);
 
         virtual ~Apixu();
 
     private:
         string apiKey;
-        HTTP::HTTP* httpClient;
+        HTTP::HTTP *httpClient;
 
         const string API_URL = "http://localhost:5000/";
         const string API_FORMAT = "json";
@@ -43,4 +53,4 @@ namespace Apixu {
     };
 }
 
-#endif //APIXU_APIXU_H
+#endif // APIXU_APIXU_HPP_

@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "../src/Apixu.h"
+#include "../src/Apixu.hpp"
 #include "../src/Exception/ApiException.cpp"
 #include <iomanip>
 #include <ctime>
@@ -8,6 +8,8 @@
 using namespace Apixu::Exception;
 using namespace Apixu::Response;
 using namespace Apixu::Response::Forecast;
+using std::cout;
+using std::endl;
 
 int main() {
     const char *apiKey = getenv("APIXUKEY");

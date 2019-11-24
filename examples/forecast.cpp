@@ -1,11 +1,13 @@
 #include <iostream>
 #include <vector>
-#include "../src/Apixu.h"
+#include "../src/Apixu.hpp"
 #include "../src/Exception/ApiException.cpp"
 
 using namespace Apixu::Exception;
 using namespace Apixu::Response;
 using namespace Apixu::Response::Forecast;
+using std::cout;
+using std::endl;
 
 int main() {
     const char *apiKey = getenv("APIXUKEY");
@@ -148,6 +150,7 @@ int main() {
             cout << "\t\tfeels like C = " << h.getFeelsLikeC() << endl;
             cout << "\t\tfeels like F = " << h.getFeelsLikeF() << endl;
             cout << "\t\twind chill C = " << h.getWindChillC() << endl;
+            cout << "\t\twind chill F = " << h.getWindChillF() << endl;
             cout << "\t\theat index C = " << h.getHeatIndexC() << endl;
             cout << "\t\theat index F = " << h.getHeatIndexF() << endl;
             cout << "\t\tdew point C = " << h.getDewPointC() << endl;

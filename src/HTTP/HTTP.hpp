@@ -1,14 +1,14 @@
-#ifndef APIXU_HTTP_H
-#define APIXU_HTTP_H
+#ifndef APIXU_HTTP_HTTP_HPP_
+#define APIXU_HTTP_HTTP_HPP_
 
 
-#include <string>
 #include <map>
-
-using namespace std;
 
 namespace Apixu {
     namespace HTTP {
+        using std::string;
+        using std::map;
+
         const int STATUS_INTERNAL_SERVER_ERROR = 500;
         const int STATUS_BAD_REQUEST = 400;
 
@@ -19,6 +19,8 @@ namespace Apixu {
             int getStatus() const;
 
             const string &getBody() const;
+
+            virtual ~Response() = default;
 
         private:
             int status;
@@ -43,5 +45,4 @@ namespace Apixu {
     }
 }
 
-
-#endif //APIXU_HTTP_H
+#endif // APIXU_HTTP_HTTP_HPP_
