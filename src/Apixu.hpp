@@ -52,7 +52,7 @@ namespace Apixu {
 
         string url(const string &method);
 
-        string get(const string &url, const map<string, string> *params);
+        string get(const string &url, map<string, string> params);
     };
 }
 

@@ -1,4 +1,6 @@
 #include "Apixu.hpp"
+
+#include <utility>
 #include "Exception/ApiException.cpp"
 #include "Response/Error.cpp"
 
@@ -24,8 +26,10 @@ namespace Apixu {
     }
 
     vector<Condition> Apixu::Conditions() {
+        map<string, string> params;
+
         try {
-            return json::parse(get(DOC_WEATHER_CONDITIONS_URL, nullptr));
+            return json::parse(get(DOC_WEATHER_CONDITIONS_URL, params));
         } catch (ApiException &e) {
             throw ApiException(e.what(), e.getCode());
         } catch (exception &e) {
@@ -39,7 +43,7 @@ namespace Apixu {
         params["q"] = q;
 
         try {
-            return json::parse(get(url("current"), &params));
+            return json::parse(get(url("current"), params));
         } catch (ApiException &e) {
             throw ApiException(e.what(), e.getCode());
         } catch (exception &e) {
@@ -53,7 +57,7 @@ namespace Apixu {
         params["q"] = q;
 
         try {
-            return json::parse(get(url("search"), &params));
+            return json::parse(get(url("search"), params));
         } catch (ApiException &e) {
             throw ApiException(e.what(), e.getCode());
         } catch (exception &e) {
@@ -71,7 +75,7 @@ namespace Apixu {
         }
 
         try {
-            return json::parse(get(url("forecast"), &params));
+            return json::parse(get(url("forecast"), params));
         } catch (ApiException &e) {
             throw ApiException(e.what(), e.getCode());
         } catch (exception &e) {
@@ -89,7 +93,7 @@ namespace Apixu {
         }
 
         try {
-            return json::parse(get(url("history"), &params));
+            return json::parse(get(url("history"), params));
         } catch (ApiException &e) {
             throw ApiException(e.what(), e.getCode());
         } catch (exception &e) {
@@ -101,8 +105,8 @@ namespace Apixu {
         return API_URL + method + "." + API_FORMAT;
     }
 
-    string Apixu::get(const string &url, const map<string, string> *params) {
-        auto response = httpClient->get(url, params);
+    string Apixu::get(const string &url, map<string, string> params) {
+        auto response = httpClient->get(url, std::move(params));
         int status = response->getStatus();
         string body = response->getBody();
         delete response;

@@ -9,10 +9,10 @@ namespace Apixu {
         using std::ostringstream;
         Client::Client(string userAgent) : userAgent(std::move(userAgent)) {}
 
-        inline string paramsToQuery(CURL* curl, const map<string, string> *params) {
+        inline string paramsToQuery(CURL* curl, map<string, string> params) {
             ostringstream query;
 
-            for (auto iter = params->begin(); iter != params->end();) {
+            for (auto iter = params.begin(); iter != params.end();) {
                 char *key = curl_easy_escape(curl, iter->first.c_str(), iter->first.length());
                 char *value = curl_easy_escape(curl, iter->second.c_str(), iter->second.length());
                 if (!key || !value) {
@@ -23,7 +23,7 @@ namespace Apixu {
                 curl_free(key);
                 curl_free(value);
 
-                if (next(iter) != params->end()) {
+                if (next(iter) != params.end()) {
                     query << "&";
                 }
                 ++iter;
@@ -37,16 +37,18 @@ namespace Apixu {
             return size * nmemb;
         }
 
-        const Response *Client::get(const string& url, const map<string, string> *params) {
+        const Response *Client::get(const string& url) {
+            map<string, string> params;
+            return get(url, params);
+        }
+
+        const Response *Client::get(const string& url, map<string, string> params) {
             CURL* curl = curl_easy_init();
             if (!curl) {
                 throw Exception("Cannot init curl");
             }
 
-            string apiUrl = url;
-            if (params) {
-                apiUrl += "?" + paramsToQuery(curl, params);
-            }
+            string apiUrl = url + "?" + paramsToQuery(curl, params);
 
             curl_easy_setopt(curl, CURLOPT_URL, apiUrl.c_str());
             curl_easy_setopt(curl, CURLOPT_USERAGENT, userAgent.c_str());

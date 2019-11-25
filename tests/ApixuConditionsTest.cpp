@@ -23,7 +23,7 @@ namespace {
             ]
         )";
 
-        auto mockHttpClient = HttpClientMock::GetHttpClient(url, nullptr, status, body);
+        auto mockHttpClient = HttpClientMock::GetHttpClient(url, status, body);
 
         auto apixu = new Apixu::Apixu("", mockHttpClient);
         auto conditions = apixu->Conditions();
@@ -48,7 +48,7 @@ namespace {
             }
         )";
 
-        auto mockHttpClient = HttpClientMock::GetHttpClient(url, nullptr, status, body);
+        auto mockHttpClient = HttpClientMock::GetHttpClient(url, status, body);
         auto apixu = new Apixu::Apixu("", mockHttpClient);
 
         ASSERT_THROW(apixu->Conditions(), Apixu::Exception::ApixuException);

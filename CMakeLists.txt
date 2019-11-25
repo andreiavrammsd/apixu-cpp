@@ -30,6 +30,18 @@ package_add_test(conditions_test
         src/Response/Location.cpp)
 target_link_libraries(conditions_test curl)
 
+package_add_test(current_test
+        tests/ApixuCurrentTest.cpp
+        src/Apixu.cpp
+        src/Http/Http.cpp
+        src/Time.cpp
+        src/Exception/ApiException.cpp
+        src/Response/CurrentWeather.cpp
+        src/Response/Location.cpp
+        src/Response/Current.cpp
+        src/Response/CurrentCondition.cpp)
+target_link_libraries(current_test curl)
+
 
 # -------------------------------------------------------------------
 # Dependencies
