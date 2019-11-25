@@ -36,37 +36,16 @@ target_link_libraries(conditions_test curl)
 include(FetchContent)
 
 # Testing framework
-FetchContent_Declare(
-        googletest
-        GIT_REPOSITORY https://github.com/google/googletest.git
-        GIT_TAG release-1.10.0
-)
-
-FetchContent_GetProperties(googletest)
-if (NOT googletest_POPULATED)
-    FetchContent_Populate(googletest)
-    add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
-endif ()
-
+FetchContent_Declare(googletest URL https://github.com/google/googletest/archive/release-1.10.0.zip)
+FetchContent_Populate(googletest)
 include_directories(${googletest_SOURCE_DIR}/googletest/include/)
+include_directories(${googletest_SOURCE_DIR}/googlemock/include/)
+add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
 
 # JSON
-FetchContent_Declare(
-        json
-        GIT_REPOSITORY https://github.com/nlohmann/json.git
-        GIT_TAG v3.7.3
-)
-
-FetchContent_GetProperties(json)
-if (NOT json_POPULATED)
-    FetchContent_Populate(json)
-    add_subdirectory(
-            ${json_SOURCE_DIR}
-            ${json_BINARY_DIR}
-    )
-endif ()
-
-include_directories(${json_SOURCE_DIR}/include/)
+FetchContent_Declare(nlohmann_json URL https://github.com/nlohmann/json/releases/download/v3.7.3/include.zip)
+FetchContent_Populate(nlohmann_json)
+include_directories(${nlohmann_json_SOURCE_DIR}/include/)
 
 
 # -------------------------------------------------------------------
