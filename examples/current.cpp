@@ -19,7 +19,7 @@ int main() {
 
     CurrentWeather currentWeather;
     try {
-        currentWeather = apixu->current("Paris");
+        currentWeather = apixu->Current("Paris");
     } catch (ApiException &e) {
         cout << "ApiException: " << e.what() << " (code: " << e.getCode() << ")";
         return 1;

@@ -20,7 +20,7 @@ int main() {
 
     vector<Condition> conditions;
     try {
-        conditions = apixu->conditions();
+        conditions = apixu->Conditions();
     } catch (ApiException &e) {
         cout << "ApiException: " << e.what() << " (code: " << e.getCode() << ")";
         return 1;

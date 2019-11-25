@@ -23,7 +23,7 @@ namespace Apixu {
         delete httpClient;
     }
 
-    vector<Condition> Apixu::conditions() {
+    vector<Condition> Apixu::Conditions() {
         try {
             return json::parse(get(DOC_WEATHER_CONDITIONS_URL, nullptr));
         } catch (ApiException &e) {
@@ -33,7 +33,7 @@ namespace Apixu {
         }
     }
 
-    CurrentWeather Apixu::current(const string &q) {
+    CurrentWeather Apixu::Current(const string &q) {
         map<string, string> params;
         params["key"] = apiKey;
         params["q"] = q;
@@ -47,7 +47,7 @@ namespace Apixu {
         }
     }
 
-    vector<Location> Apixu::search(const string &q) {
+    vector<Location> Apixu::Search(const string &q) {
         map<string, string> params;
         params["key"] = apiKey;
         params["q"] = q;
@@ -61,7 +61,7 @@ namespace Apixu {
         }
     }
 
-    Forecast Apixu::forecast(const string &q, int days, const int *hour) {
+    WeatherForecast Apixu::Forecast(const string &q, int days, const int *hour) {
         map<string, string> params;
         params["key"] = apiKey;
         params["q"] = q;
@@ -79,7 +79,7 @@ namespace Apixu {
         }
     }
 
-    History Apixu::history(const string &q, const string &since, string *until) {
+    WeatherHistory Apixu::History(const string &q, const string &since, string *until) {
         map<string, string> params;
         params["key"] = apiKey;
         params["q"] = q;

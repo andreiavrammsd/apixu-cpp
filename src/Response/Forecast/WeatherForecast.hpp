@@ -11,7 +11,7 @@ namespace Apixu {
         namespace Forecast {
             using nlohmann::json;
 
-            class Forecast {
+            class WeatherForecast {
             public:
                 const Location &getLocation() const;
 
@@ -19,17 +19,17 @@ namespace Apixu {
 
                 const ForecastWeather &getForecast() const;
 
-                virtual ~Forecast() = default;
+                virtual ~WeatherForecast() = default;
 
             private:
                 Location location;
                 Current current;
                 ForecastWeather forecast{};
 
-                friend void from_json(const json &j, Forecast &f);
+                friend void from_json(const json &j, WeatherForecast &f);
             };
 
-            inline void from_json(const json &j, Forecast &f) {
+            inline void from_json(const json &j, WeatherForecast &f) {
                 f.location = j.at("location").get<Location>();
                 f.current = j.at("current").get<Current>();
                 f.forecast = j.at("forecast").get<ForecastWeather>();

@@ -1,4 +1,4 @@
-#include "History.hpp"
+#include "WeatherHistory.hpp"
 #include "Location.hpp"
 #include "Forecast/ForecastWeather.hpp"
 
@@ -8,11 +8,11 @@ namespace Apixu {
         using Apixu::Response::Location;
         using Apixu::Response::Forecast::ForecastWeather;
 
-        const Location &History::getLocation() const {
+        const Location &WeatherHistory::getLocation() const {
             return location;
         }
 
-        const ForecastWeather &History::getForecast() const {
+        const ForecastWeather &WeatherHistory::getForecast() const {
             return forecast;
         }
     }

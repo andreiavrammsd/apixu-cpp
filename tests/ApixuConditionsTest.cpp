@@ -26,7 +26,7 @@ namespace {
         auto mockHttpClient = HttpClientMock::GetHttpClient(url, nullptr, status, body);
 
         auto apixu = new Apixu::Apixu("", mockHttpClient);
-        auto conditions = apixu->conditions();
+        auto conditions = apixu->Conditions();
 
         EXPECT_EQ(1, conditions.size());
         EXPECT_EQ(1, conditions[0].getCode());
@@ -51,7 +51,7 @@ namespace {
         auto mockHttpClient = HttpClientMock::GetHttpClient(url, nullptr, status, body);
         auto apixu = new Apixu::Apixu("", mockHttpClient);
 
-        ASSERT_THROW(apixu->conditions(), Apixu::Exception::ApixuException);
+        ASSERT_THROW(apixu->Conditions(), Apixu::Exception::ApixuException);
 
         delete apixu;
     }

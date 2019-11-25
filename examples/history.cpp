@@ -20,7 +20,7 @@ int main() {
 
     auto apixu = new Apixu::Apixu(apiKey);
 
-    class History history;
+    class WeatherHistory history;
     try {
         auto t = std::time(nullptr);
         auto tm = *std::localtime(&t);
@@ -28,7 +28,7 @@ int main() {
         std::ostringstream since;
         since << std::put_time(&tm, "%Y-%m-%d");
 
-        history = apixu->history("Prague", since.str());
+        history = apixu->History("Prague", since.str());
     } catch (ApiException &e) {
         cout << "ApiException: " << e.what() << " (code: " << e.getCode() << ")";
         return 1;

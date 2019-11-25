@@ -18,10 +18,10 @@ int main() {
 
     auto apixu = new Apixu::Apixu(apiKey);
 
-    class Forecast forecast;
+    class WeatherForecast forecast;
     try {
         int h = 12;
-        forecast = apixu->forecast("Paris", 2, &h);
+        forecast = apixu->Forecast("Paris", 2, &h);
     } catch (ApiException &e) {
         cout << "ApiException: " << e.what() << " (code: " << e.getCode() << ")";
         return 1;

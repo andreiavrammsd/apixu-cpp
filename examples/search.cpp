@@ -17,7 +17,7 @@ int main() {
 
     auto apixu = new Apixu::Apixu(apiKey);
 
-    vector<Location> locations = apixu->search("Koln, Germany");
+    vector<Location> locations = apixu->Search("Koln, Germany");
 
     for (const auto& loc : locations) {
         cout << "id = " << *loc.getId() << endl;

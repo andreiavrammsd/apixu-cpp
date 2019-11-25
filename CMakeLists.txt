@@ -106,7 +106,7 @@ add_executable(forecast
         src/Apixu.cpp
         src/HTTP/HTTP.cpp
         src/Time.cpp
-        src/Response/Forecast/Forecast.cpp
+        src/Response/Forecast/WeatherForecast.cpp
         src/Response/Forecast/ForecastDay.cpp
         src/Response/Forecast/ForecastWeather.cpp
         src/Response/Forecast/Astro.cpp
@@ -123,7 +123,7 @@ add_executable(history
         src/HTTP/HTTP.cpp
         src/Time.cpp
         src/Response/Location.cpp
-        src/Response/History.cpp
+        src/Response/WeatherHistory.cpp
         src/Response/Forecast/ForecastWeather.cpp
         src/Response/Forecast/ForecastDay.cpp
         src/Response/Forecast/Day.cpp

@@ -1,4 +1,4 @@
-#include "Forecast.hpp"
+#include "WeatherForecast.hpp"
 #include "../Current.hpp"
 #include "ForecastWeather.hpp"
 
@@ -7,15 +7,15 @@ namespace Apixu {
         namespace Forecast {
             using nlohmann::json;
 
-            const Location &Forecast::getLocation() const {
+            const Location &WeatherForecast::getLocation() const {
                 return location;
             }
 
-            const Current &Forecast::getCurrent() const {
+            const Current &WeatherForecast::getCurrent() const {
                 return current;
             }
 
-            const ForecastWeather &Forecast::getForecast() const {
+            const ForecastWeather &WeatherForecast::getForecast() const {
                 return forecast;
             }
         }

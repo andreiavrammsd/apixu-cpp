@@ -8,8 +8,8 @@
 #include "Response/Condition.hpp"
 #include "Response/CurrentWeather.hpp"
 #include "Response/Location.hpp"
-#include "Response/Forecast/Forecast.hpp"
-#include "Response/History.hpp"
+#include "Response/Forecast/WeatherForecast.hpp"
+#include "Response/WeatherHistory.hpp"
 #include "HTTP/HTTP.hpp"
 
 using std::string;
@@ -18,8 +18,8 @@ using std::map;
 using Apixu::Response::Condition;
 using Apixu::Response::CurrentWeather;
 using Apixu::Response::Location;
-using Apixu::Response::Forecast::Forecast;
-using Apixu::Response::History;
+using Apixu::Response::Forecast::WeatherForecast;
+using Apixu::Response::WeatherHistory;
 using Apixu::HTTP::HTTP;
 
 namespace Apixu {
@@ -28,15 +28,15 @@ namespace Apixu {
         explicit Apixu(string apiKey);
         Apixu(string apiKey, HTTP::HTTP *httpClient);
 
-        vector<Condition> conditions();
+        vector<Condition> Conditions();
 
-        CurrentWeather current(const string &q);
+        CurrentWeather Current(const string &q);
 
-        vector<Location> search(const string &q);
+        vector<Location> Search(const string &q);
 
-        Forecast forecast(const string &q, int days, const int *hour = nullptr);
+        WeatherForecast Forecast(const string &q, int days, const int *hour = nullptr);
 
-        History history(const string &q, const string &since, string *until = nullptr);
+        WeatherHistory History(const string &q, const string &since, string *until = nullptr);
 
         virtual ~Apixu();
 

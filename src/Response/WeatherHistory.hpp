@@ -12,22 +12,22 @@ namespace Apixu {
         using Apixu::Response::Location;
         using Apixu::Response::Forecast::ForecastWeather;
 
-        class History {
+        class WeatherHistory {
         public:
             const Location &getLocation() const;
 
             const ForecastWeather &getForecast() const;
 
-            virtual ~History() = default;
+            virtual ~WeatherHistory() = default;
 
         private:
             Location location;
             ForecastWeather forecast;
 
-            friend void from_json(const json &j, History &h);
+            friend void from_json(const json &j, WeatherHistory &h);
         };
 
-        inline void from_json(const json &j, History &h) {
+        inline void from_json(const json &j, WeatherHistory &h) {
             h.location = j.at("location").get<Location>();
             h.forecast = j.at("forecast").get<ForecastWeather>();
         }
