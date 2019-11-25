@@ -1,6 +1,8 @@
 #ifndef APIXU_RESPONSE_CONDITION_HPP_
 #define APIXU_RESPONSE_CONDITION_HPP_
 
+
+#include <string>
 #include "nlohmann/json.hpp"
 
 namespace Apixu {
