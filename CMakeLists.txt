@@ -72,3 +72,38 @@ add_executable(history
         src/Response/Forecast/Astro.cpp
         src/Response/Forecast/Hour.cpp)
 target_link_libraries(history curl)
+
+# Include testing framework
+include(FetchContent)
+
+FetchContent_Declare(
+        googletest
+        GIT_REPOSITORY https://github.com/google/googletest.git
+        GIT_TAG        release-1.10.0
+)
+
+FetchContent_GetProperties(googletest)
+if(NOT googletest_POPULATED)
+    FetchContent_Populate(googletest)
+    add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
+endif()
+
+# Add tests
+macro(package_add_test TESTNAME)
+    add_executable(${TESTNAME} ${ARGN})
+    target_link_libraries(${TESTNAME} gtest gmock gtest_main)
+    add_test(NAME ${TESTNAME} COMMAND ${TESTNAME})
+    set_target_properties(${TESTNAME} PROPERTIES FOLDER tests)
+endmacro()
+
+include_directories(${googletest_SOURCE_DIR}/googletest/include/)
+
+package_add_test(conditions_test
+        tests/ApixuConditionsTest.cpp
+        src/Apixu.cpp
+        src/HTTP/HTTP.cpp
+        src/Time.cpp
+        src/Exception/ApiException.cpp
+        src/Response/Condition.cpp
+        src/Response/Location.cpp)
+target_link_libraries(conditions_test curl)

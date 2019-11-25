@@ -2,8 +2,14 @@
 #define APIXU_RESPONSE_ERROR_HPP_
 
 
+#include <string>
+#include <nlohmann/json.hpp>
+
 namespace Apixu {
     namespace Response {
+        using std::string;
+        using nlohmann::json;
+
         class Error {
         public:
             int getCode() const;

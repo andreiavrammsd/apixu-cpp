@@ -2,6 +2,9 @@
 #define APIXU_EXCEPTION_APIXU_EXCEPTION_
 
 
+#include <exception>
+#include <string>
+
 namespace Apixu {
     namespace Exception {
         using std::exception;
@@ -20,6 +23,5 @@ namespace Apixu {
         };
     }
 }
-
 
 #endif // APIXU_EXCEPTION_APIXU_EXCEPTION_

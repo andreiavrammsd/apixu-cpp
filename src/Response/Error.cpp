@@ -1,14 +1,7 @@
-#ifndef APIXU_ERROR_CPP
-#define APIXU_ERROR_CPP
-
-
 #include "Error.hpp"
 
 namespace Apixu {
     namespace Response {
-        using namespace std;
-        using nlohmann::json;
-
         int Error::getCode() const {
             return code;
         }
@@ -22,5 +15,3 @@ namespace Apixu {
         }
     }
 }
-
-#endif //APIXU_ERROR_CPP

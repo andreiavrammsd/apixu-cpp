@@ -16,9 +16,9 @@ namespace Apixu {
         public:
             Response(int status, string body);
 
-            int getStatus() const;
+            virtual int getStatus() const;
 
-            const string &getBody() const;
+            virtual const string &getBody() const;
 
             virtual ~Response() = default;
 
@@ -29,7 +29,8 @@ namespace Apixu {
 
         class HTTP {
         public:
-            virtual const Response *get(const string& path, const map<string, string>* params) = 0;
+            virtual const Response *get(const string &path, const map<string, string> *params) = 0;
+
             virtual ~HTTP() = default;
         };
 
@@ -37,7 +38,7 @@ namespace Apixu {
         public:
             explicit Client(string userAgent);
 
-            const Response *get(const string& url, const map<string, string>* params) override;
+            const Response *get(const string &url, const map<string, string> *params) override;
 
         private:
             string userAgent;
