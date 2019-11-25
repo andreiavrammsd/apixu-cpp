@@ -10,7 +10,7 @@
 #include "Response/Location.hpp"
 #include "Response/Forecast/WeatherForecast.hpp"
 #include "Response/WeatherHistory.hpp"
-#include "HTTP/HTTP.hpp"
+#include "Http/Http.hpp"
 
 using std::string;
 using std::vector;
@@ -20,13 +20,14 @@ using Apixu::Response::CurrentWeather;
 using Apixu::Response::Location;
 using Apixu::Response::Forecast::WeatherForecast;
 using Apixu::Response::WeatherHistory;
-using Apixu::HTTP::HTTP;
+using Apixu::Http::Http;
 
 namespace Apixu {
     class Apixu {
     public:
         explicit Apixu(string apiKey);
-        Apixu(string apiKey, HTTP::HTTP *httpClient);
+
+        Apixu(string apiKey, Http::Http *httpClient);
 
         vector<Condition> Conditions();
 
@@ -42,7 +43,7 @@ namespace Apixu {
 
     private:
         string apiKey;
-        HTTP::HTTP *httpClient;
+        Http::Http *httpClient;
 
         const string API_URL = "http://localhost:5000/";
         const string API_FORMAT = "json";

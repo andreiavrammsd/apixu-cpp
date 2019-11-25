@@ -23,7 +23,7 @@ endmacro()
 package_add_test(conditions_test
         tests/ApixuConditionsTest.cpp
         src/Apixu.cpp
-        src/HTTP/HTTP.cpp
+        src/Http/Http.cpp
         src/Time.cpp
         src/Exception/ApiException.cpp
         src/Response/Condition.cpp
@@ -53,7 +53,7 @@ include_directories(${nlohmann_json_SOURCE_DIR}/include/)
 add_executable(conditions
         examples/conditions.cpp
         src/Apixu.cpp
-        src/HTTP/HTTP.cpp
+        src/Http/Http.cpp
         src/Time.cpp
         src/Exception/ApiException.cpp
         src/Response/Condition.cpp
@@ -63,7 +63,7 @@ target_link_libraries(conditions curl)
 add_executable(current
         examples/current.cpp
         src/Apixu.cpp
-        src/HTTP/HTTP.cpp
+        src/Http/Http.cpp
         src/Time.cpp
         src/Exception/ApiException.cpp
         src/Response/CurrentWeather.cpp
@@ -75,7 +75,7 @@ target_link_libraries(current curl)
 add_executable(search
         examples/search.cpp
         src/Apixu.cpp
-        src/HTTP/HTTP.cpp
+        src/Http/Http.cpp
         src/Time.cpp
         src/Response/Location.cpp)
 target_link_libraries(search curl)
@@ -83,7 +83,7 @@ target_link_libraries(search curl)
 add_executable(forecast
         examples/forecast.cpp
         src/Apixu.cpp
-        src/HTTP/HTTP.cpp
+        src/Http/Http.cpp
         src/Time.cpp
         src/Response/Forecast/WeatherForecast.cpp
         src/Response/Forecast/ForecastDay.cpp
@@ -99,7 +99,7 @@ target_link_libraries(forecast curl)
 add_executable(history
         examples/history.cpp
         src/Apixu.cpp
-        src/HTTP/HTTP.cpp
+        src/Http/Http.cpp
         src/Time.cpp
         src/Response/Location.cpp
         src/Response/WeatherHistory.cpp

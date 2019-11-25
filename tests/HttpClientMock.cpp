@@ -3,26 +3,26 @@
 #include "gmock/gmock.h"
 
 namespace HttpClientMock {
-    class MockHTTPResponse : public Apixu::HTTP::Response {
+    class MockHttpResponse : public Apixu::Http::Response {
     public:
-        MockHTTPResponse(int status, string body) : Response(status, std::move(body)) {}
+        MockHttpResponse(int status, string body) : Response(status, std::move(body)) {}
 
         MOCK_METHOD(int, getStatus, (), (const, override));
         MOCK_METHOD(const string&, getBody, (), (const, override));
     };
 
-    class MockHTTP : public Apixu::HTTP::HTTP {
+    class MockHttpClient : public Apixu::Http::Http {
     public:
-        explicit MockHTTP() = default;
+        explicit MockHttpClient() = default;
 
-        MOCK_METHOD(const Apixu::HTTP::Response*, get, (const string&, (const map<string, string>*)), (override));
+        MOCK_METHOD(const Apixu::Http::Response*, get, (const string&, (const map<string, string>*)), (override));
     };
 
     using ::testing::Return;
     using ::testing::ReturnRef;
 
-    MockHTTP *GetHttpClient(const string &url, map<string, string> *params, int status, const string &body) {
-        auto mockHttpResponse = new MockHTTPResponse(status, body);
+    MockHttpClient *GetHttpClient(const string &url, map<string, string> *params, int status, const string &body) {
+        auto mockHttpResponse = new MockHttpResponse(status, body);
         EXPECT_CALL(*mockHttpResponse, getStatus())
                 .Times(1)
                 .WillOnce(Return(status));
@@ -30,12 +30,11 @@ namespace HttpClientMock {
                 .Times(1)
                 .WillOnce(ReturnRef(body));
 
-        auto mockHttp = new MockHTTP();
-        EXPECT_CALL(*mockHttp, get(url, params))
+        auto mockHttpClient = new MockHttpClient();
+        EXPECT_CALL(*mockHttpClient, get(url, params))
                 .Times(1)
                 .WillOnce(Return(mockHttpResponse));
 
-        return mockHttp;
+        return mockHttpClient;
     }
 }
-

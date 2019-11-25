@@ -1,9 +1,11 @@
 #include <string>
-
-using namespace std;
+#include <exception>
 
 namespace Apixu {
-    namespace HTTP {
+    namespace Http {
+        using std::exception;
+        using std::string;
+
         class Exception : public exception {
         public:
             explicit Exception(string msg) : msg(move(msg)) {}

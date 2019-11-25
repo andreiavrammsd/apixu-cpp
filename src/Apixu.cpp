@@ -4,8 +4,8 @@
 
 using Apixu::Exception::ApixuException;
 using Apixu::Exception::ApiException;
-using Apixu::HTTP::STATUS_INTERNAL_SERVER_ERROR;
-using Apixu::HTTP::STATUS_BAD_REQUEST;
+using Apixu::Http::STATUS_INTERNAL_SERVER_ERROR;
+using Apixu::Http::STATUS_BAD_REQUEST;
 using Apixu::Response::ErrorResponse;
 
 namespace Apixu {
@@ -13,10 +13,10 @@ namespace Apixu {
     using std::to_string;
 
     Apixu::Apixu(string apiKey) : apiKey(move(apiKey)) {
-        httpClient = new HTTP::Client(USER_AGENT);
+        httpClient = new Http::Client(USER_AGENT);
     }
 
-    Apixu::Apixu(string apiKey, HTTP::HTTP *httpClient) : apiKey(move(apiKey)), httpClient(httpClient) {
+    Apixu::Apixu(string apiKey, Http::Http *httpClient) : apiKey(move(apiKey)), httpClient(httpClient) {
     }
 
     Apixu::~Apixu() {

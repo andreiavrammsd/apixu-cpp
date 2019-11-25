@@ -5,7 +5,7 @@
 #include <map>
 
 namespace Apixu {
-    namespace HTTP {
+    namespace Http {
         using std::string;
         using std::map;
 
@@ -27,14 +27,14 @@ namespace Apixu {
             string body;
         };
 
-        class HTTP {
+        class Http {
         public:
             virtual const Response *get(const string &path, const map<string, string> *params) = 0;
 
-            virtual ~HTTP() = default;
+            virtual ~Http() = default;
         };
 
-        class Client : public HTTP {
+        class Client : public Http {
         public:
             explicit Client(string userAgent);
 
