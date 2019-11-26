@@ -1,9 +1,9 @@
 #include "Condition.hpp"
 
-using namespace std;
-
 namespace Apixu {
     namespace Response {
+        using std::string;
+
         int Condition::getCode() const {
             return code;
         }

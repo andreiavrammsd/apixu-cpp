@@ -3,9 +3,13 @@
 #include "../src/Apixu.hpp"
 #include "../src/Exception/ApiException.cpp"
 
-using namespace Apixu::Exception;
-using namespace Apixu::Response;
-using namespace Apixu::Response::Forecast;
+using Apixu::Exception::ApiException;
+using Apixu::Exception::ApixuException;
+using Apixu::Response::Current;
+using Apixu::Response::Forecast::ForecastDay;
+using Apixu::Response::Forecast::Day;
+using Apixu::Response::Forecast::Astro;
+using Apixu::Response::Forecast::Hour;
 using std::cout;
 using std::endl;
 

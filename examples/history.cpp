@@ -5,9 +5,9 @@
 #include <iomanip>
 #include <ctime>
 
-using namespace Apixu::Exception;
-using namespace Apixu::Response;
-using namespace Apixu::Response::Forecast;
+using Apixu::Exception::ApiException;
+using Apixu::Exception::ApixuException;
+using Apixu::Response::Forecast::ForecastWeather;
 using std::cout;
 using std::endl;
 
@@ -39,7 +39,7 @@ int main() {
 
     cout << "location" << endl;
 
-    const Location& location = history.getLocation();
+    const Location &location = history.getLocation();
 
     cout << "\tname = " << location.getName() << endl;
     cout << "\tregion = " << location.getRegion() << endl;
@@ -52,14 +52,14 @@ int main() {
     auto localtime = location.getLocaltime();
     cout << "\tlocaltime:" << endl;
     cout << "\t\tyear = " << localtime.tm_year << ", month = " << localtime.tm_mon
-        << ", day = " << localtime.tm_mday << endl;
+         << ", day = " << localtime.tm_mday << endl;
     cout << "\t\thour = " << localtime.tm_hour << ", minute = " << localtime.tm_min << endl;
 
     cout << endl << "forecast weather" << endl;
 
-    const ForecastWeather& forecast = history.getForecast();
+    const ForecastWeather &forecast = history.getForecast();
 
-    for (const auto & f : forecast.getForecastDay()) {
+    for (const auto &f : forecast.getForecastDay()) {
         cout << "\tdate = " << f.getDate() << endl;
         cout << "\tdate epoch = " << f.getDateEpoch() << endl;
 
@@ -72,7 +72,7 @@ int main() {
         cout << "\t\tsunset = " << f.getAstro().getSunset() << endl;
 
         cout << "\thour" << endl;
-        for (const auto & h : f.getHour()) {
+        for (const auto &h : f.getHour()) {
             cout << "\t\ttime epoch = " << h.getTimeEpoch() << endl;
             cout << "\t\ttime = " << h.getTime() << endl;
             cout << "\t\ttemp C = " << h.getTempC() << endl;

@@ -3,8 +3,9 @@
 #include "../src/Apixu.hpp"
 #include "../src/Exception/ApiException.cpp"
 
-using namespace Apixu::Exception;
-using namespace Apixu::Response;
+using Apixu::Exception::ApiException;
+using Apixu::Exception::ApixuException;
+using Apixu::Response::Current;
 using std::cout;
 using std::endl;
 

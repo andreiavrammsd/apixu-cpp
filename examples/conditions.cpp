@@ -1,11 +1,10 @@
 #include <iostream>
 #include <vector>
 #include "../src/Apixu.hpp"
-#include "../src/Response/Condition.hpp"
 #include "../src/Exception/ApiException.cpp"
 
-using namespace Apixu::Exception;
-using namespace Apixu::Response;
+using Apixu::Exception::ApiException;
+using Apixu::Exception::ApixuException;
 using std::cout;
 using std::endl;
 
