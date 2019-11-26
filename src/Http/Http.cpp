@@ -7,9 +7,10 @@
 namespace Apixu {
     namespace Http {
         using std::ostringstream;
+
         Client::Client(string userAgent) : userAgent(std::move(userAgent)) {}
 
-        inline string paramsToQuery(CURL* curl, map<string, string> params) {
+        inline string paramsToQuery(CURL *curl, map<string, string> params) {
             ostringstream query;
 
             for (auto iter = params.begin(); iter != params.end();) {
@@ -37,13 +38,13 @@ namespace Apixu {
             return size * nmemb;
         }
 
-        const Response *Client::get(const string& url) {
+        const Response *Client::get(const string &url) {
             map<string, string> params;
             return get(url, params);
         }
 
-        const Response *Client::get(const string& url, map<string, string> params) {
-            CURL* curl = curl_easy_init();
+        const Response *Client::get(const string &url, map<string, string> params) {
+            CURL *curl = curl_easy_init();
             if (!curl) {
                 throw Exception("Cannot init curl");
             }

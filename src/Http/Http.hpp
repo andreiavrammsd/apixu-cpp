@@ -30,6 +30,7 @@ namespace Apixu {
         class Http {
         public:
             virtual const Response *get(const string &path, map<string, string> params) = 0;
+
             virtual const Response *get(const string &path) = 0;
 
             virtual ~Http() = default;
@@ -40,6 +41,7 @@ namespace Apixu {
             explicit Client(string userAgent);
 
             const Response *get(const string &url, map<string, string> params) override;
+
             const Response *get(const string &url) override;
 
         private:
