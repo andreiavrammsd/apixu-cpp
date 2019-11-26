@@ -5,11 +5,11 @@ set(CMAKE_CXX_STANDARD 14)
 
 file(GLOB source_files "src/*.cpp")
 
-add_library(apixustatic STATIC ${source_files})
-set_target_properties(apixustatic PROPERTIES OUTPUT_NAME apixu)
+add_library(lib_apixustatic STATIC ${source_files})
+set_target_properties(lib_apixustatic PROPERTIES OUTPUT_NAME apixu)
 
-add_library(apixushared SHARED ${source_files})
-set_target_properties(apixushared PROPERTIES OUTPUT_NAME apixu)
+add_library(lib_shared SHARED ${source_files})
+set_target_properties(lib_shared PROPERTIES OUTPUT_NAME apixu)
 
 # -------------------------------------------------------------------
 # Tests
@@ -20,27 +20,29 @@ macro(package_add_test TESTNAME)
     set_target_properties(${TESTNAME} PROPERTIES FOLDER tests)
 endmacro()
 
-package_add_test(conditions_test
+package_add_test(test_conditions
         tests/ApixuConditionsTest.cpp
         src/Apixu.cpp
         src/Http/Http.cpp
         src/Time.cpp
         src/Exception/ApiException.cpp
+        src/Exception/ApixuException.cpp
         src/Response/Condition.cpp
         src/Response/Location.cpp)
-target_link_libraries(conditions_test curl)
+target_link_libraries(test_conditions curl)
 
-package_add_test(current_test
+package_add_test(test_current
         tests/ApixuCurrentTest.cpp
         src/Apixu.cpp
         src/Http/Http.cpp
         src/Time.cpp
         src/Exception/ApiException.cpp
+        src/Exception/ApixuException.cpp
         src/Response/CurrentWeather.cpp
         src/Response/Location.cpp
         src/Response/Current.cpp
         src/Response/CurrentCondition.cpp)
-target_link_libraries(current_test curl)
+target_link_libraries(test_current curl)
 
 
 # -------------------------------------------------------------------
@@ -62,41 +64,47 @@ include_directories(${nlohmann_json_SOURCE_DIR}/include/)
 
 # -------------------------------------------------------------------
 # Example applications
-add_executable(conditions
+add_executable(example_conditions
         examples/conditions.cpp
         src/Apixu.cpp
         src/Http/Http.cpp
         src/Time.cpp
         src/Exception/ApiException.cpp
+        src/Exception/ApixuException.cpp
         src/Response/Condition.cpp
         src/Response/Location.cpp)
-target_link_libraries(conditions curl)
+target_link_libraries(example_conditions curl)
 
-add_executable(current
+add_executable(example_current
         examples/current.cpp
         src/Apixu.cpp
         src/Http/Http.cpp
         src/Time.cpp
         src/Exception/ApiException.cpp
+        src/Exception/ApixuException.cpp
         src/Response/CurrentWeather.cpp
         src/Response/Location.cpp
         src/Response/Current.cpp
         src/Response/CurrentCondition.cpp)
-target_link_libraries(current curl)
+target_link_libraries(example_current curl)
 
-add_executable(search
+add_executable(example_search
         examples/search.cpp
         src/Apixu.cpp
         src/Http/Http.cpp
         src/Time.cpp
+        src/Exception/ApiException.cpp
+        src/Exception/ApixuException.cpp
         src/Response/Location.cpp)
-target_link_libraries(search curl)
+target_link_libraries(example_search curl)
 
-add_executable(forecast
+add_executable(example_forecast
         examples/forecast.cpp
         src/Apixu.cpp
         src/Http/Http.cpp
         src/Time.cpp
+        src/Exception/ApiException.cpp
+        src/Exception/ApixuException.cpp
         src/Response/Forecast/WeatherForecast.cpp
         src/Response/Forecast/ForecastDay.cpp
         src/Response/Forecast/ForecastWeather.cpp
@@ -106,13 +114,15 @@ add_executable(forecast
         src/Response/Current.cpp
         src/Response/CurrentCondition.cpp
         src/Response/Forecast/Hour.cpp)
-target_link_libraries(forecast curl)
+target_link_libraries(example_forecast curl)
 
-add_executable(history
+add_executable(example_history
         examples/history.cpp
         src/Apixu.cpp
         src/Http/Http.cpp
         src/Time.cpp
+        src/Exception/ApiException.cpp
+        src/Exception/ApixuException.cpp
         src/Response/Location.cpp
         src/Response/WeatherHistory.cpp
         src/Response/Forecast/ForecastWeather.cpp
@@ -120,4 +130,4 @@ add_executable(history
         src/Response/Forecast/Day.cpp
         src/Response/Forecast/Astro.cpp
         src/Response/Forecast/Hour.cpp)
-target_link_libraries(history curl)
+target_link_libraries(example_history curl)

@@ -1,20 +1,15 @@
 #include <string>
-#include "ApixuException.cpp"
+#include "ApixuException.hpp"
+#include "ApiException.hpp"
 
 namespace Apixu {
     namespace Exception {
         using std::string;
 
-        class ApiException : public ApixuException {
-        public:
-            ApiException(string message, int code) : ApixuException(move(message)), code(code) {}
+        ApiException::ApiException(string message, int code) : ApixuException(move(message)), code(code) {}
 
-            int getCode() const {
-                return code;
-            }
-
-        private:
-            int code;
-        };
+        int ApiException::getCode() const {
+            return code;
+        }
     }
 }

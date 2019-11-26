@@ -1,14 +1,14 @@
 #include "../src/Apixu.hpp"
-#include "../src/Exception/ApixuException.cpp"
+#include "../src/Exception/ApiException.hpp"
 #include "HttpClientMock.cpp"
 #include "gtest/gtest.h"
 
 
 namespace {
     class ApixuConditionsTest : public ::testing::Test {
+    public:
+        const string url = "http://localhost:5000/conditions.json";
     };
-
-    const string url = "http://localhost:5000/conditions.json";
 
     TEST_F(ApixuConditionsTest, success) {
         int status = 200;

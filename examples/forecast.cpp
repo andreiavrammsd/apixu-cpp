@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "../src/Apixu.hpp"
-#include "../src/Exception/ApiException.cpp"
+#include "../src/Exception/ApiException.hpp"
 
 using Apixu::Exception::ApiException;
 using Apixu::Exception::ApixuException;

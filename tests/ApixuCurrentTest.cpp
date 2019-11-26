@@ -1,23 +1,25 @@
 #include "../src/Apixu.hpp"
-#include "../src/Exception/ApixuException.cpp"
+#include "../src/Exception/ApiException.hpp"
 #include "HttpClientMock.cpp"
 #include "gtest/gtest.h"
 
 
 namespace {
     class ApixuCurrentTest : public ::testing::Test {
+    public:
+        const string url = "http://localhost:5000/current.json";
+        const char *apiKey = "apikey";
+        const string q = "Paris";
+        map<string, string> params;
+
+    protected:
+        void SetUp() override {
+            params["key"] = apiKey;
+            params["q"] = q;
+        }
     };
 
-    const string url = "http://localhost:5000/current.json";
-    const char* apiKey = "apikey";
-    map<string, string> params;
-
     TEST_F(ApixuCurrentTest, success) {
-        const string q = "Paris";
-
-        params["key"] = apiKey;
-        params["q"] = q;
-
         int status = 200;
         string body = R"(
            {
@@ -83,9 +85,9 @@ namespace {
         )";
 
         auto mockHttpClient = HttpClientMock::GetHttpClient(url, params, status, body);
-        auto apixu = new Apixu::Apixu("", mockHttpClient);
+        auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
 
-        ASSERT_THROW(apixu->Conditions(), Apixu::Exception::ApixuException);
+        ASSERT_THROW(apixu->Current(q), Apixu::Exception::ApixuException);
 
         delete apixu;
     }
