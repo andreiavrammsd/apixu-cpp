@@ -3,6 +3,8 @@ project(apixu)
 
 set(CMAKE_CXX_STANDARD 14)
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/)
+
 file(GLOB source_files "src/*.cpp")
 
 add_library(lib_apixustatic STATIC ${source_files})
@@ -28,7 +30,8 @@ package_add_test(test_conditions
         src/Exception/ApiException.cpp
         src/Exception/ApixuException.cpp
         src/Response/Condition.cpp
-        src/Response/Location.cpp)
+        src/Response/Location.cpp
+        src/Response/Error.cpp)
 target_link_libraries(test_conditions curl)
 
 package_add_test(test_current
@@ -41,7 +44,8 @@ package_add_test(test_current
         src/Response/CurrentWeather.cpp
         src/Response/Location.cpp
         src/Response/Current.cpp
-        src/Response/CurrentCondition.cpp)
+        src/Response/CurrentCondition.cpp
+        src/Response/Error.cpp)
 target_link_libraries(test_current curl)
 
 
@@ -72,7 +76,8 @@ add_executable(example_conditions
         src/Exception/ApiException.cpp
         src/Exception/ApixuException.cpp
         src/Response/Condition.cpp
-        src/Response/Location.cpp)
+        src/Response/Location.cpp
+        src/Response/Error.cpp)
 target_link_libraries(example_conditions curl)
 
 add_executable(example_current
@@ -85,7 +90,8 @@ add_executable(example_current
         src/Response/CurrentWeather.cpp
         src/Response/Location.cpp
         src/Response/Current.cpp
-        src/Response/CurrentCondition.cpp)
+        src/Response/CurrentCondition.cpp
+        src/Response/Error.cpp)
 target_link_libraries(example_current curl)
 
 add_executable(example_search
@@ -95,7 +101,8 @@ add_executable(example_search
         src/Time.cpp
         src/Exception/ApiException.cpp
         src/Exception/ApixuException.cpp
-        src/Response/Location.cpp)
+        src/Response/Location.cpp
+        src/Response/Error.cpp)
 target_link_libraries(example_search curl)
 
 add_executable(example_forecast
@@ -113,7 +120,8 @@ add_executable(example_forecast
         src/Response/Location.cpp
         src/Response/Current.cpp
         src/Response/CurrentCondition.cpp
-        src/Response/Forecast/Hour.cpp)
+        src/Response/Forecast/Hour.cpp
+        src/Response/Error.cpp)
 target_link_libraries(example_forecast curl)
 
 add_executable(example_history
@@ -129,5 +137,6 @@ add_executable(example_history
         src/Response/Forecast/ForecastDay.cpp
         src/Response/Forecast/Day.cpp
         src/Response/Forecast/Astro.cpp
-        src/Response/Forecast/Hour.cpp)
+        src/Response/Forecast/Hour.cpp
+        src/Response/Error.cpp)
 target_link_libraries(example_history curl)

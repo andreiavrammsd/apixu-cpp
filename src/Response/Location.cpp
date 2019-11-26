@@ -1,5 +1,5 @@
 #include <string>
-#include "Location.hpp"
+#include "Apixu/Response/Location.hpp"
 
 namespace Apixu {
     namespace Response {

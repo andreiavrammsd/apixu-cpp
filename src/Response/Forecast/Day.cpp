@@ -1,5 +1,5 @@
-#include "Day.hpp"
-#include "../CurrentCondition.hpp"
+#include "Apixu/Response/Forecast/Day.hpp"
+#include "Apixu/Response/CurrentCondition.hpp"
 
 namespace Apixu {
     namespace Response {

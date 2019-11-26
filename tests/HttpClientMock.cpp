@@ -1,5 +1,3 @@
-#include "../src/Apixu.hpp"
-#include "../src/Exception/ApiException.hpp"
 #include "gmock/gmock.h"
 
 namespace HttpClientMock {

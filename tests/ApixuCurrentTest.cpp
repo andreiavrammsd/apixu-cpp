@@ -1,5 +1,5 @@
-#include "../src/Apixu.hpp"
-#include "../src/Exception/ApiException.hpp"
+#include "Apixu/Apixu.hpp"
+#include "Apixu/Exception/ApiException.hpp"
 #include "HttpClientMock.cpp"
 #include "gtest/gtest.h"
 
@@ -87,7 +87,7 @@ namespace {
         auto mockHttpClient = HttpClientMock::GetHttpClient(url, params, status, body);
         auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
 
-        ASSERT_THROW(apixu->Current(q), Apixu::Exception::ApixuException);
+        ASSERT_THROW(apixu->Current(q), Apixu::Exception::ApiException);
 
         delete apixu;
     }

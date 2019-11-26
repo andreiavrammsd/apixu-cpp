@@ -1,8 +1,6 @@
-#include "Apixu.hpp"
-
-#include <utility>
-#include "Exception/ApiException.hpp"
-#include "Response/Error.cpp"
+#include "Apixu/Apixu.hpp"
+#include "Apixu/Exception/ApiException.hpp"
+#include "Apixu/Response/Error.hpp"
 
 using Apixu::Exception::ApixuException;
 using Apixu::Exception::ApiException;

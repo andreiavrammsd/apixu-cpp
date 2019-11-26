@@ -1,6 +1,6 @@
-#include "WeatherHistory.hpp"
-#include "Location.hpp"
-#include "Forecast/ForecastWeather.hpp"
+#include "Apixu/Response/WeatherHistory.hpp"
+#include "Apixu/Response/Location.hpp"
+#include "Apixu/Response/Forecast/ForecastWeather.hpp"
 
 namespace Apixu {
     namespace Response {

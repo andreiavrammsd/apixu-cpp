@@ -1,7 +1,7 @@
-#include "ForecastDay.hpp"
-#include "Day.hpp"
-#include "Astro.hpp"
-#include "Hour.hpp"
+#include "Apixu/Response/Forecast/ForecastDay.hpp"
+#include "Apixu/Response/Forecast/Day.hpp"
+#include "Apixu/Response/Forecast/Astro.hpp"
+#include "Apixu/Response/Forecast/Hour.hpp"
 
 namespace Apixu {
     namespace Response {

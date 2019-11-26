@@ -1,5 +1,5 @@
-#include "ForecastWeather.hpp"
-#include "ForecastDay.hpp"
+#include "Apixu/Response/Forecast/ForecastWeather.hpp"
+#include "Apixu/Response/Forecast/ForecastDay.hpp"
 
 namespace Apixu {
     namespace Response {

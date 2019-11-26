@@ -1,4 +1,4 @@
-#include "Hour.hpp"
+#include "Apixu/Response/Forecast/Hour.hpp"
 
 namespace Apixu {
     namespace Response {

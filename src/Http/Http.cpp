@@ -1,7 +1,6 @@
-#include "Http.hpp"
 #include <curl/curl.h>
 #include <sstream>
-#include <utility>
+#include "Apixu/Http/Http.hpp"
 #include "Exception.cpp"
 
 namespace Apixu {
