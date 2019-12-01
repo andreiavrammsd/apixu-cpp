@@ -35,6 +35,11 @@ sudo apt install libcurl3 -y
 - implement json serialize
 - return const vector
 - std::unique_ptr
+- pack:
+    - https://mavsdk.mavlink.io/develop/en/guide/toolchain.html#sdk_local_install
+    - https://cmake.org/cmake/help/git-stage/cpack_gen/deb.html
+    - https://gitlab.kitware.com/cmake/community/wikis/doc/cpack/Packaging-With-CPack
+    - https://docs.ros.org/api/catkin/html/howto/format1/building_libraries.html
 
 ### Link
 ```
