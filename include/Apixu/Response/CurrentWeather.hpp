@@ -1,8 +1,8 @@
 #ifndef APIXU_RESPONSE_CURRENT_WEATHER_HPP_
 #define APIXU_RESPONSE_CURRENT_WEATHER_HPP_
 
-#include "Location.hpp"
-#include "Current.hpp"
+#include "Apixu/Response/Location.hpp"
+#include "Apixu/Response/Current.hpp"
 #include "nlohmann/json.hpp"
 
 namespace Apixu {

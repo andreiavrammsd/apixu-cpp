@@ -2,8 +2,8 @@
 #define APIXU_RESPONSE_HISTORY_HPP_
 
 
-#include "Location.hpp"
-#include "Forecast/ForecastWeather.hpp"
+#include "Apixu/Response/Location.hpp"
+#include "Apixu/Response/Forecast/ForecastWeather.hpp"
 #include "nlohmann/json.hpp"
 
 namespace Apixu {

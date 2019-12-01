@@ -2,7 +2,7 @@
 #define APIXU_RESPONSE_CURRENT_HPP_
 
 
-#include "../Time.hpp"
+#include "Apixu/Time.hpp"
 #include "CurrentCondition.hpp"
 
 namespace Apixu {

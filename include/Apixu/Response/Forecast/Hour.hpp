@@ -2,8 +2,8 @@
 #define APIXU_RESPONSE_FORECAST_HOUR_HPP_
 
 
+#include "Apixu/Response/CurrentCondition.hpp"
 #include <nlohmann/json.hpp>
-#include "../CurrentCondition.hpp"
 
 namespace Apixu {
     namespace Response {

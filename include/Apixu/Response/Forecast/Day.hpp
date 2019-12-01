@@ -2,7 +2,7 @@
 #define APIXU_RESPONSE_FORECAST_DAY_HPP_
 
 #include "nlohmann/json.hpp"
-#include "../CurrentCondition.hpp"
+#include "Apixu/Response/CurrentCondition.hpp"
 
 namespace Apixu {
     namespace Response {

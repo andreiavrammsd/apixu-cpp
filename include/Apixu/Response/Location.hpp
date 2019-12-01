@@ -4,7 +4,7 @@
 
 #include <string>
 #include "nlohmann/json.hpp"
-#include "../Time.hpp"
+#include "Apixu/Time.hpp"
 
 namespace Apixu {
     using std::string;
