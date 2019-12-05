@@ -1,5 +1,8 @@
 all: build
 
+setup:
+	sudo apt install libcurl4-openssl-dev
+
 build:
 	docker build -f dev/Dockerfile-build -t apixubuild .
 	docker run --rm -ti -v $(PWD):/src -w /src apixubuild
