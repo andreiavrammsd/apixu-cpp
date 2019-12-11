@@ -1,7 +1,10 @@
 all: build
 
-setup:
-	sudo apt install libcurl4-openssl-dev
+env:
+	sudo apt install -y gcc make build-essential valgrind
+
+dep:
+	sudo apt install -y libcurl4-openssl-dev
 
 build:
 	docker build -f dev/Dockerfile-build -t apixubuild .
