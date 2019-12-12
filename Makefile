@@ -1,7 +1,7 @@
 all: build
 
 env:
-	sudo apt install -y gcc make build-essential valgrind
+	sudo apt install -y gcc make build-essential valgrind linux-tools-$(shell uname -r)
 
 dep:
 	sudo apt install -y libcurl4-openssl-dev
