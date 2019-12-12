@@ -30,13 +30,50 @@ package_add_test(test_current
         ../src/Exception/ApixuException.cpp
         ../src/Response/CurrentWeather.cpp
         ../src/Response/Location.cpp
-        ../src/Response/Current.cpp
-        ../src/Response/CurrentCondition.cpp
         ../src/Response/Error.cpp)
 target_link_libraries(test_current curl)
 
+package_add_test(test_search
+        ApixuSearchTest.cpp
+        ../src/Apixu.cpp
+        ../src/Http/Http.cpp
+        ../src/Time.cpp
+        ../src/Exception/ApiException.cpp
+        ../src/Exception/ApixuException.cpp
+        ../src/Response/CurrentWeather.cpp
+        ../src/Response/Location.cpp
+        ../src/Response/Current.cpp
+        ../src/Response/CurrentCondition.cpp
+        ../src/Response/Error.cpp)
+target_link_libraries(test_search curl)
 
-# -------------------------------------------------------------------
+package_add_test(test_history
+        ApixuHistoryTest.cpp
+        ../src/Apixu.cpp
+        ../src/Http/Http.cpp
+        ../src/Time.cpp
+        ../src/Exception/ApiException.cpp
+        ../src/Exception/ApixuException.cpp
+        ../src/Response/WeatherHistory.cpp
+        ../src/Response/Location.cpp
+        ../src/Response/Current.cpp
+        ../src/Response/CurrentCondition.cpp
+        ../src/Response/Error.cpp)
+target_link_libraries(test_history curl)
+
+package_add_test(test_forecast
+        ApixuForecastTest.cpp
+        ../src/Apixu.cpp
+        ../src/Http/Http.cpp
+        ../src/Time.cpp
+        ../src/Exception/ApiException.cpp
+        ../src/Exception/ApixuException.cpp
+        ../src/Response/Forecast/WeatherForecast.cpp
+        ../src/Response/Location.cpp
+        ../src/Response/Error.cpp)
+target_link_libraries(test_forecast curl)
+
+
 # Dependencies
 include(FetchContent)
 
