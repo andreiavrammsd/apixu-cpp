@@ -1,11 +1,11 @@
-#ifndef APIXU_RESPONSE_LOCATION_HPP_
-#define APIXU_RESPONSE_LOCATION_HPP_
+#ifndef APIXU_RESPONSE_LOCATION_H_
+#define APIXU_RESPONSE_LOCATION_H_
 
 
 #include <memory>
 #include <string>
 #include "nlohmann/json.hpp"
-#include "Apixu/Time.hpp"
+#include "Apixu/Time.h"
 
 namespace Apixu {
     using std::string;
@@ -81,4 +81,4 @@ namespace Apixu {
     }
 }
 
-#endif // APIXU_RESPONSE_LOCATION_HPP_
+#endif // APIXU_RESPONSE_LOCATION_H_

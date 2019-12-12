@@ -1,6 +1,6 @@
 #include <string>
-#include "Apixu/Exception/ApixuException.hpp"
-#include "Apixu/Exception/ApiException.hpp"
+#include "Apixu/Exception/ApixuException.h"
+#include "Apixu/Exception/ApiException.h"
 
 namespace Apixu {
     namespace Exception {

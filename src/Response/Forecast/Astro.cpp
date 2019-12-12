@@ -1,4 +1,4 @@
-#include "Apixu/Response/Forecast/Astro.hpp"
+#include "Apixu/Response/Forecast/Astro.h"
 
 namespace Apixu {
     namespace Response {

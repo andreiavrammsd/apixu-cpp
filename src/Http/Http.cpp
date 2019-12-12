@@ -1,6 +1,6 @@
 #include <curl/curl.h>
 #include <sstream>
-#include "Apixu/Http/Http.hpp"
+#include "Apixu/Http/Http.h"
 #include "Exception.cpp"
 
 namespace Apixu {

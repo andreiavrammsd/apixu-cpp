@@ -1,6 +1,6 @@
-#include "Apixu/Response/Current.hpp"
-#include "Apixu/Time.hpp"
-#include "Apixu/Response/CurrentCondition.hpp"
+#include "Apixu/Response/Current.h"
+#include "Apixu/Time.h"
+#include "Apixu/Response/CurrentCondition.h"
 
 namespace Apixu {
     namespace Response {

@@ -1,5 +1,5 @@
-#ifndef APIXU_HTTP_HTTP_HPP_
-#define APIXU_HTTP_HTTP_HPP_
+#ifndef APIXU_HTTP_HTTP_H_
+#define APIXU_HTTP_HTTP_H_
 
 
 #include <map>
@@ -50,4 +50,4 @@ namespace Apixu {
     }
 }
 
-#endif // APIXU_HTTP_HTTP_HPP_
+#endif // APIXU_HTTP_HTTP_H_

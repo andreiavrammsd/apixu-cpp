@@ -1,5 +1,5 @@
-#ifndef APIXU_RESPONSE_CONDITION_HPP_
-#define APIXU_RESPONSE_CONDITION_HPP_
+#ifndef APIXU_RESPONSE_CONDITION_H_
+#define APIXU_RESPONSE_CONDITION_H_
 
 
 #include <string>
@@ -40,4 +40,4 @@ namespace Apixu {
     }
 }
 
-#endif // APIXU_RESPONSE_CONDITION_HPP_
+#endif // APIXU_RESPONSE_CONDITION_H_

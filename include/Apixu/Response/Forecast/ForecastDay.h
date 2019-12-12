@@ -1,10 +1,10 @@
-#ifndef APIXU_RESPONSE_FORECAST_FORECAST_DAY_HPP_
-#define APIXU_RESPONSE_FORECAST_FORECAST_DAY_HPP_
+#ifndef APIXU_RESPONSE_FORECAST_FORECAST_DAY_H_
+#define APIXU_RESPONSE_FORECAST_FORECAST_DAY_H_
 
 #include "nlohmann/json.hpp"
-#include "Apixu/Response/Forecast/Day.hpp"
-#include "Apixu/Response/Forecast/Astro.hpp"
-#include "Apixu/Response/Forecast/Hour.hpp"
+#include "Apixu/Response/Forecast/Day.h"
+#include "Apixu/Response/Forecast/Astro.h"
+#include "Apixu/Response/Forecast/Hour.h"
 
 namespace Apixu {
     namespace Response {
@@ -51,4 +51,4 @@ namespace Apixu {
     }
 }
 
-#endif // APIXU_RESPONSE_FORECAST_FORECAST_DAY_HPP_
+#endif // APIXU_RESPONSE_FORECAST_FORECAST_DAY_H_

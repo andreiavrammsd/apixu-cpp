@@ -1,4 +1,4 @@
-#include "Apixu/Response/Error.hpp"
+#include "Apixu/Response/Error.h"
 
 namespace Apixu {
     namespace Response {

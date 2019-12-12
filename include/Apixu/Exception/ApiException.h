@@ -1,8 +1,8 @@
-#ifndef APIXU_EXCEPTION_API_EXCEPTION_HPP_
-#define APIXU_EXCEPTION_API_EXCEPTION_HPP_
+#ifndef APIXU_EXCEPTION_API_EXCEPTION_H_
+#define APIXU_EXCEPTION_API_EXCEPTION_H_
 
 
-#include "ApixuException.hpp"
+#include "ApixuException.h"
 #include <string>
 
 namespace Apixu {
@@ -21,4 +21,4 @@ namespace Apixu {
     }
 }
 
-#endif // APIXU_EXCEPTION_API_EXCEPTION_HPP_
+#endif // APIXU_EXCEPTION_API_EXCEPTION_H_

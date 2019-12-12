@@ -1,9 +1,9 @@
-#ifndef APIXU_RESPONSE_CURRENT_HPP_
-#define APIXU_RESPONSE_CURRENT_HPP_
+#ifndef APIXU_RESPONSE_CURRENT_H_
+#define APIXU_RESPONSE_CURRENT_H_
 
 
-#include "Apixu/Time.hpp"
-#include "CurrentCondition.hpp"
+#include "Apixu/Time.h"
+#include "CurrentCondition.h"
 
 namespace Apixu {
     namespace Response {
@@ -182,4 +182,4 @@ namespace Apixu {
     }
 }
 
-#endif // APIXU_RESPONSE_CURRENT_HPP_
+#endif // APIXU_RESPONSE_CURRENT_H_

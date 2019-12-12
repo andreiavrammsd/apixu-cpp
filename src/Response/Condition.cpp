@@ -1,4 +1,4 @@
-#include "Apixu/Response/Condition.hpp"
+#include "Apixu/Response/Condition.h"
 
 namespace Apixu {
     namespace Response {

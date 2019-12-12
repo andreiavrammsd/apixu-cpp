@@ -1,6 +1,6 @@
-#include "Apixu/Response/Forecast/WeatherForecast.hpp"
-#include "Apixu/Response/Current.hpp"
-#include "Apixu/Response/Forecast/ForecastWeather.hpp"
+#include "Apixu/Response/Forecast/WeatherForecast.h"
+#include "Apixu/Response/Current.h"
+#include "Apixu/Response/Forecast/ForecastWeather.h"
 
 namespace Apixu {
     namespace Response {

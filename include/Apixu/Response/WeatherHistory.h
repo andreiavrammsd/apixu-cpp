@@ -1,9 +1,9 @@
-#ifndef APIXU_RESPONSE_HISTORY_HPP_
-#define APIXU_RESPONSE_HISTORY_HPP_
+#ifndef APIXU_RESPONSE_HISTORY_H_
+#define APIXU_RESPONSE_HISTORY_H_
 
 
-#include "Apixu/Response/Location.hpp"
-#include "Apixu/Response/Forecast/ForecastWeather.hpp"
+#include "Apixu/Response/Location.h"
+#include "Apixu/Response/Forecast/ForecastWeather.h"
 #include "nlohmann/json.hpp"
 
 namespace Apixu {
@@ -34,4 +34,4 @@ namespace Apixu {
     }
 }
 
-#endif // APIXU_RESPONSE_HISTORY_HPP_
+#endif // APIXU_RESPONSE_HISTORY_H_

@@ -1,9 +1,9 @@
-#ifndef APIXU_RESPONSE_FORECAST_HOUR_HPP_
-#define APIXU_RESPONSE_FORECAST_HOUR_HPP_
+#ifndef APIXU_RESPONSE_FORECAST_HOUR_H_
+#define APIXU_RESPONSE_FORECAST_HOUR_H_
 
 
-#include "Apixu/Response/CurrentCondition.hpp"
-#include <nlohmann/json.hpp>
+#include "Apixu/Response/CurrentCondition.h"
+#include "nlohmann/json.hpp"
 
 namespace Apixu {
     namespace Response {
@@ -249,4 +249,4 @@ namespace Apixu {
     }
 }
 
-#endif // APIXU_RESPONSE_FORECAST_HOUR_HPP_
+#endif // APIXU_RESPONSE_FORECAST_HOUR_H_

@@ -1,16 +1,16 @@
-#ifndef APIXU_APIXU_HPP_
-#define APIXU_APIXU_HPP_
+#ifndef APIXU_APIXU_H_
+#define APIXU_APIXU_H_
 
 
 #include <string>
 #include <vector>
 #include <map>
-#include "Response/Condition.hpp"
-#include "Response/CurrentWeather.hpp"
-#include "Response/Location.hpp"
-#include "Response/Forecast/WeatherForecast.hpp"
-#include "Response/WeatherHistory.hpp"
-#include "Http/Http.hpp"
+#include "Response/Condition.h"
+#include "Response/CurrentWeather.h"
+#include "Response/Location.h"
+#include "Response/Forecast/WeatherForecast.h"
+#include "Response/WeatherHistory.h"
+#include "Http/Http.h"
 
 using std::string;
 using std::vector;
@@ -56,4 +56,4 @@ namespace Apixu {
     };
 }
 
-#endif // APIXU_APIXU_HPP_
+#endif // APIXU_APIXU_H_

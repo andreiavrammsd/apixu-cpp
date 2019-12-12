@@ -1,9 +1,9 @@
-#ifndef APIXU_RESPONSE_ERROR_HPP_
-#define APIXU_RESPONSE_ERROR_HPP_
+#ifndef APIXU_RESPONSE_ERROR_H_
+#define APIXU_RESPONSE_ERROR_H_
 
 
 #include <string>
-#include <nlohmann/json.hpp>
+#include "nlohmann/json.hpp"
 
 namespace Apixu {
     namespace Response {
@@ -46,4 +46,4 @@ namespace Apixu {
     }
 }
 
-#endif // APIXU_RESPONSE_ERROR_HPP_
+#endif // APIXU_RESPONSE_ERROR_H_

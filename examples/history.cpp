@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
-#include "Apixu/Apixu.hpp"
-#include "Apixu/Exception/ApiException.hpp"
+#include "Apixu/Apixu.h"
+#include "Apixu/Exception/ApiException.h"
 #include <iomanip>
 #include <ctime>
 

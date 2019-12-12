@@ -1,5 +1,5 @@
-#include "Apixu/Apixu.hpp"
-#include "Apixu/Exception/ApiException.hpp"
+#include "Apixu/Apixu.h"
+#include "Apixu/Exception/ApiException.h"
 #include "HttpClientMock.cpp"
 #include "gtest/gtest.h"
 

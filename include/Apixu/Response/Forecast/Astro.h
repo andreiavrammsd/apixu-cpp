@@ -1,5 +1,5 @@
-#ifndef APIXU_RESPONSE_FORECAST_ASTRO_HPP_
-#define APIXU_RESPONSE_FORECAST_ASTRO_HPP_
+#ifndef APIXU_RESPONSE_FORECAST_ASTRO_H_
+#define APIXU_RESPONSE_FORECAST_ASTRO_H_
 
 #include "nlohmann/json.hpp"
 
@@ -65,4 +65,4 @@ namespace Apixu {
     }
 }
 
-#endif // APIXU_RESPONSE_FORECAST_ASTRO_HPP_
+#endif // APIXU_RESPONSE_FORECAST_ASTRO_H_

@@ -1,4 +1,4 @@
-#include "Apixu/Response/CurrentCondition.hpp"
+#include "Apixu/Response/CurrentCondition.h"
 
 namespace Apixu {
     namespace Response {

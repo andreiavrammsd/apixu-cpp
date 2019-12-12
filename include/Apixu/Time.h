@@ -1,5 +1,5 @@
-#ifndef APIXU_TIME_HPP_
-#define APIXU_TIME_HPP_
+#ifndef APIXU_TIME_H_
+#define APIXU_TIME_H_
 
 
 #include <string>
@@ -15,4 +15,4 @@ namespace Apixu {
     };
 }
 
-#endif // APIXU_TIME_HPP_
+#endif // APIXU_TIME_H_

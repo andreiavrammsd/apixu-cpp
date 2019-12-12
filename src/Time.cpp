@@ -1,4 +1,4 @@
-#include "Apixu/Time.hpp"
+#include "Apixu/Time.h"
 
 struct tm Apixu::Time::parse(const string &input) {
     struct tm time{0};
