@@ -10,14 +10,9 @@ build:
 	docker build -f dev/Dockerfile-build -t apixubuild .
 	docker run --rm -ti -v $(PWD):/src -w /src apixubuild
 
-proxyup: check-env
-	docker build -f dev/Dockerfile-proxy -t apixuproxy dev
-	docker run -tid --rm -p 5000:5000 -e HOST=$(HOST) --name=apixuproxy apixuproxy
+api-up:
+	docker build -f dev/Dockerfile-api -t apixuapi dev
+	docker run -tid --rm -p 5000:5000 --name=apixuapi apixuapi
 
-proxydown:
-	docker stop apixuproxy
-
-check-env:
-ifndef HOST
-	$(error HOST is undefined)
-endif
+api-down:
+	docker stop apixuapi
