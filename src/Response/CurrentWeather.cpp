@@ -1,4 +1,5 @@
 #include "Apixu/Response/CurrentWeather.h"
+
 #include "Apixu/Response/Location.h"
 #include "Apixu/Response/Current.h"
 

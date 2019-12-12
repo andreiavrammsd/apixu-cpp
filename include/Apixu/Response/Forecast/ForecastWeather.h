@@ -1,8 +1,8 @@
 #ifndef APIXU_RESPONSE_FORECAST_FORECAST_WEATHER_H_
 #define APIXU_RESPONSE_FORECAST_FORECAST_WEATHER_H_
 
-#include "Apixu/Response/Forecast/ForecastDay.h"
 #include "nlohmann/json.hpp"
+#include "Apixu/Response/Forecast/ForecastDay.h"
 
 namespace Apixu {
     namespace Response {

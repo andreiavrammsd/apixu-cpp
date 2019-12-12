@@ -1,4 +1,5 @@
 #include "Apixu/Response/Current.h"
+
 #include "Apixu/Time.h"
 #include "Apixu/Response/CurrentCondition.h"
 

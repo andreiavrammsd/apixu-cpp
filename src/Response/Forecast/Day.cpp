@@ -1,4 +1,5 @@
 #include "Apixu/Response/Forecast/Day.h"
+
 #include "Apixu/Response/CurrentCondition.h"
 
 namespace Apixu {

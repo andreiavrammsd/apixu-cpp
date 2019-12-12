@@ -3,6 +3,7 @@
 
 
 #include <string>
+
 #include "nlohmann/json.hpp"
 
 namespace Apixu {

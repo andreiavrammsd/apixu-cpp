@@ -1,4 +1,5 @@
 #include "Apixu/Response/Forecast/WeatherForecast.h"
+
 #include "Apixu/Response/Current.h"
 #include "Apixu/Response/Forecast/ForecastWeather.h"
 

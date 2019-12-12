@@ -1,4 +1,5 @@
 #include "Apixu/Response/Forecast/ForecastDay.h"
+
 #include "Apixu/Response/Forecast/Day.h"
 #include "Apixu/Response/Forecast/Astro.h"
 #include "Apixu/Response/Forecast/Hour.h"

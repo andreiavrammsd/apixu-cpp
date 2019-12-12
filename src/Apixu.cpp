@@ -1,4 +1,5 @@
 #include "Apixu/Apixu.h"
+
 #include "Apixu/Exception/ApiException.h"
 #include "Apixu/Response/Error.h"
 

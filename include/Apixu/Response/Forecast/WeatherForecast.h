@@ -1,10 +1,10 @@
 #ifndef APIXU_RESPONSE_FORECAST_WEATHER_FORECAST_H_
 #define APIXU_RESPONSE_FORECAST_WEATHER_FORECAST_H_
 
+#include "nlohmann/json.hpp"
 #include "Apixu/Response/Location.h"
 #include "Apixu/Response/Current.h"
 #include "Apixu/Response/Forecast/ForecastWeather.h"
-#include "nlohmann/json.hpp"
 
 namespace Apixu {
     namespace Response {

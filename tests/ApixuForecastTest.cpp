@@ -1,7 +1,7 @@
+#include "gtest/gtest.h"
 #include "Apixu/Apixu.h"
 #include "Apixu/Exception/ApiException.h"
 #include "HttpClientMock.cpp"
-#include "gtest/gtest.h"
 
 
 namespace {

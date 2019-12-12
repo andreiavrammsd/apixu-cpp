@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <map>
+
 #include "Response/Condition.h"
 #include "Response/CurrentWeather.h"
 #include "Response/Location.h"

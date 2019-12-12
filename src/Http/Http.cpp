@@ -1,5 +1,5 @@
-#include <curl/curl.h>
 #include <sstream>
+#include <curl/curl.h>
 #include "Apixu/Http/Http.h"
 #include "Exception.cpp"
 

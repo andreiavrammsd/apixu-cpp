@@ -2,8 +2,9 @@
 #define APIXU_EXCEPTION_API_EXCEPTION_H_
 
 
-#include "ApixuException.h"
 #include <string>
+
+#include "ApixuException.h"
 
 namespace Apixu {
     namespace Exception {

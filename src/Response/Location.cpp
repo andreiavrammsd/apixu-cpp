@@ -1,4 +1,5 @@
 #include <string>
+
 #include "Apixu/Response/Location.h"
 
 namespace Apixu {

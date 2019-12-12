@@ -2,8 +2,8 @@
 #define APIXU_RESPONSE_CURRENT_H_
 
 
-#include "Apixu/Time.h"
 #include "CurrentCondition.h"
+#include "Apixu/Time.h"
 
 namespace Apixu {
     namespace Response {
