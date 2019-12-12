@@ -28,9 +28,9 @@ namespace Apixu {
         };
 
         inline void from_json(const json &j, CurrentCondition &c) {
-            c.text = new string(j.at("text").get<string>());
-            c.icon = new string(j.at("icon").get<string>());
-            c.code = new int(j.at("code").get<int>());
+            c.text = new string(j.at("text"));
+            c.icon = new string(j.at("icon"));
+            c.code = new int(j.at("code"));
         }
     }
 }

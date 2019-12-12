@@ -25,8 +25,8 @@ namespace Apixu {
         };
 
         inline void from_json(const json &j, CurrentWeather &cw) {
-            cw.location = j.at("location").get<Location>();
-            cw.current = j.at("current").get<Current>();
+            cw.location = j.at("location");
+            cw.current = j.at("current");
         }
     }
 }

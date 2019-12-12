@@ -38,27 +38,27 @@ namespace Apixu {
 
             inline void from_json(const json &j, Astro &d) {
                 if (j.contains("sunrise")) {
-                    d.sunrise = j.at("sunrise").get<string>();
+                    d.sunrise = j.at("sunrise");
                 }
 
                 if (j.contains("sunset")) {
-                    d.sunset = j.at("sunset").get<string>();
+                    d.sunset = j.at("sunset");
                 }
 
                 if (j.contains("moonrise")) {
-                    d.moonrise = j.at("moonrise").get<string>();
+                    d.moonrise = j.at("moonrise");
                 }
 
                 if (j.contains("moonset")) {
-                    d.moonset = j.at("moonset").get<string>();
+                    d.moonset = j.at("moonset");
                 }
 
                 if (j.contains("moon_phase")) {
-                    d.moonPhase = j.at("moon_phase").get<string>();
+                    d.moonPhase = j.at("moon_phase");
                 }
 
                 if (j.contains("moon_illumination")) {
-                    d.moonIllumination = j.at("moon_illumination").get<string>();
+                    d.moonIllumination = j.at("moon_illumination");
                 }
             }
         }

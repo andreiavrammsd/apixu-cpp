@@ -65,63 +65,63 @@ namespace Apixu {
 
             inline void from_json(const json &j, Day &d) {
                 if (j.contains("maxtemp_c")) {
-                    d.maxTempCelsius = j.at("maxtemp_c").get<float>();
+                    d.maxTempCelsius = j.at("maxtemp_c");
                 }
 
                 if (j.contains("maxtemp_f")) {
-                    d.maxTempFahrenheit = j.at("maxtemp_f").get<float>();
+                    d.maxTempFahrenheit = j.at("maxtemp_f");
                 }
 
                 if (j.contains("mintemp_c")) {
-                    d.minTempCelsius = j.at("mintemp_c").get<float>();
+                    d.minTempCelsius = j.at("mintemp_c");
                 }
 
                 if (j.contains("mintemp_f")) {
-                    d.minTempFahrenheit = j.at("mintemp_f").get<float>();
+                    d.minTempFahrenheit = j.at("mintemp_f");
                 }
 
                 if (j.contains("avgtemp_c")) {
-                    d.avgTempCelsius = j.at("avgtemp_c").get<float>();
+                    d.avgTempCelsius = j.at("avgtemp_c");
                 }
 
                 if (j.contains("avgtemp_f")) {
-                    d.avgTempFahrenheit = j.at("avgtemp_f").get<float>();
+                    d.avgTempFahrenheit = j.at("avgtemp_f");
                 }
 
                 if (j.contains("maxwind_mph")) {
-                    d.maxWindMPH = j.at("maxwind_mph").get<float>();
+                    d.maxWindMPH = j.at("maxwind_mph");
                 }
 
                 if (j.contains("maxwind_kph")) {
-                    d.maxWindKPH = j.at("maxwind_kph").get<float>();
+                    d.maxWindKPH = j.at("maxwind_kph");
                 }
 
                 if (j.contains("totalprecip_mm")) {
-                    d.totalPrecipMM = j.at("totalprecip_mm").get<float>();
+                    d.totalPrecipMM = j.at("totalprecip_mm");
                 }
 
                 if (j.contains("totalprecip_in")) {
-                    d.totalPrecipIN = j.at("totalprecip_in").get<float>();
+                    d.totalPrecipIN = j.at("totalprecip_in");
                 }
 
                 if (j.contains("avgvis_km")) {
-                    d.avgVisKM = j.at("avgvis_km").get<float>();
+                    d.avgVisKM = j.at("avgvis_km");
                 }
 
                 if (j.contains("avgvis_miles")) {
-                    d.avgVisMiles = j.at("avgvis_miles").get<float>();
+                    d.avgVisMiles = j.at("avgvis_miles");
                 }
 
                 if (j.contains("avghumidity")) {
-                    d.avgHumidity = j.at("avghumidity").get<float>();
+                    d.avgHumidity = j.at("avghumidity");
                 }
 
                 if (j.contains("condition")) {
-                    d.condition = j.at("condition").get<CurrentCondition>();
+                    d.condition = j.at("condition");
                 }
 
                 if (j.contains("uv")) {
-                    d.uv = j.at("uv").get<float>();
+                    d.uv = j.at("uv");
                 }
             }
         }

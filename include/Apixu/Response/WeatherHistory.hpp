@@ -28,8 +28,8 @@ namespace Apixu {
         };
 
         inline void from_json(const json &j, WeatherHistory &h) {
-            h.location = j.at("location").get<Location>();
-            h.forecast = j.at("forecast").get<ForecastWeather>();
+            h.location = j.at("location");
+            h.forecast = j.at("forecast");
         }
     }
 }

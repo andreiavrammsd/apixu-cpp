@@ -26,8 +26,8 @@ namespace Apixu {
         };
 
         inline void from_json(const json &j, Error &e) {
-            e.code = j.at("code").get<int>();
-            e.message = j.at("message").get<string>();
+            e.code = j.at("code");
+            e.message = j.at("message");
         }
 
         class ErrorResponse {
@@ -41,7 +41,7 @@ namespace Apixu {
         };
 
         inline void from_json(const json &j, ErrorResponse &e) {
-            e.error = j.at("error").get<Error>();
+            e.error = j.at("error");
         }
     }
 }

@@ -118,19 +118,19 @@ namespace Apixu {
 
             inline void from_json(const json &j, Hour &h) {
                 if (j.contains("time_epoch")) {
-                    h.timeEpoch = j.at("time_epoch").get<time_t>();
+                    h.timeEpoch = j.at("time_epoch");
                 }
 
                 if (j.contains("time")) {
-                    h.time = j.at("time").get<std::string>();
+                    h.time = j.at("time");
                 }
 
                 if (j.contains("temp_c")) {
-                    h.tempC = j.at("temp_c").get<double>();
+                    h.tempC = j.at("temp_c");
                 }
 
                 if (j.contains("temp_f")) {
-                    h.tempF = j.at("temp_f").get<double>();
+                    h.tempF = j.at("temp_f");
                 }
 
                 if (j.contains("is_day")) {
@@ -138,79 +138,79 @@ namespace Apixu {
                 }
 
                 if (j.contains("condition")) {
-                    h.condition = j.at("condition").get<CurrentCondition>();
+                    h.condition = j.at("condition");
                 }
 
                 if (j.contains("wind_mph")) {
-                    h.windMph = j.at("wind_mph").get<double>();
+                    h.windMph = j.at("wind_mph");
                 }
 
                 if (j.contains("wind_kph")) {
-                    h.windKph = j.at("wind_kph").get<double>();
+                    h.windKph = j.at("wind_kph");
                 }
 
                 if (j.contains("wind_degree")) {
-                    h.windDegree = j.at("wind_degree").get<int64_t>();
+                    h.windDegree = j.at("wind_degree");
                 }
 
                 if (j.contains("wind_dir")) {
-                    h.windDir = j.at("wind_dir").get<std::string>();
+                    h.windDir = j.at("wind_dir");
                 }
 
                 if (j.contains("pressure_mb")) {
-                    h.pressureMb = j.at("pressure_mb").get<int64_t>();
+                    h.pressureMb = j.at("pressure_mb");
                 }
 
                 if (j.contains("pressure_in")) {
-                    h.pressureIn = j.at("pressure_in").get<double>();
+                    h.pressureIn = j.at("pressure_in");
                 }
 
                 if (j.contains("precip_mm")) {
-                    h.precipMm = j.at("precip_mm").get<double>();
+                    h.precipMm = j.at("precip_mm");
                 }
 
                 if (j.contains("precip_in")) {
-                    h.precipIn = j.at("precip_in").get<double>();
+                    h.precipIn = j.at("precip_in");
                 }
 
                 if (j.contains("humidity")) {
-                    h.humidity = j.at("humidity").get<int64_t>();
+                    h.humidity = j.at("humidity");
                 }
 
                 if (j.contains("cloud")) {
-                    h.cloud = j.at("cloud").get<int64_t>();
+                    h.cloud = j.at("cloud");
                 }
 
                 if (j.contains("feelslike_c")) {
-                    h.feelsLikeC = j.at("feelslike_c").get<double>();
+                    h.feelsLikeC = j.at("feelslike_c");
                 }
 
                 if (j.contains("feelslike_f")) {
-                    h.feelsLikeF = j.at("feelslike_f").get<double>();
+                    h.feelsLikeF = j.at("feelslike_f");
                 }
 
                 if (j.contains("windchill_c")) {
-                    h.windChillC = j.at("windchill_c").get<double>();
+                    h.windChillC = j.at("windchill_c");
                 }
 
                 if (j.contains("windchill_f")) {
-                    h.windChillF = j.at("windchill_f").get<double>();
+                    h.windChillF = j.at("windchill_f");
                 }
 
                 if (j.contains("heatindex_c")) {
-                    h.heatIndexC = j.at("heatindex_c").get<double>();
+                    h.heatIndexC = j.at("heatindex_c");
                 }
 
                 if (j.contains("heatindex_f")) {
-                    h.heatIndexF = j.at("heatindex_f").get<double>();
+                    h.heatIndexF = j.at("heatindex_f");
                 }
 
                 if (j.contains("dewpoint_c")) {
-                    h.dewpointC = j.at("dewpoint_c").get<double>();
+                    h.dewpointC = j.at("dewpoint_c");
                 }
 
                 if (j.contains("dewpoint_f")) {
-                    h.dewPointF = j.at("dewpoint_f").get<double>();
+                    h.dewPointF = j.at("dewpoint_f");
                 }
 
                 if (j.contains("will_it_rain")) {
@@ -218,7 +218,7 @@ namespace Apixu {
                 }
 
                 if (j.contains("chance_of_rain")) {
-                    h.chanceOfRain = j.at("chance_of_rain").get<std::string>();
+                    h.chanceOfRain = j.at("chance_of_rain");
                 }
 
                 if (j.contains("will_it_snow")) {
@@ -226,24 +226,23 @@ namespace Apixu {
                 }
 
                 if (j.contains("chance_of_snow")) {
-                    h.chanceOfSnow = j.at("chance_of_snow").get<std::string>();
+                    h.chanceOfSnow = j.at("chance_of_snow");
                 }
 
-
                 if (j.contains("vis_km")) {
-                    h.visKm = j.at("vis_km").get<int64_t>();
+                    h.visKm = j.at("vis_km");
                 }
 
                 if (j.contains("vis_miles")) {
-                    h.visMiles = j.at("vis_miles").get<int64_t>();
+                    h.visMiles = j.at("vis_miles");
                 }
 
                 if (j.contains("gust_mph")) {
-                    h.gustMph = j.at("gust_mph").get<double>();
+                    h.gustMph = j.at("gust_mph");
                 }
 
                 if (j.contains("gust_kph")) {
-                    h.gustKph = j.at("gust_kph").get<double>();
+                    h.gustKph = j.at("gust_kph");
                 }
             }
         }

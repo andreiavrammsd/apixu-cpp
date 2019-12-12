@@ -90,93 +90,93 @@ namespace Apixu {
 
         inline void from_json(const json &j, Current &c) {
             if (j.contains("last_updated_epoch")) {
-                c.lastUpdatedEpoch = new int(j.at("last_updated_epoch").get<int>());
+                c.lastUpdatedEpoch = new int(j.at("last_updated_epoch"));
             }
 
             if (j.contains("last_updated")) {
-                c.lastUpdated = Time::parse(j.at("last_updated").get<string>());
+                c.lastUpdated = Time::parse(j.at("last_updated"));
             }
 
             if (j.contains("temp_c")) {
-                c.tempC = new float(j.at("temp_c").get<float>());
+                c.tempC = new float(j.at("temp_c"));
             }
 
             if (j.contains("temp_f")) {
-                c.tempF = new float(j.at("temp_f").get<float>());
+                c.tempF = new float(j.at("temp_f"));
             }
 
             if (j.contains("is_day")) {
                 c.day = new bool(j.at("is_day").get<int>());
             }
 
-            c.condition = j.at("condition").get<CurrentCondition>();
+            c.condition = j.at("condition");
 
             if (j.contains("wind_mph")) {
-                c.windMph = new float(j.at("wind_mph").get<float>());
+                c.windMph = new float(j.at("wind_mph"));
             }
 
             if (j.contains("wind_kph")) {
-                c.windKph = new float(j.at("wind_kph").get<float>());
+                c.windKph = new float(j.at("wind_kph"));
             }
 
             if (j.contains("wind_degree")) {
-                c.windDegree = new int(j.at("wind_degree").get<int>());
+                c.windDegree = new int(j.at("wind_degree"));
             }
 
             if (j.contains("wind_dir")) {
-                c.windDir = new string(j.at("wind_dir").get<string>());
+                c.windDir = new string(j.at("wind_dir"));
             }
 
             if (j.contains("pressure_mb")) {
-                c.pressureMb = new float(j.at("pressure_mb").get<float>());
+                c.pressureMb = new float(j.at("pressure_mb"));
             }
 
             if (j.contains("pressure_in")) {
-                c.pressureIn = new float(j.at("pressure_in").get<float>());
+                c.pressureIn = new float(j.at("pressure_in"));
             }
 
             if (j.contains("precip_mm")) {
-                c.precipMm = new float(j.at("precip_mm").get<float>());
+                c.precipMm = new float(j.at("precip_mm"));
             }
 
             if (j.contains("precip_in")) {
-                c.precipIn = new float(j.at("precip_in").get<float>());
+                c.precipIn = new float(j.at("precip_in"));
             }
 
             if (j.contains("humidity")) {
-                c.humidity = new int(j.at("humidity").get<int>());
+                c.humidity = new int(j.at("humidity"));
             }
 
             if (j.contains("cloud")) {
-                c.cloud = new int(j.at("cloud").get<int>());
+                c.cloud = new int(j.at("cloud"));
             }
 
             if (j.contains("feelslike_c")) {
-                c.feelslikeC = new float(j.at("feelslike_c").get<float>());
+                c.feelslikeC = new float(j.at("feelslike_c"));
             }
 
             if (j.contains("feelslike_f")) {
-                c.feelslikeF = new float(j.at("feelslike_f").get<float>());
+                c.feelslikeF = new float(j.at("feelslike_f"));
             }
 
             if (j.contains("vis_km")) {
-                c.visKm = new float(j.at("vis_km").get<float>());
+                c.visKm = new float(j.at("vis_km"));
             }
 
             if (j.contains("vis_miles")) {
-                c.visMiles = new float(j.at("vis_miles").get<float>());
+                c.visMiles = new float(j.at("vis_miles"));
             }
 
             if (j.contains("uv")) {
-                c.uv = new float(j.at("uv").get<float>());
+                c.uv = new float(j.at("uv"));
             }
 
             if (j.contains("gust_mph")) {
-                c.gustMph = new float(j.at("gust_mph").get<float>());
+                c.gustMph = new float(j.at("gust_mph"));
             }
 
             if (j.contains("gust_kph")) {
-                c.gustKph = new float(j.at("gust_kph").get<float>());
+                c.gustKph = new float(j.at("gust_kph"));
             }
         }
     }

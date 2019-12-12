@@ -30,9 +30,9 @@ namespace Apixu {
             };
 
             inline void from_json(const json &j, WeatherForecast &f) {
-                f.location = j.at("location").get<Location>();
-                f.current = j.at("current").get<Current>();
-                f.forecast = j.at("forecast").get<ForecastWeather>();
+                f.location = j.at("location");
+                f.current = j.at("current");
+                f.forecast = j.at("forecast");
             }
         }
     }

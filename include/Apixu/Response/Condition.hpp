@@ -32,10 +32,10 @@ namespace Apixu {
         };
 
         inline void from_json(const json &j, Condition &c) {
-            c.code = j.at("code").get<int>();
-            c.day = j.at("day").get<string>();
-            c.night = j.at("night").get<string>();
-            c.icon = j.at("icon").get<int>();
+            c.code = j.at("code");
+            c.day = j.at("day");
+            c.night = j.at("night");
+            c.icon = j.at("icon");
         }
     }
 }

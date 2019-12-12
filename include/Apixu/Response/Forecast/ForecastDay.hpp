@@ -38,10 +38,10 @@ namespace Apixu {
             };
 
             inline void from_json(const json &j, ForecastDay &f) {
-                f.date = j.at("date").get<string>();
-                f.dateEpoch = j.at("date_epoch").get<time_t>();
-                f.day = j.at("day").get<Day>();
-                f.astro = j.at("astro").get<Astro>();
+                f.date = j.at("date");
+                f.dateEpoch = j.at("date_epoch");
+                f.day = j.at("day");
+                f.astro = j.at("astro");
 
                 if (j.contains("hour")) {
                     f.hour = j.at("hour").get<vector<Hour>>();
