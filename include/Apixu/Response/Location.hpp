@@ -2,6 +2,7 @@
 #define APIXU_RESPONSE_LOCATION_HPP_
 
 
+#include <memory>
 #include <string>
 #include "nlohmann/json.hpp"
 #include "Apixu/Time.hpp"
@@ -13,7 +14,7 @@ namespace Apixu {
     namespace Response {
         class Location {
         public:
-            const int *getId() const;
+            std::shared_ptr<int> getId() const;
 
             const string &getName() const;
 
@@ -25,26 +26,26 @@ namespace Apixu {
 
             double getLon() const;
 
-            const string *getUrl() const;
+            std::shared_ptr<string> getUrl() const;
 
-            const string *getTimezone() const;
+            std::shared_ptr<string> getTimezone() const;
 
-            int64_t *getLocaltimeEpoch() const;
+            std::shared_ptr<int64_t> getLocaltimeEpoch() const;
 
             struct tm getLocaltime() const;
 
             virtual ~Location() = default;
 
         private:
-            int *id{};
+            std::shared_ptr<int> id;
             string name;
             string region;
             string country;
             double lat{};
             double lon{};
-            string *url{};
-            string *timezone{};
-            int64_t *localtimeEpoch{};
+            std::shared_ptr<string> url{};
+            std::shared_ptr<string> timezone{};
+            std::shared_ptr<int64_t> localtimeEpoch{};
             struct tm localtime{};
 
             friend void from_json(const json &j, Location &l);
@@ -52,29 +53,29 @@ namespace Apixu {
 
         inline void from_json(const json &j, Location &l) {
             if (j.contains("id")) {
-                l.id = new int(j.at("id").get<int>());
+                l.id = std::make_shared<int>(j.at("id"));
             }
 
-            l.name = j.at("name").get<string>();
-            l.region = j.at("region").get<string>();
-            l.country = j.at("country").get<string>();
-            l.lat = j.at("lat").get<double>();
-            l.lon = j.at("lon").get<double>();
+            l.name = j.at("name");
+            l.region = j.at("region");
+            l.country = j.at("country");
+            l.lat = j.at("lat");
+            l.lon = j.at("lon");
 
             if (j.contains("url")) {
-                l.url = new string(j.at("url").get<string>());
+                l.url = std::make_shared<string>(j.at("url"));
             }
 
             if (j.contains("tz_id")) {
-                l.timezone = new string(j.at("tz_id").get<string>());
+                l.timezone = std::make_shared<string>(j.at("tz_id"));
             }
 
             if (j.contains("localtime_epoch")) {
-                l.localtimeEpoch = new int64_t(j.at("localtime_epoch").get<int64_t>());
+                l.localtimeEpoch = std::make_shared<int64_t>(j.at("localtime_epoch"));
             }
 
             if (j.contains("localtime")) {
-                l.localtime = Time::parse(j.at("localtime").get<string>());
+                l.localtime = Time::parse(j.at("localtime"));
             }
         }
     }

@@ -39,11 +39,11 @@ namespace Apixu {
 
         WeatherHistory History(const string &q, const string &since, string *until = nullptr);
 
-        virtual ~Apixu();
+        virtual ~Apixu() = default;
 
     private:
         string apiKey;
-        Http::Http *httpClient;
+        std::shared_ptr<Http::Http> httpClient;
 
         const string API_URL = "http://localhost:5000/";
         const string API_FORMAT = "json";

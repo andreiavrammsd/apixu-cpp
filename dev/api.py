@@ -269,7 +269,10 @@ def search():
             "country": "ABCDEFGHIJKLMNOPQRSTUVW",
             "lat": 861.75,
             "lon": -72.75,
-            "url": "ABCDEFGHIJKLMNOPQ"
+            "url": "ABCDEFGHIJKLMNOPQ",
+            "tz_id": "Europe/Paris",
+            "localtime_epoch": 1576174998,
+            "localtime": "2019-11-25 18:56:33"
           }
         ]
     '''

@@ -3,8 +3,7 @@
 
 namespace Apixu {
     namespace Response {
-
-        const int *Location::getId() const {
+        std::shared_ptr<int> Location::getId() const {
             return id;
         }
 
@@ -28,15 +27,15 @@ namespace Apixu {
             return lon;
         }
 
-        const string *Location::getUrl() const {
+        std::shared_ptr<string> Location::getUrl() const {
             return url;
         }
 
-        const string *Location::getTimezone() const {
+        std::shared_ptr<string> Location::getTimezone() const {
             return timezone;
         }
 
-        int64_t *Location::getLocaltimeEpoch() const {
+        std::shared_ptr<int64_t> Location::getLocaltimeEpoch() const {
             return localtimeEpoch;
         }
 
