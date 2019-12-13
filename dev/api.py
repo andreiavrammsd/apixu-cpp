@@ -100,7 +100,9 @@ def forecast():
                 "feelslike_f": 413.25,
                 "vis_km": 356.75,
                 "vis_miles": 440.5,
-                "uv": -8.0
+                "uv": -8.0,
+                "gust_mph": 0.0,
+                "gust_kph": 0.0
               },
               "forecast": {
                 "forecastday": [
