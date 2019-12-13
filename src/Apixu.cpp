@@ -14,7 +14,7 @@ namespace Apixu {
     using std::to_string;
 
     Apixu::Apixu(string apiKey) : apiKey(move(apiKey)) {
-        httpClient = std::unique_ptr<Http::Http>(new Http::Client(USER_AGENT));
+        httpClient = std::make_unique<Http::Client>(Http::Client(USER_AGENT));
     }
 
     Apixu::Apixu(string apiKey, Http::Http *httpClient) : apiKey(move(apiKey)), httpClient(httpClient) {
