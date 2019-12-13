@@ -1,10 +1,12 @@
 SOURCEDIR = src
 HEADERDIR = include/Apixu
 TESTDIR = tests
+EXAMPLEDIR = examples
 
 SOURCES = $(shell find $(SOURCEDIR) -name "*.cpp")
 HEADERS = $(shell find $(HEADERDIR) -name "*.h")
 TESTS = $(shell find $(TESTDIR) -name "*.cpp")
+EXAMPLES = $(shell find $(EXAMPLEDIR) -name "*.cpp")
 
 all: build
 
@@ -18,7 +20,7 @@ lint:
 	@python dev/cpplint.py --linelength=120 \
 		--filter=-runtime/indentation_namespace,-whitespace/indent \
 		--quiet \
-		$(HEADERS) $(SOURCES) $(TESTS)
+		$(HEADERS) $(SOURCES) $(TESTS) $(EXAMPLES)
 
 build:
 	docker build -f dev/Dockerfile-build -t apixubuild .

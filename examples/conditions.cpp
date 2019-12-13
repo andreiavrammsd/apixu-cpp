@@ -1,5 +1,7 @@
+// Copyright 2019 <Andrei Avram>
 #include <iostream>
 #include <vector>
+
 #include "Apixu/Apixu.h"
 #include "Apixu/Exception/ApiException.h"
 

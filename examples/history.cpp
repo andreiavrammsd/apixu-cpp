@@ -1,9 +1,11 @@
+// Copyright 2019 <Andrei Avram>
 #include <iostream>
 #include <vector>
-#include "Apixu/Apixu.h"
-#include "Apixu/Exception/ApiException.h"
 #include <iomanip>
 #include <ctime>
+
+#include "Apixu/Apixu.h"
+#include "Apixu/Exception/ApiException.h"
 
 using Apixu::Exception::ApiException;
 using Apixu::Exception::ApixuException;
