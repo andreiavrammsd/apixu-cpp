@@ -1,4 +1,7 @@
+// Copyright 2019 <Andrei Avram>
 #include "Apixu/Response/CurrentCondition.h"
+
+#include <string>
 
 namespace Apixu {
     namespace Response {
@@ -13,5 +16,5 @@ namespace Apixu {
         int *CurrentCondition::getCode() const {
             return code;
         }
-    }
-}
+    }  // namespace Response
+}  // namespace Apixu

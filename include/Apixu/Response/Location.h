@@ -1,5 +1,6 @@
-#ifndef APIXU_RESPONSE_LOCATION_H_
-#define APIXU_RESPONSE_LOCATION_H_
+// Copyright 2019 <Andrei Avram>
+#ifndef INCLUDE_APIXU_RESPONSE_LOCATION_H_
+#define INCLUDE_APIXU_RESPONSE_LOCATION_H_
 
 
 #include <memory>
@@ -49,10 +50,10 @@ namespace Apixu {
             std::shared_ptr<int64_t> localtimeEpoch{};
             struct tm localtime{};
 
-            friend void from_json(const json &j, Location &l);
+            friend void from_json(const json &j, Location &l); // NOLINT
         };
 
-        inline void from_json(const json &j, Location &l) {
+        inline void from_json(const json &j, Location &l) { // NOLINT
             if (j.contains("id")) {
                 l.id = std::make_shared<int>(j.at("id"));
             }
@@ -79,7 +80,7 @@ namespace Apixu {
                 l.localtime = Time::parse(j.at("localtime"));
             }
         }
-    }
-}
+    }  // namespace Response
+}  // namespace Apixu
 
-#endif // APIXU_RESPONSE_LOCATION_H_
+#endif  // INCLUDE_APIXU_RESPONSE_LOCATION_H_

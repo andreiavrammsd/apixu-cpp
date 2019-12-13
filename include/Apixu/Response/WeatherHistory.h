@@ -1,5 +1,6 @@
-#ifndef APIXU_RESPONSE_HISTORY_H_
-#define APIXU_RESPONSE_HISTORY_H_
+// Copyright 2019 <Andrei Avram>
+#ifndef INCLUDE_APIXU_RESPONSE_WEATHERHISTORY_H_
+#define INCLUDE_APIXU_RESPONSE_WEATHERHISTORY_H_
 
 
 #include "nlohmann/json.hpp"
@@ -24,14 +25,14 @@ namespace Apixu {
             Location location;
             ForecastWeather forecast;
 
-            friend void from_json(const json &j, WeatherHistory &h);
+            friend void from_json(const json &j, WeatherHistory &h); // NOLINT
         };
 
-        inline void from_json(const json &j, WeatherHistory &h) {
+        inline void from_json(const json &j, WeatherHistory &h) { // NOLINT
             h.location = j.at("location");
             h.forecast = j.at("forecast");
         }
-    }
-}
+    }  // namespace Response
+}  // namespace Apixu
 
-#endif // APIXU_RESPONSE_HISTORY_H_
+#endif  // INCLUDE_APIXU_RESPONSE_WEATHERHISTORY_H_

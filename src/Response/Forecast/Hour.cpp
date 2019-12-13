@@ -1,4 +1,7 @@
+// Copyright 2019 <Andrei Avram>
 #include "Apixu/Response/Forecast/Hour.h"
+
+#include <string>
 
 namespace Apixu {
     namespace Response {
@@ -130,6 +133,6 @@ namespace Apixu {
             double Hour::getGustKph() const {
                 return gustKph;
             }
-        }
-    }
-}
+        }  // namespace Forecast
+    }  // namespace Response
+}  // namespace Apixu

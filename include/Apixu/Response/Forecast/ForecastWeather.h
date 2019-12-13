@@ -1,5 +1,8 @@
-#ifndef APIXU_RESPONSE_FORECAST_FORECAST_WEATHER_H_
-#define APIXU_RESPONSE_FORECAST_FORECAST_WEATHER_H_
+// Copyright 2019 <Andrei Avram>
+#ifndef INCLUDE_APIXU_RESPONSE_FORECAST_FORECASTWEATHER_H_
+#define INCLUDE_APIXU_RESPONSE_FORECAST_FORECASTWEATHER_H_
+
+#include <vector>
 
 #include "nlohmann/json.hpp"
 #include "Apixu/Response/Forecast/ForecastDay.h"
@@ -7,8 +10,8 @@
 namespace Apixu {
     namespace Response {
         namespace Forecast {
-            using nlohmann::json;
             using std::vector;
+            using nlohmann::json;
 
             class ForecastWeather {
             public:
@@ -19,14 +22,14 @@ namespace Apixu {
             private:
                 vector<ForecastDay> forecastDay;
 
-                friend void from_json(const json &j, ForecastWeather &f);
+                friend void from_json(const json &j, ForecastWeather &f); // NOLINT
             };
 
-            inline void from_json(const json &j, ForecastWeather &f) {
+            inline void from_json(const json &j, ForecastWeather &f) { // NOLINT
                 f.forecastDay = j.at("forecastday").get<vector<ForecastDay>>();
             }
-        }
-    }
-}
+        }  // namespace Forecast
+    }  // namespace Response
+}  // namespace Apixu
 
-#endif // APIXU_RESPONSE_FORECAST_FORECAST_WEATHER_H_
+#endif  // INCLUDE_APIXU_RESPONSE_FORECAST_FORECASTWEATHER_H_

@@ -1,6 +1,8 @@
-#ifndef APIXU_RESPONSE_FORECAST_HOUR_H_
-#define APIXU_RESPONSE_FORECAST_HOUR_H_
+// Copyright 2019 <Andrei Avram>
+#ifndef INCLUDE_APIXU_RESPONSE_FORECAST_HOUR_H_
+#define INCLUDE_APIXU_RESPONSE_FORECAST_HOUR_H_
 
+#include <string>
 
 #include "nlohmann/json.hpp"
 #include "Apixu/Response/CurrentCondition.h"
@@ -113,10 +115,10 @@ namespace Apixu {
                 double gustMph;
                 double gustKph;
 
-                friend void from_json(const json &j, Hour &h);
+                friend void from_json(const json &j, Hour &h); // NOLINT
             };
 
-            inline void from_json(const json &j, Hour &h) {
+            inline void from_json(const json &j, Hour &h) { // NOLINT
                 if (j.contains("time_epoch")) {
                     h.timeEpoch = j.at("time_epoch");
                 }
@@ -245,8 +247,8 @@ namespace Apixu {
                     h.gustKph = j.at("gust_kph");
                 }
             }
-        }
-    }
-}
+        }  // namespace Forecast
+    }  // namespace Response
+}  // namespace Apixu
 
-#endif // APIXU_RESPONSE_FORECAST_HOUR_H_
+#endif  // INCLUDE_APIXU_RESPONSE_FORECAST_HOUR_H_

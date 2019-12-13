@@ -1,3 +1,7 @@
+// Copyright 2019 <Andrei Avram>
+#include <map>
+#include <string>
+
 #include "gtest/gtest.h"
 #include "Apixu/Apixu.h"
 #include "Apixu/Exception/ApiException.h"
@@ -158,7 +162,7 @@ namespace {
 
         delete apixu;
     }
-}
+}  // namespace
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

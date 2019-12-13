@@ -1,6 +1,8 @@
-#ifndef APIXU_RESPONSE_CURRENT_H_
-#define APIXU_RESPONSE_CURRENT_H_
+// Copyright 2019 <Andrei Avram>
+#ifndef INCLUDE_APIXU_RESPONSE_CURRENT_H_
+#define INCLUDE_APIXU_RESPONSE_CURRENT_H_
 
+#include <string>
 
 #include "CurrentCondition.h"
 #include "Apixu/Time.h"
@@ -85,10 +87,10 @@ namespace Apixu {
             float *gustMph{};
             float *gustKph{};
 
-            friend void from_json(const json &j, Current &c);
+            friend void from_json(const json &j, Current &c); // NOLINT
         };
 
-        inline void from_json(const json &j, Current &c) {
+        inline void from_json(const json &j, Current &c) { // NOLINT
             if (j.contains("last_updated_epoch")) {
                 c.lastUpdatedEpoch = new int(j.at("last_updated_epoch"));
             }
@@ -179,7 +181,7 @@ namespace Apixu {
                 c.gustKph = new float(j.at("gust_kph"));
             }
         }
-    }
-}
+    }  // namespace Response
+}  // namespace Apixu
 
-#endif // APIXU_RESPONSE_CURRENT_H_
+#endif  // INCLUDE_APIXU_RESPONSE_CURRENT_H_

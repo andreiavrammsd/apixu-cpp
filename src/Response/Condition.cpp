@@ -1,4 +1,7 @@
+// Copyright 2019 <Andrei Avram>
 #include "Apixu/Response/Condition.h"
+
+#include <string>
 
 namespace Apixu {
     namespace Response {
@@ -19,5 +22,5 @@ namespace Apixu {
         int Condition::getIcon() const {
             return icon;
         }
-    };
-}
+    }  // namespace Response
+}  // namespace Apixu

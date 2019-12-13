@@ -1,6 +1,8 @@
-#include <string>
-
+// Copyright 2019 <Andrei Avram>
 #include "Apixu/Response/Location.h"
+
+#include <string>
+#include <memory>
 
 namespace Apixu {
     namespace Response {
@@ -43,5 +45,5 @@ namespace Apixu {
         struct tm Location::getLocaltime() const {
             return localtime;
         }
-    };
-}
+    }  // namespace Response
+}  // namespace Apixu

@@ -1,5 +1,6 @@
-#ifndef APIXU_TIME_H_
-#define APIXU_TIME_H_
+// Copyright 2019 <Andrei Avram>
+#ifndef INCLUDE_APIXU_TIME_H_
+#define INCLUDE_APIXU_TIME_H_
 
 
 #include <string>
@@ -13,6 +14,6 @@ namespace Apixu {
 
         virtual ~Time() = default;
     };
-}
+}  // namespace Apixu
 
-#endif // APIXU_TIME_H_
+#endif  // INCLUDE_APIXU_TIME_H_

@@ -1,5 +1,9 @@
-#ifndef APIXU_RESPONSE_FORECAST_FORECAST_DAY_H_
-#define APIXU_RESPONSE_FORECAST_FORECAST_DAY_H_
+// Copyright 2019 <Andrei Avram>
+#ifndef INCLUDE_APIXU_RESPONSE_FORECAST_FORECASTDAY_H_
+#define INCLUDE_APIXU_RESPONSE_FORECAST_FORECASTDAY_H_
+
+#include <string>
+#include <vector>
 
 #include "nlohmann/json.hpp"
 #include "Apixu/Response/Forecast/Day.h"
@@ -34,10 +38,10 @@ namespace Apixu {
                 Astro astro;
                 vector<Hour> hour;
 
-                friend void from_json(const json &j, ForecastDay &f);
+                friend void from_json(const json &j, ForecastDay &f); // NOLINT
             };
 
-            inline void from_json(const json &j, ForecastDay &f) {
+            inline void from_json(const json &j, ForecastDay &f) { // NOLINT
                 f.date = j.at("date");
                 f.dateEpoch = j.at("date_epoch");
                 f.day = j.at("day");
@@ -47,8 +51,8 @@ namespace Apixu {
                     f.hour = j.at("hour").get<vector<Hour>>();
                 }
             }
-        }
-    }
-}
+        }  // namespace Forecast
+    }  // namespace Response
+}  // namespace Apixu
 
-#endif // APIXU_RESPONSE_FORECAST_FORECAST_DAY_H_
+#endif  // INCLUDE_APIXU_RESPONSE_FORECAST_FORECASTDAY_H_

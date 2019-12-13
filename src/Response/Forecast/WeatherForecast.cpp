@@ -1,3 +1,4 @@
+// Copyright 2019 <Andrei Avram>
 #include "Apixu/Response/Forecast/WeatherForecast.h"
 
 #include "Apixu/Response/Current.h"
@@ -19,6 +20,6 @@ namespace Apixu {
             const ForecastWeather &WeatherForecast::getForecast() const {
                 return forecast;
             }
-        }
-    }
-}
+        }  // namespace Forecast
+    }  // namespace Response
+}  // namespace Apixu

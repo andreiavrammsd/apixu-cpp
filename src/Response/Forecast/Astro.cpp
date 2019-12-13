@@ -1,4 +1,7 @@
+// Copyright 2019 <Andrei Avram>
 #include "Apixu/Response/Forecast/Astro.h"
+
+#include <string>
 
 namespace Apixu {
     namespace Response {
@@ -26,6 +29,6 @@ namespace Apixu {
             const string &Astro::getMoonIllumination() const {
                 return moonIllumination;
             }
-        }
-    }
-}
+        }  // namespace Forecast
+    }  // namespace Response
+}  // namespace Apixu

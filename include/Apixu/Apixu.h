@@ -1,10 +1,12 @@
-#ifndef APIXU_APIXU_H_
-#define APIXU_APIXU_H_
+// Copyright 2019 <Andrei Avram>
+#ifndef INCLUDE_APIXU_APIXU_H_
+#define INCLUDE_APIXU_APIXU_H_
 
 
 #include <string>
 #include <vector>
 #include <map>
+#include <memory>
 
 #include "Response/Condition.h"
 #include "Response/CurrentWeather.h"
@@ -55,6 +57,6 @@ namespace Apixu {
 
         string get(const string &url, map<string, string> params = {});
     };
-}
+}  // namespace Apixu
 
-#endif // APIXU_APIXU_H_
+#endif  // INCLUDE_APIXU_APIXU_H_

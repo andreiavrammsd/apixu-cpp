@@ -1,3 +1,11 @@
+SOURCEDIR = src
+HEADERDIR = include/Apixu
+TESTDIR = tests
+
+SOURCES = $(shell find $(SOURCEDIR) -name "*.cpp")
+HEADERS = $(shell find $(HEADERDIR) -name "*.h")
+TESTS = $(shell find $(TESTDIR) -name "*.cpp")
+
 all: build
 
 env:
@@ -5,6 +13,12 @@ env:
 
 dep:
 	sudo apt install -y libcurl4-openssl-dev
+
+lint:
+	@python dev/cpplint.py --linelength=120 \
+		--filter=-runtime/indentation_namespace,-whitespace/indent \
+		--quiet \
+		$(HEADERS) $(SOURCES) $(TESTS)
 
 build:
 	docker build -f dev/Dockerfile-build -t apixubuild .

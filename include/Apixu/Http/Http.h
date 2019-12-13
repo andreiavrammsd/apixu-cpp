@@ -1,8 +1,10 @@
-#ifndef APIXU_HTTP_HTTP_H_
-#define APIXU_HTTP_HTTP_H_
+// Copyright 2019 <Andrei Avram>
+#ifndef INCLUDE_APIXU_HTTP_HTTP_H_
+#define INCLUDE_APIXU_HTTP_HTTP_H_
 
 
 #include <map>
+#include <string>
 
 namespace Apixu {
     namespace Http {
@@ -47,7 +49,7 @@ namespace Apixu {
         private:
             string userAgent;
         };
-    }
-}
+    }  // namespace Http
+}  // namespace Apixu
 
-#endif // APIXU_HTTP_HTTP_H_
+#endif  // INCLUDE_APIXU_HTTP_HTTP_H_

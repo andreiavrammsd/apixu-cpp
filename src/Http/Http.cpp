@@ -1,6 +1,13 @@
-#include <sstream>
-#include <curl/curl.h>
+// Copyright 2019 <Andrei Avram>
 #include "Apixu/Http/Http.h"
+
+#include <curl/curl.h>
+
+#include <sstream>
+#include <map>
+#include <string>
+#include <utility>
+
 #include "Exception.cpp"
 
 namespace Apixu {
@@ -80,5 +87,5 @@ namespace Apixu {
         }
 
         Response::Response(int status, string body) : status(status), body(std::move(body)) {}
-    }
-}
+    }  // namespace Http
+}  // namespace Apixu

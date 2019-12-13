@@ -1,13 +1,16 @@
-#ifndef APIXU_RESPONSE_FORECAST_ASTRO_H_
-#define APIXU_RESPONSE_FORECAST_ASTRO_H_
+// Copyright 2019 <Andrei Avram>
+#ifndef INCLUDE_APIXU_RESPONSE_FORECAST_ASTRO_H_
+#define INCLUDE_APIXU_RESPONSE_FORECAST_ASTRO_H_
+
+#include <string>
 
 #include "nlohmann/json.hpp"
 
 namespace Apixu {
     namespace Response {
         namespace Forecast {
-            using nlohmann::json;
             using std::string;
+            using nlohmann::json;
 
             class Astro {
             public:
@@ -33,10 +36,10 @@ namespace Apixu {
                 string moonPhase;
                 string moonIllumination;
 
-                friend void from_json(const json &j, Astro &d);
+                friend void from_json(const json &j, Astro &d); // NOLINT
             };
 
-            inline void from_json(const json &j, Astro &d) {
+            inline void from_json(const json &j, Astro &d) { // NOLINT
                 if (j.contains("sunrise")) {
                     d.sunrise = j.at("sunrise");
                 }
@@ -61,8 +64,8 @@ namespace Apixu {
                     d.moonIllumination = j.at("moon_illumination");
                 }
             }
-        }
-    }
-}
+        }  // namespace Forecast
+    }  // namespace Response
+}  // namespace Apixu
 
-#endif // APIXU_RESPONSE_FORECAST_ASTRO_H_
+#endif  // INCLUDE_APIXU_RESPONSE_FORECAST_ASTRO_H_

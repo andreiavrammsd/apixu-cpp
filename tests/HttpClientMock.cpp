@@ -1,9 +1,14 @@
+// Copyright 2019 <Andrei Avram>
+#include <map>
+#include <string>
+#include <utility>
+
 #include "gmock/gmock.h"
 
 namespace HttpClientMock {
     class MockHttpResponse : public Apixu::Http::Response {
     public:
-        MockHttpResponse(int status, string body) : Response(status, std::move(body)) {}
+        MockHttpResponse(int status, const string &body) : Response(status, body) {}
 
         MOCK_METHOD(int, getStatus, (), (const, override));
         MOCK_METHOD(const string&, getBody, (), (const, override));
@@ -11,7 +16,7 @@ namespace HttpClientMock {
 
     class MockHttpClient : public Apixu::Http::Http {
     public:
-        explicit MockHttpClient() = default;
+        MockHttpClient() = default;
 
         MOCK_METHOD(const Apixu::Http::Response*, get, (const string&, (map<string, string>)), (override));
         MOCK_METHOD(const Apixu::Http::Response*, get, (const string&), (override));
@@ -41,4 +46,4 @@ namespace HttpClientMock {
         map<string, string> params;
         return GetHttpClient(url, params, status, body);
     }
-}
+}  // namespace HttpClientMock

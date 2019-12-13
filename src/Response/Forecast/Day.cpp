@@ -1,3 +1,4 @@
+// Copyright 2019 <Andrei Avram>
 #include "Apixu/Response/Forecast/Day.h"
 
 #include "Apixu/Response/CurrentCondition.h"
@@ -66,6 +67,6 @@ namespace Apixu {
             float Day::getUv() const {
                 return uv;
             }
-        }
-    }
-}
+        }  // namespace Forecast
+    }  // namespace Response
+}  // namespace Apixu

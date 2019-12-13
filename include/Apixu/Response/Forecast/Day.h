@@ -1,5 +1,6 @@
-#ifndef APIXU_RESPONSE_FORECAST_DAY_H_
-#define APIXU_RESPONSE_FORECAST_DAY_H_
+// Copyright 2019 <Andrei Avram>
+#ifndef INCLUDE_APIXU_RESPONSE_FORECAST_DAY_H_
+#define INCLUDE_APIXU_RESPONSE_FORECAST_DAY_H_
 
 #include "nlohmann/json.hpp"
 #include "Apixu/Response/CurrentCondition.h"
@@ -60,10 +61,10 @@ namespace Apixu {
                 CurrentCondition condition;
                 float uv{};
 
-                friend void from_json(const json &j, Day &d);
+                friend void from_json(const json &j, Day &d); // NOLINT
             };
 
-            inline void from_json(const json &j, Day &d) {
+            inline void from_json(const json &j, Day &d) { // NOLINT
                 if (j.contains("maxtemp_c")) {
                     d.maxTempCelsius = j.at("maxtemp_c");
                 }
@@ -124,8 +125,8 @@ namespace Apixu {
                     d.uv = j.at("uv");
                 }
             }
-        }
-    }
-}
+        }  // namespace Forecast
+    }  // namespace Response
+}  // namespace Apixu
 
-#endif // APIXU_RESPONSE_FORECAST_DAY_H_
+#endif  // INCLUDE_APIXU_RESPONSE_FORECAST_DAY_H_

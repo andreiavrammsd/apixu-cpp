@@ -1,5 +1,7 @@
+// Copyright 2019 <Andrei Avram>
 #include <string>
 #include <exception>
+#include <utility>
 
 namespace Apixu {
     namespace Http {
@@ -17,5 +19,5 @@ namespace Apixu {
         private:
             string msg;
         };
-    }
-}
+    }  // namespace Http
+}  // namespace Apixu

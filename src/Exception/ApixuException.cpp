@@ -1,6 +1,9 @@
+// Copyright 2019 <Andrei Avram>
+#include <Apixu/Exception/ApixuException.h>
+
 #include <exception>
 #include <string>
-#include <Apixu/Exception/ApixuException.h>
+#include <utility>
 
 namespace Apixu {
     namespace Exception {
@@ -12,5 +15,5 @@ namespace Apixu {
         const char *ApixuException::what() const noexcept {
             return msg.c_str();
         }
-    }
-}
+    }  // namespace Exception
+}  // namespace Apixu

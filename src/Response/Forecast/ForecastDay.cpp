@@ -1,4 +1,8 @@
+// Copyright 2019 <Andrei Avram>
 #include "Apixu/Response/Forecast/ForecastDay.h"
+
+#include <string>
+#include <vector>
 
 #include "Apixu/Response/Forecast/Day.h"
 #include "Apixu/Response/Forecast/Astro.h"
@@ -29,6 +33,6 @@ namespace Apixu {
             const vector<Hour> &ForecastDay::getHour() const {
                 return hour;
             }
-        }
-    }
-}
+        }  // namespace Forecast
+    }  // namespace Response
+}  // namespace Apixu

@@ -1,5 +1,6 @@
-#ifndef APIXU_RESPONSE_CURRENT_WEATHER_H_
-#define APIXU_RESPONSE_CURRENT_WEATHER_H_
+// Copyright 2019 <Andrei Avram>
+#ifndef INCLUDE_APIXU_RESPONSE_CURRENTWEATHER_H_
+#define INCLUDE_APIXU_RESPONSE_CURRENTWEATHER_H_
 
 #include "nlohmann/json.hpp"
 #include "Apixu/Response/Location.h"
@@ -21,14 +22,14 @@ namespace Apixu {
             Location location;
             Current current;
 
-            friend void from_json(const json &j, CurrentWeather &cw);
+            friend void from_json(const json &j, CurrentWeather &cw); // NOLINT
         };
 
-        inline void from_json(const json &j, CurrentWeather &cw) {
+        inline void from_json(const json &j, CurrentWeather &cw) { // NOLINT
             cw.location = j.at("location");
             cw.current = j.at("current");
         }
-    }
-}
+    }  // namespace Response
+}  // namespace Apixu
 
-#endif // APIXU_RESPONSE_CURRENT_WEATHER_H_
+#endif  // INCLUDE_APIXU_RESPONSE_CURRENTWEATHER_H_

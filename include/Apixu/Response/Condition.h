@@ -1,5 +1,6 @@
-#ifndef APIXU_RESPONSE_CONDITION_H_
-#define APIXU_RESPONSE_CONDITION_H_
+// Copyright 2019 <Andrei Avram>
+#ifndef INCLUDE_APIXU_RESPONSE_CONDITION_H_
+#define INCLUDE_APIXU_RESPONSE_CONDITION_H_
 
 
 #include <string>
@@ -29,16 +30,16 @@ namespace Apixu {
             string night{};
             int icon{};
 
-            friend void from_json(const json &j, Condition &c);
+            friend void from_json(const json &j, Condition &c); // NOLINT
         };
 
-        inline void from_json(const json &j, Condition &c) {
+        inline void from_json(const json &j, Condition &c) { // NOLINT
             c.code = j.at("code");
             c.day = j.at("day");
             c.night = j.at("night");
             c.icon = j.at("icon");
         }
-    }
-}
+    }  // namespace Response
+}  // namespace Apixu
 
-#endif // APIXU_RESPONSE_CONDITION_H_
+#endif  // INCLUDE_APIXU_RESPONSE_CONDITION_H_

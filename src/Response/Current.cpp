@@ -1,4 +1,7 @@
+// Copyright 2019 <Andrei Avram>
 #include "Apixu/Response/Current.h"
+
+#include <string>
 
 #include "Apixu/Time.h"
 #include "Apixu/Response/CurrentCondition.h"
@@ -99,5 +102,5 @@ namespace Apixu {
         float *Current::getGustKph() const {
             return gustKph;
         }
-    }
-}
+    }  // namespace Response
+}  // namespace Apixu

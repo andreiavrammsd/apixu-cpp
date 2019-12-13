@@ -1,5 +1,6 @@
-#ifndef APIXU_RESPONSE_ERROR_H_
-#define APIXU_RESPONSE_ERROR_H_
+// Copyright 2019 <Andrei Avram>
+#ifndef INCLUDE_APIXU_RESPONSE_ERROR_H_
+#define INCLUDE_APIXU_RESPONSE_ERROR_H_
 
 
 #include <string>
@@ -19,13 +20,13 @@ namespace Apixu {
             virtual ~Error() = default;
 
         private:
-            int code;
+            int code{};
             string message;
 
-            friend void from_json(const json &j, Error &e);
+            friend void from_json(const json &j, Error &e); // NOLINT
         };
 
-        inline void from_json(const json &j, Error &e) {
+        inline void from_json(const json &j, Error &e) { // NOLINT
             e.code = j.at("code");
             e.message = j.at("message");
         }
@@ -35,15 +36,15 @@ namespace Apixu {
             const Error &getError() const;
 
         private:
-            friend void from_json(const json &j, ErrorResponse &e);
+            friend void from_json(const json &j, ErrorResponse &e); // NOLINT
 
             Error error;
         };
 
-        inline void from_json(const json &j, ErrorResponse &e) {
+        inline void from_json(const json &j, ErrorResponse &e) { // NOLINT
             e.error = j.at("error");
         }
-    }
-}
+    }  // namespace Response
+}  // namespace Apixu
 
-#endif // APIXU_RESPONSE_ERROR_H_
+#endif  // INCLUDE_APIXU_RESPONSE_ERROR_H_

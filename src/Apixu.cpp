@@ -1,4 +1,11 @@
+// Copyright 2019 <Andrei Avram>
 #include "Apixu/Apixu.h"
+
+#include <utility>
+#include <memory>
+#include <string>
+#include <vector>
+#include <map>
 
 #include "Apixu/Exception/ApiException.h"
 #include "Apixu/Response/Error.h"
@@ -113,4 +120,4 @@ namespace Apixu {
 
         return body;
     }
-}
+}  // namespace Apixu

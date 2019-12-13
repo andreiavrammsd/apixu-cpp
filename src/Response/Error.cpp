@@ -1,4 +1,7 @@
+// Copyright 2019 <Andrei Avram>
 #include "Apixu/Response/Error.h"
+
+#include <string>
 
 namespace Apixu {
     namespace Response {
@@ -13,5 +16,5 @@ namespace Apixu {
         const Error &ErrorResponse::getError() const {
             return error;
         }
-    }
-}
+    }  // namespace Response
+}  // namespace Apixu

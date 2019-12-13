@@ -1,5 +1,6 @@
-#ifndef APIXU_EXCEPTION_APIXU_EXCEPTION_H_
-#define APIXU_EXCEPTION_APIXU_EXCEPTION_H_
+// Copyright 2019 <Andrei Avram>
+#ifndef INCLUDE_APIXU_EXCEPTION_APIXUEXCEPTION_H_
+#define INCLUDE_APIXU_EXCEPTION_APIXUEXCEPTION_H_
 
 
 #include <exception>
@@ -19,7 +20,7 @@ namespace Apixu {
         private:
             string msg;
         };
-    }
-}
+    }  // namespace Exception
+}  // namespace Apixu
 
-#endif // APIXU_EXCEPTION_APIXU_EXCEPTION_H_
+#endif  // INCLUDE_APIXU_EXCEPTION_APIXUEXCEPTION_H_
