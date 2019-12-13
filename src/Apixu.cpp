@@ -21,10 +21,8 @@ namespace Apixu {
     }
 
     vector<Condition> Apixu::Conditions() {
-        map<string, string> params;
-
         try {
-            return json::parse(get(DOC_WEATHER_CONDITIONS_URL, params));
+            return json::parse(get(DOC_WEATHER_CONDITIONS_URL));
         } catch (ApiException &e) {
             throw ApiException(e.what(), e.getCode());
         } catch (exception &e) {
