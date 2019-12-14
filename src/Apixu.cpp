@@ -2,7 +2,6 @@
 #include "Apixu/Apixu.h"
 
 #include <utility>
-#include <memory>
 #include <string>
 #include <vector>
 #include <map>
@@ -21,10 +20,14 @@ namespace Apixu {
     using std::to_string;
 
     Apixu::Apixu(string apiKey) : apiKey(move(apiKey)) {
-        httpClient = std::make_unique<Http::Client>(Http::Client(USER_AGENT));
+        httpClient = new Http::Client(USER_AGENT);
     }
 
     Apixu::Apixu(string apiKey, Http::Http *httpClient) : apiKey(move(apiKey)), httpClient(httpClient) {
+    }
+
+    Apixu::~Apixu() {
+        delete httpClient;
     }
 
     vector<Condition> Apixu::Conditions() {
