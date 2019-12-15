@@ -5,15 +5,15 @@
 
 namespace Apixu {
     namespace Response {
-        const string *CurrentCondition::getText() const {
+        std::shared_ptr<string> CurrentCondition::getText() const {
             return text;
         }
 
-        string *CurrentCondition::getIcon() const {
+        std::shared_ptr<string> CurrentCondition::getIcon() const {
             return icon;
         }
 
-        int *CurrentCondition::getCode() const {
+        std::shared_ptr<int> CurrentCondition::getCode() const {
             return code;
         }
     }  // namespace Response

@@ -11,7 +11,7 @@ namespace Apixu {
         using std::string;
         using nlohmann::json;
 
-        int *Current::getLastUpdatedEpoch() const {
+        std::shared_ptr<int> Current::getLastUpdatedEpoch() const {
             return lastUpdatedEpoch;
         }
 
@@ -19,15 +19,15 @@ namespace Apixu {
             return lastUpdated;
         }
 
-        float *Current::getTempC() const {
+        std::shared_ptr<float> Current::getTempC() const {
             return tempC;
         }
 
-        float *Current::getTempF() const {
+        std::shared_ptr<float> Current::getTempF() const {
             return tempF;
         }
 
-        bool *Current::isDay() const {
+        std::shared_ptr<bool> Current::isDay() const {
             return day;
         }
 
@@ -35,71 +35,71 @@ namespace Apixu {
             return condition;
         }
 
-        float *Current::getWindMph() const {
+        std::shared_ptr<float> Current::getWindMph() const {
             return windMph;
         }
 
-        float *Current::getWindKph() const {
+        std::shared_ptr<float> Current::getWindKph() const {
             return windKph;
         }
 
-        int *Current::getWindDegree() const {
+        std::shared_ptr<int> Current::getWindDegree() const {
             return windDegree;
         }
 
-        string *Current::getWindDir() const {
+        std::shared_ptr<string> Current::getWindDir() const {
             return windDir;
         }
 
-        float *Current::getPressureMb() const {
+        std::shared_ptr<float> Current::getPressureMb() const {
             return pressureMb;
         }
 
-        float *Current::getPressureIn() const {
+        std::shared_ptr<float> Current::getPressureIn() const {
             return pressureIn;
         }
 
-        float *Current::getPrecipMm() const {
+        std::shared_ptr<float> Current::getPrecipMm() const {
             return precipMm;
         }
 
-        float *Current::getPrecipIn() const {
+        std::shared_ptr<float> Current::getPrecipIn() const {
             return precipIn;
         }
 
-        int *Current::getHumidity() const {
+        std::shared_ptr<int> Current::getHumidity() const {
             return humidity;
         }
 
-        int *Current::getCloud() const {
+        std::shared_ptr<int> Current::getCloud() const {
             return cloud;
         }
 
-        float *Current::getFeelslikeC() const {
+        std::shared_ptr<float> Current::getFeelslikeC() const {
             return feelslikeC;
         }
 
-        float *Current::getFeelslikeF() const {
+        std::shared_ptr<float> Current::getFeelslikeF() const {
             return feelslikeF;
         }
 
-        float *Current::getVisKm() const {
+        std::shared_ptr<float> Current::getVisKm() const {
             return visKm;
         }
 
-        float *Current::getVisMiles() const {
+        std::shared_ptr<float> Current::getVisMiles() const {
             return visMiles;
         }
 
-        float *Current::getUv() const {
+        std::shared_ptr<float> Current::getUv() const {
             return uv;
         }
 
-        float *Current::getGustMph() const {
+        std::shared_ptr<float> Current::getGustMph() const {
             return gustMph;
         }
 
-        float *Current::getGustKph() const {
+        std::shared_ptr<float> Current::getGustKph() const {
             return gustKph;
         }
     }  // namespace Response

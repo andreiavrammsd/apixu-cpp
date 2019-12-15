@@ -13,26 +13,26 @@ namespace Apixu {
     namespace Response {
         class CurrentCondition {
         public:
-            const string *getText() const;
+            std::shared_ptr<string> getText() const;
 
-            string *getIcon() const;
+            std::shared_ptr<string> getIcon() const;
 
-            int *getCode() const;
+            std::shared_ptr<int> getCode() const;
 
             virtual ~CurrentCondition() = default;
 
         private:
-            string *text{};
-            string *icon{};
-            int *code{};
+            std::shared_ptr<string> text{};
+            std::shared_ptr<string> icon{};
+            std::shared_ptr<int> code{};
 
             friend void from_json(const json &j, CurrentCondition &c); // NOLINT
         };
 
         inline void from_json(const json &j, CurrentCondition &c) { // NOLINT
-            c.text = new string(j.at("text"));
-            c.icon = new string(j.at("icon"));
-            c.code = new int(j.at("code"));
+            c.text = std::make_shared<string>(j.at("text"));
+            c.icon = std::make_shared<string>(j.at("icon"));
+            c.code = std::make_shared<int>(j.at("code"));
         }
     }  // namespace Response
 }  // namespace Apixu
