@@ -1,5 +1,5 @@
 // Copyright 2019 <Andrei Avram>
-#include <Apixu/Exception/ApixuException.h>
+#include "Apixu/Exception/ApixuException.h"
 
 #include <exception>
 #include <string>
