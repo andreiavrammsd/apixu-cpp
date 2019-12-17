@@ -35,7 +35,7 @@ def current():
             "last_updated": "2019-11-25 18:56:33",
             "temp_c": 335.5,
             "temp_f": 327.0,
-            "is_day": 400,
+            "is_day": 1,
             "condition": {
               "text": "ABCDE",
               "icon": "ABCDEFGHIJKLMNOPQRSTUVW",
@@ -82,7 +82,7 @@ def forecast():
                 "last_updated": "2019-11-25 18:56:33",
                 "temp_c": 335.5,
                 "temp_f": 327.0,
-                "is_day": 400,
+                "is_day": 1,
                 "condition": {
                   "text": "ABCDE",
                   "icon": "ABCDEFGHIJKLMNOPQRSTUVW",
@@ -144,7 +144,7 @@ def forecast():
                               "time": "2019-11-25 18:56:33",
                               "temp_c": 519.25,
                               "temp_f": 282.75,
-                              "is_day": 147,
+                              "is_day": 1,
                               "condition": {
                                 "text": "ABCDEFGHIJKLMNOPQRSTU",
                                 "icon": "ABCDEFGHIJKLMN",
@@ -230,7 +230,7 @@ def history():
                           "time":"2019-11-25 18:56:33",
                           "temp_c":519.25,
                           "temp_f":282.75,
-                          "is_day":147,
+                          "is_day":0,
                           "condition":{
                              "text":"ABCDEFGHIJKLMNOPQRSTU",
                              "icon":"ABCDEFGHIJKLMN",

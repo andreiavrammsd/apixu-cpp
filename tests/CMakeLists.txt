@@ -28,6 +28,8 @@ package_add_test(test_current
         ../src/Time.cpp
         ../src/Exception/ApiException.cpp
         ../src/Exception/ApixuException.cpp
+        ../src/Response/Current.cpp
+        ../src/Response/CurrentCondition.cpp
         ../src/Response/CurrentWeather.cpp
         ../src/Response/Location.cpp
         ../src/Response/Error.cpp)
@@ -73,7 +75,6 @@ package_add_test(test_forecast
         ../src/Response/Error.cpp)
 target_link_libraries(test_forecast curl)
 
-
 # Dependencies
 include(FetchContent)
 
@@ -83,3 +84,6 @@ FetchContent_Populate(googletest)
 include_directories(${googletest_SOURCE_DIR}/googletest/include/)
 include_directories(${googletest_SOURCE_DIR}/googlemock/include/)
 add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
+
+# Coverage
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")

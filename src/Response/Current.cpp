@@ -3,7 +3,6 @@
 
 #include <string>
 
-#include "Apixu/Time.h"
 #include "Apixu/Response/CurrentCondition.h"
 
 namespace Apixu {

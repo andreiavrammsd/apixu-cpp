@@ -44,7 +44,13 @@ namespace {
         auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
         auto search = apixu->Search(q);
 
+        EXPECT_EQ(988, *search[0].getId());
         EXPECT_EQ("ABCDEFG", search[0].getName());
+        EXPECT_EQ("ABCDEFGHI", search[0].getRegion());
+        EXPECT_EQ("ABCDEFGHIJKLMNOPQRSTUVW", search[0].getCountry());
+        EXPECT_EQ(861.75, search[0].getLat());
+        EXPECT_EQ(-72.75, search[0].getLon());
+        EXPECT_EQ("ABCDEFGHIJKLMNOPQ", *search[0].getUrl());
 
         delete apixu;
     }
