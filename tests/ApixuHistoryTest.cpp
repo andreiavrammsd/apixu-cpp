@@ -9,6 +9,9 @@
 
 
 namespace {
+    using std::string;
+    using std::map;
+
     class ApixuHistoryTest : public ::testing::Test {
     public:
         const string url = "http://localhost:5000/history.json";

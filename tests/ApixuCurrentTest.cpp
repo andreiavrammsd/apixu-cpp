@@ -9,6 +9,9 @@
 
 
 namespace {
+    using std::string;
+    using std::map;
+
     class ApixuCurrentTest : public ::testing::Test {
     public:
         const string url = "http://localhost:5000/current.json";

@@ -6,6 +6,9 @@
 #include "gmock/gmock.h"
 
 namespace HttpClientMock {
+    using std::string;
+    using std::map;
+
     class MockHttpResponse : public Apixu::Http::Response {
     public:
         MockHttpResponse(int status, const string &body) : Response(status, body) {}

@@ -9,15 +9,14 @@
 #include "Apixu/Exception/ApiException.h"
 #include "Apixu/Response/Error.h"
 
-using Apixu::Exception::ApixuException;
-using Apixu::Exception::ApiException;
-using Apixu::Http::STATUS_INTERNAL_SERVER_ERROR;
-using Apixu::Http::STATUS_BAD_REQUEST;
-using Apixu::Response::ErrorResponse;
-
 namespace Apixu {
     using std::exception;
     using std::to_string;
+    using Exception::ApixuException;
+    using Exception::ApiException;
+    using Http::STATUS_INTERNAL_SERVER_ERROR;
+    using Http::STATUS_BAD_REQUEST;
+    using Response::ErrorResponse;
 
     Apixu::Apixu(string apiKey) : apiKey(move(apiKey)) {
         httpClient = new Http::Client(USER_AGENT);

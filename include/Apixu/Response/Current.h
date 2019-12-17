@@ -3,6 +3,7 @@
 #define INCLUDE_APIXU_RESPONSE_CURRENT_H_
 
 #include <string>
+#include <memory>
 
 #include "CurrentCondition.h"
 #include "Apixu/Time.h"

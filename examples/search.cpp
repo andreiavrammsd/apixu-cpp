@@ -5,10 +5,12 @@
 #include "Apixu/Apixu.h"
 #include "Apixu/Exception/ApiException.h"
 
-using Apixu::Exception::ApiException;
-using Apixu::Exception::ApixuException;
+using std::vector;
 using std::cout;
 using std::endl;
+using Apixu::Response::Location;
+using Apixu::Exception::ApiException;
+using Apixu::Exception::ApixuException;
 
 int main() {
     const char *apiKey = getenv("APIXUKEY");

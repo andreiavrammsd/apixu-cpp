@@ -3,6 +3,7 @@
 #define INCLUDE_APIXU_RESPONSE_CURRENTCONDITION_H_
 
 #include <string>
+#include <memory>
 
 #include "nlohmann/json.hpp"
 

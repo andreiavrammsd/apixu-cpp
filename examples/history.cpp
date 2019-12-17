@@ -7,11 +7,13 @@
 #include "Apixu/Apixu.h"
 #include "Apixu/Exception/ApiException.h"
 
-using Apixu::Exception::ApiException;
-using Apixu::Exception::ApixuException;
-using Apixu::Response::Forecast::ForecastWeather;
 using std::cout;
 using std::endl;
+using Apixu::Exception::ApiException;
+using Apixu::Exception::ApixuException;
+using Apixu::Response::WeatherHistory;
+using Apixu::Response::Location;
+using Apixu::Response::Forecast::ForecastWeather;
 
 int main() {
     const char *apiKey = getenv("APIXUKEY");

@@ -8,24 +8,23 @@
 #include <map>
 #include <memory>
 
-#include "Response/Condition.h"
-#include "Response/CurrentWeather.h"
-#include "Response/Location.h"
-#include "Response/Forecast/WeatherForecast.h"
-#include "Response/WeatherHistory.h"
-#include "Http/Http.h"
-
-using std::string;
-using std::vector;
-using std::map;
-using Apixu::Response::Condition;
-using Apixu::Response::CurrentWeather;
-using Apixu::Response::Location;
-using Apixu::Response::Forecast::WeatherForecast;
-using Apixu::Response::WeatherHistory;
-using Apixu::Http::Http;
+#include "Apixu/Response/Condition.h"
+#include "Apixu/Response/CurrentWeather.h"
+#include "Apixu/Response/Location.h"
+#include "Apixu/Response/Forecast/WeatherForecast.h"
+#include "Apixu/Response/WeatherHistory.h"
+#include "Apixu/Http/Http.h"
 
 namespace Apixu {
+    using std::string;
+    using std::vector;
+    using std::map;
+    using Apixu::Response::Condition;
+    using Apixu::Response::CurrentWeather;
+    using Apixu::Response::Location;
+    using Apixu::Response::Forecast::WeatherForecast;
+    using Apixu::Response::WeatherHistory;
+
     class Apixu {
     public:
         explicit Apixu(string apiKey);

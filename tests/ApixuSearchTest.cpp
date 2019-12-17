@@ -9,6 +9,9 @@
 
 
 namespace {
+    using std::string;
+    using std::map;
+
     class ApixuSearchTest : public ::testing::Test {
     public:
         const string url = "http://localhost:5000/search.json";

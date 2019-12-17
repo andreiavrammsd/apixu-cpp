@@ -2,6 +2,7 @@
 #include "Apixu/Response/CurrentCondition.h"
 
 #include <string>
+#include <memory>
 
 namespace Apixu {
     namespace Response {

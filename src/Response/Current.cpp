@@ -2,6 +2,7 @@
 #include "Apixu/Response/Current.h"
 
 #include <string>
+#include <memory>
 
 #include "Apixu/Response/CurrentCondition.h"
 

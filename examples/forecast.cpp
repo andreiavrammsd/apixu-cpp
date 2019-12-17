@@ -5,15 +5,18 @@
 #include "Apixu/Apixu.h"
 #include "Apixu/Exception/ApiException.h"
 
+using std::vector;
+using std::cout;
+using std::endl;
 using Apixu::Exception::ApiException;
 using Apixu::Exception::ApixuException;
 using Apixu::Response::Current;
+using Apixu::Response::Location;
+using Apixu::Response::Forecast::WeatherForecast;
 using Apixu::Response::Forecast::ForecastDay;
 using Apixu::Response::Forecast::Day;
 using Apixu::Response::Forecast::Astro;
 using Apixu::Response::Forecast::Hour;
-using std::cout;
-using std::endl;
 
 int main() {
     const char *apiKey = getenv("APIXUKEY");

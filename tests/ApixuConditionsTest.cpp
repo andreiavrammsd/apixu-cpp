@@ -8,6 +8,8 @@
 
 
 namespace {
+    using std::string;
+
     class ApixuConditionsTest : public ::testing::Test {
     public:
         const string url = "http://localhost:5000/conditions.json";

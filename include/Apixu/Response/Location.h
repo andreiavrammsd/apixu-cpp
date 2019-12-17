@@ -10,10 +10,10 @@
 #include "Apixu/Time.h"
 
 namespace Apixu {
-    using std::string;
-    using nlohmann::json;
-
     namespace Response {
+        using std::string;
+        using nlohmann::json;
+
         class Location {
         public:
             std::shared_ptr<int> getId() const;
