@@ -14,7 +14,7 @@ env:
 	sudo apt install -y gcc make build-essential valgrind linux-tools-$(shell uname -r)
 
 dep:
-	sudo apt install -y libcurl4-openssl-dev
+	sudo apt install -y libcurl4-openssl-dev lcov gcovr
 
 lint:
 	@python dev/cpplint.py --linelength=120 \

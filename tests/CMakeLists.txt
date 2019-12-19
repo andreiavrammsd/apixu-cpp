@@ -1,13 +1,45 @@
 cmake_minimum_required(VERSION 3.14)
 set(CMAKE_CXX_STANDARD 14)
 
-# Tests
+# Add a test
 macro(package_add_test TESTNAME)
     add_executable(${TESTNAME} ${ARGN})
-    target_link_libraries(${TESTNAME} gtest gmock gtest_main)
+    target_link_libraries(${TESTNAME} curl gtest gmock gtest_main)
     add_test(NAME ${TESTNAME} COMMAND ${TESTNAME})
     set_target_properties(${TESTNAME} PROPERTIES FOLDER tests)
 endmacro()
+
+# Test files
+set(TEST_FILES
+        ApixuConditionsTest.cpp
+        ApixuCurrentTest.cpp
+        ApixuForecastTest.cpp
+        ApixuHistoryTest.cpp
+        ApixuSearchTest.cpp)
+
+# Sources
+set(SOURCE_FILES
+        ../src/Http/Exception.cpp
+        ../src/Http/Http.cpp
+        ../src/Apixu.cpp
+        ../src/Exception/ApixuException.cpp
+        ../src/Exception/ApiException.cpp
+        ../src/Time.cpp
+        ../src/Response/Condition.cpp
+        ../src/Response/Current.cpp
+        ../src/Response/Error.cpp
+        ../src/Response/WeatherHistory.cpp
+        ../src/Response/CurrentWeather.cpp
+        ../src/Response/Forecast/WeatherForecast.cpp
+        ../src/Response/Forecast/ForecastDay.cpp
+        ../src/Response/Forecast/Day.cpp
+        ../src/Response/Forecast/ForecastWeather.cpp
+        ../src/Response/Forecast/Hour.cpp
+        ../src/Response/Forecast/Astro.cpp
+        ../src/Response/Location.cpp
+        ../src/Response/CurrentCondition.cpp)
+
+package_add_test(test ${TEST_FILES} ${SOURCE_FILES})
 
 package_add_test(test_conditions
         ApixuConditionsTest.cpp
@@ -19,7 +51,6 @@ package_add_test(test_conditions
         ../src/Response/Condition.cpp
         ../src/Response/Location.cpp
         ../src/Response/Error.cpp)
-target_link_libraries(test_conditions curl)
 
 package_add_test(test_current
         ApixuCurrentTest.cpp
@@ -33,7 +64,6 @@ package_add_test(test_current
         ../src/Response/CurrentWeather.cpp
         ../src/Response/Location.cpp
         ../src/Response/Error.cpp)
-target_link_libraries(test_current curl)
 
 package_add_test(test_search
         ApixuSearchTest.cpp
@@ -47,7 +77,6 @@ package_add_test(test_search
         ../src/Response/Current.cpp
         ../src/Response/CurrentCondition.cpp
         ../src/Response/Error.cpp)
-target_link_libraries(test_search curl)
 
 package_add_test(test_history
         ApixuHistoryTest.cpp
@@ -61,7 +90,6 @@ package_add_test(test_history
         ../src/Response/Current.cpp
         ../src/Response/CurrentCondition.cpp
         ../src/Response/Error.cpp)
-target_link_libraries(test_history curl)
 
 package_add_test(test_forecast
         ApixuForecastTest.cpp
@@ -73,7 +101,6 @@ package_add_test(test_forecast
         ../src/Response/Forecast/WeatherForecast.cpp
         ../src/Response/Location.cpp
         ../src/Response/Error.cpp)
-target_link_libraries(test_forecast curl)
 
 # Dependencies
 include(FetchContent)

@@ -8,7 +8,7 @@
 #include "HttpClientMock.cpp"
 
 
-namespace {
+namespace ApixuTest {
     using std::string;
     using std::map;
 
@@ -137,7 +137,7 @@ namespace {
             }
         )";
 
-        auto mockHttpClient = HttpClientMock::GetHttpClient(url, params, status, body);
+        auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
 
         auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
         auto forecast = apixu->Forecast(q, 1);
@@ -158,16 +158,11 @@ namespace {
             }
         )";
 
-        auto mockHttpClient = HttpClientMock::GetHttpClient(url, params, status, body);
+        auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
         auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
 
         ASSERT_THROW(apixu->Forecast(q, 1), Apixu::Exception::ApiException);
 
         delete apixu;
     }
-}  // namespace
-
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
+}  // namespace ApixuTest
