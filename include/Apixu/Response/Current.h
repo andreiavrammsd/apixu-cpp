@@ -108,7 +108,7 @@ namespace Apixu {
             }
 
             if (j.contains("is_day")) {
-                c.day = std::make_shared<bool >(j.at("is_day").get<int>());
+                c.day = std::make_shared<bool>(j.at("is_day").get<int>());
             }
 
             c.condition = j.at("condition");
