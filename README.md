@@ -22,19 +22,18 @@ sudo apt install libcurl3 -y
 ```
 
 ### TODO
+- Time.cpp sscanf (Clang-Tidy: 'sscanf' used to convert a string to an integer value, but function will not report conversion errors; consider using 'strtol' instead)
 - http timeout
 - build linux, win, mac
 - clangd/clang tidy
 - coding standards
 - linter
-- tests
 - check fields names and types
 - package management
 - overload vs default arg
 - multi language
 - implement json serialize
 - return const vector
-- std::unique_ptr
 - pack:
     - https://mavsdk.mavlink.io/develop/en/guide/toolchain.html#sdk_local_install
     - https://cmake.org/cmake/help/git-stage/cpack_gen/deb.html
