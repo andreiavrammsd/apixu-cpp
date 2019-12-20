@@ -23,6 +23,8 @@ sudo apt install libcurl3 -y
 
 ### TODO
 - Time.cpp sscanf (Clang-Tidy: 'sscanf' used to convert a string to an integer value, but function will not report conversion errors; consider using 'strtol' instead)
+- Parse time with tm struct?
+- Classes or Structs for responses?
 - http timeout
 - build linux, win, mac
 - clangd/clang tidy

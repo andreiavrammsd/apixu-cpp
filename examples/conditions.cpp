@@ -8,9 +8,10 @@
 using std::vector;
 using std::cout;
 using std::endl;
+
+using Apixu::Response::Condition;
 using Apixu::Exception::ApiException;
 using Apixu::Exception::ApixuException;
-using Apixu::Response::Condition;
 
 int main() {
     const char *apiKey = getenv("APIXUKEY");

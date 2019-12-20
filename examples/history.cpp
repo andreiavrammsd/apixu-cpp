@@ -9,9 +9,10 @@
 
 using std::cout;
 using std::endl;
+
+using Apixu::Response::WeatherHistory;
 using Apixu::Exception::ApiException;
 using Apixu::Exception::ApixuException;
-using Apixu::Response::WeatherHistory;
 using Apixu::Response::Location;
 using Apixu::Response::Forecast::ForecastWeather;
 

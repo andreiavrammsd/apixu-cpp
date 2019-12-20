@@ -8,11 +8,12 @@
 using std::vector;
 using std::cout;
 using std::endl;
+
+using Apixu::Response::Forecast::WeatherForecast;
 using Apixu::Exception::ApiException;
 using Apixu::Exception::ApixuException;
-using Apixu::Response::Current;
 using Apixu::Response::Location;
-using Apixu::Response::Forecast::WeatherForecast;
+using Apixu::Response::Current;
 using Apixu::Response::Forecast::ForecastDay;
 using Apixu::Response::Forecast::Day;
 using Apixu::Response::Forecast::Astro;
@@ -27,7 +28,7 @@ int main() {
 
     auto apixu = new Apixu::Apixu(apiKey);
 
-    class WeatherForecast forecast;
+    WeatherForecast forecast;
     try {
         int h = 12;
         forecast = apixu->Forecast("Paris", 2, &h);

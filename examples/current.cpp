@@ -7,11 +7,12 @@
 
 using std::cout;
 using std::endl;
+
+using Apixu::Response::CurrentWeather;
 using Apixu::Exception::ApiException;
 using Apixu::Exception::ApixuException;
-using Apixu::Response::CurrentWeather;
-using Apixu::Response::Current;
 using Apixu::Response::Location;
+using Apixu::Response::Current;
 
 int main() {
     const char *apiKey = getenv("APIXUKEY");
