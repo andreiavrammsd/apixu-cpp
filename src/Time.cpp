@@ -4,7 +4,7 @@
 #include <string>
 
 namespace Apixu {
-    struct tm Apixu::Time::parse(const string &input) {
+    struct tm Apixu::Time::parse(const std::string &input) {
       struct tm time{0};
       int year = 0, month = 0, day = 0, hour = 0, min = 0;
 

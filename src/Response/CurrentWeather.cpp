@@ -6,8 +6,6 @@
 
 namespace Apixu {
     namespace Response {
-        using nlohmann::json;
-
         const Location &CurrentWeather::getLocation() const {
             return location;
         }

@@ -6,11 +6,9 @@
 #include <string>
 
 namespace Apixu {
-    using std::string;
-
     class Time {
     public:
-        static struct tm parse(const string &input);
+        static struct tm parse(const std::string &input);
 
         virtual ~Time() = default;
     };

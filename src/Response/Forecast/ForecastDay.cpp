@@ -11,10 +11,7 @@
 namespace Apixu {
     namespace Response {
         namespace Forecast {
-            using std::string;
-            using std::vector;
-
-            const string &ForecastDay::getDate() const {
+            const std::string &ForecastDay::getDate() const {
                 return date;
             }
 
@@ -30,7 +27,7 @@ namespace Apixu {
                 return astro;
             }
 
-            const vector<Hour> &ForecastDay::getHour() const {
+            const std::vector<Hour> &ForecastDay::getHour() const {
                 return hour;
             }
         }  // namespace Forecast

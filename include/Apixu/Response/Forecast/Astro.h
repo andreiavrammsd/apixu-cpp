@@ -9,37 +9,34 @@
 namespace Apixu {
     namespace Response {
         namespace Forecast {
-            using std::string;
-            using nlohmann::json;
-
             class Astro {
             public:
-                const string &getSunrise() const;
+                const std::string &getSunrise() const;
 
-                const string &getSunset() const;
+                const std::string &getSunset() const;
 
-                const string &getMoonrise() const;
+                const std::string &getMoonrise() const;
 
-                const string &getMoonset() const;
+                const std::string &getMoonset() const;
 
-                const string &getMoonPhase() const;
+                const std::string &getMoonPhase() const;
 
-                const string &getMoonIllumination() const;
+                const std::string &getMoonIllumination() const;
 
                 virtual ~Astro() = default;
 
             private:
-                string sunrise;
-                string sunset;
-                string moonrise;
-                string moonset;
-                string moonPhase;
-                string moonIllumination;
+                std::string sunrise;
+                std::string sunset;
+                std::string moonrise;
+                std::string moonset;
+                std::string moonPhase;
+                std::string moonIllumination;
 
-                friend void from_json(const json &j, Astro &d); // NOLINT
+                friend void from_json(const nlohmann::json &j, Astro &d); // NOLINT
             };
 
-            inline void from_json(const json &j, Astro &d) { // NOLINT
+            inline void from_json(const nlohmann::json &j, Astro &d) { // NOLINT
                 if (j.contains("sunrise")) {
                     d.sunrise = j.at("sunrise");
                 }

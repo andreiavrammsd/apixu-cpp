@@ -13,13 +13,9 @@
 namespace Apixu {
     namespace Response {
         namespace Forecast {
-            using nlohmann::json;
-            using std::string;
-            using std::vector;
-
             class ForecastDay {
             public:
-                const string &getDate() const;
+                const std::string &getDate() const;
 
                 time_t getDateEpoch() const;
 
@@ -27,28 +23,28 @@ namespace Apixu {
 
                 const Astro &getAstro() const;
 
-                const vector<Hour> &getHour() const;
+                const std::vector<Hour> &getHour() const;
 
                 virtual ~ForecastDay() = default;
 
             private:
-                string date;
+                std::string date;
                 time_t dateEpoch;
                 Day day;
                 Astro astro;
-                vector<Hour> hour;
+                std::vector<Hour> hour;
 
-                friend void from_json(const json &j, ForecastDay &f); // NOLINT
+                friend void from_json(const nlohmann::json &j, ForecastDay &f); // NOLINT
             };
 
-            inline void from_json(const json &j, ForecastDay &f) { // NOLINT
+            inline void from_json(const nlohmann::json &j, ForecastDay &f) { // NOLINT
                 f.date = j.at("date");
                 f.dateEpoch = j.at("date_epoch");
                 f.day = j.at("day");
                 f.astro = j.at("astro");
 
                 if (j.contains("hour")) {
-                    f.hour = j.at("hour").get<vector<Hour>>();
+                    f.hour = j.at("hour").get<std::vector<Hour>>();
                 }
             }
         }  // namespace Forecast

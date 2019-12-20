@@ -10,15 +10,15 @@ namespace Apixu {
             return id;
         }
 
-        const string &Location::getName() const {
+        const std::string &Location::getName() const {
             return name;
         }
 
-        const string &Location::getRegion() const {
+        const std::string &Location::getRegion() const {
             return region;
         }
 
-        const string &Location::getCountry() const {
+        const std::string &Location::getCountry() const {
             return country;
         }
 
@@ -30,11 +30,11 @@ namespace Apixu {
             return lon;
         }
 
-        std::shared_ptr<string> Location::getUrl() const {
+        std::shared_ptr<std::string> Location::getUrl() const {
             return url;
         }
 
-        std::shared_ptr<string> Location::getTimezone() const {
+        std::shared_ptr<std::string> Location::getTimezone() const {
             return timezone;
         }
 

@@ -8,17 +8,14 @@
 
 namespace Apixu {
     namespace Exception {
-        using std::exception;
-        using std::string;
-
-        class ApixuException : public exception {
+        class ApixuException : public std::exception {
         public:
-            explicit ApixuException(string msg);
+            explicit ApixuException(std::string msg);
 
             const char *what() const noexcept override;
 
         private:
-            string msg;
+            std::string msg;
         };
     }  // namespace Exception
 }  // namespace Apixu

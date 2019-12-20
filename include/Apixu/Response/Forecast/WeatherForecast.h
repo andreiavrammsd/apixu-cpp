@@ -10,8 +10,6 @@
 namespace Apixu {
     namespace Response {
         namespace Forecast {
-            using nlohmann::json;
-
             class WeatherForecast {
             public:
                 const Location &getLocation() const;
@@ -27,10 +25,10 @@ namespace Apixu {
                 Current current;
                 ForecastWeather forecast{};
 
-                friend void from_json(const json &j, WeatherForecast &f); // NOLINT
+                friend void from_json(const nlohmann::json &j, WeatherForecast &f); // NOLINT
             };
 
-            inline void from_json(const json &j, WeatherForecast &f) { // NOLINT
+            inline void from_json(const nlohmann::json &j, WeatherForecast &f) { // NOLINT
                 f.location = j.at("location");
                 f.current = j.at("current");
                 f.forecast = j.at("forecast");

@@ -8,8 +8,6 @@
 namespace Apixu {
     namespace Response {
         namespace Forecast {
-            using nlohmann::json;
-
             class Day {
             public:
                 float getMaxTempCelsius() const;
@@ -61,10 +59,10 @@ namespace Apixu {
                 CurrentCondition condition;
                 float uv{};
 
-                friend void from_json(const json &j, Day &d); // NOLINT
+                friend void from_json(const nlohmann::json &j, Day &d); // NOLINT
             };
 
-            inline void from_json(const json &j, Day &d) { // NOLINT
+            inline void from_json(const nlohmann::json &j, Day &d) { // NOLINT
                 if (j.contains("maxtemp_c")) {
                     d.maxTempCelsius = j.at("maxtemp_c");
                 }

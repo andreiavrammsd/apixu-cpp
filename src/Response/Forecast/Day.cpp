@@ -6,8 +6,6 @@
 namespace Apixu {
     namespace Response {
         namespace Forecast {
-            using nlohmann::json;
-
             float Day::getMaxTempCelsius() const {
                 return maxTempCelsius;
             }

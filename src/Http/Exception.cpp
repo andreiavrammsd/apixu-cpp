@@ -5,19 +5,16 @@
 
 namespace Apixu {
     namespace Http {
-        using std::exception;
-        using std::string;
-
-        class Exception : public exception {
+        class Exception : public std::exception {
         public:
-            explicit Exception(string msg) : msg(move(msg)) {}
+            explicit Exception(std::string msg) : msg(move(msg)) {}
 
             const char *what() const noexcept override {
                 return msg.c_str();
             }
 
         private:
-            string msg;
+            std::string msg;
         };
     }  // namespace Http
 }  // namespace Apixu

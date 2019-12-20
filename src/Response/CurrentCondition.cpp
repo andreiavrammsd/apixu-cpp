@@ -6,11 +6,11 @@
 
 namespace Apixu {
     namespace Response {
-        std::shared_ptr<string> CurrentCondition::getText() const {
+        std::shared_ptr<std::string> CurrentCondition::getText() const {
             return text;
         }
 
-        std::shared_ptr<string> CurrentCondition::getIcon() const {
+        std::shared_ptr<std::string> CurrentCondition::getIcon() const {
             return icon;
         }
 

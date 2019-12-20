@@ -10,7 +10,7 @@ namespace Apixu {
                 return timeEpoch;
             }
 
-            const string &Hour::getTime() const {
+            const std::string &Hour::getTime() const {
                 return time;
             }
 
@@ -42,7 +42,7 @@ namespace Apixu {
                 return windDegree;
             }
 
-            const string &Hour::getWindDir() const {
+            const std::string &Hour::getWindDir() const {
                 return windDir;
             }
 
@@ -106,7 +106,7 @@ namespace Apixu {
                 return willRain;
             }
 
-            const string &Hour::getChanceOfRain() const {
+            const std::string &Hour::getChanceOfRain() const {
                 return chanceOfRain;
             }
 
@@ -114,7 +114,7 @@ namespace Apixu {
                 return willSnow;
             }
 
-            const string &Hour::getChanceOfSnow() const {
+            const std::string &Hour::getChanceOfSnow() const {
                 return chanceOfSnow;
             }
 

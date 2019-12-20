@@ -4,29 +4,27 @@
 
 
 #include <string>
+
 #include "nlohmann/json.hpp"
 
 namespace Apixu {
     namespace Response {
-        using std::string;
-        using nlohmann::json;
-
         class Error {
         public:
             int getCode() const;
 
-            const string &getMessage() const;
+            const std::string &getMessage() const;
 
             virtual ~Error() = default;
 
         private:
             int code{};
-            string message;
+            std::string message;
 
-            friend void from_json(const json &j, Error &e); // NOLINT
+            friend void from_json(const nlohmann::json &j, Error &e); // NOLINT
         };
 
-        inline void from_json(const json &j, Error &e) { // NOLINT
+        inline void from_json(const nlohmann::json &j, Error &e) { // NOLINT
             e.code = j.at("code");
             e.message = j.at("message");
         }
@@ -36,12 +34,12 @@ namespace Apixu {
             const Error &getError() const;
 
         private:
-            friend void from_json(const json &j, ErrorResponse &e); // NOLINT
+            friend void from_json(const nlohmann::json &j, ErrorResponse &e); // NOLINT
 
             Error error;
         };
 
-        inline void from_json(const json &j, ErrorResponse &e) { // NOLINT
+        inline void from_json(const nlohmann::json &j, ErrorResponse &e) { // NOLINT
             e.error = j.at("error");
         }
     }  // namespace Response

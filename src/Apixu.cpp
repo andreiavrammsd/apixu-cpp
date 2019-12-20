@@ -10,83 +10,75 @@
 #include "Apixu/Response/Error.h"
 
 namespace Apixu {
-    using std::exception;
-    using std::to_string;
-    using Exception::ApixuException;
-    using Exception::ApiException;
-    using Http::STATUS_INTERNAL_SERVER_ERROR;
-    using Http::STATUS_BAD_REQUEST;
-    using Response::ErrorResponse;
-
-    Apixu::Apixu(string apiKey) : apiKey(move(apiKey)) {
+    Apixu::Apixu(std::string apiKey) : apiKey(move(apiKey)) {
         httpClient = new Http::Client(USER_AGENT);
     }
 
-    Apixu::Apixu(string apiKey, Http::Http *httpClient) : apiKey(move(apiKey)), httpClient(httpClient) {
+    Apixu::Apixu(std::string apiKey, Http::Http *httpClient) : apiKey(move(apiKey)), httpClient(httpClient) {
     }
 
     Apixu::~Apixu() {
         delete httpClient;
     }
 
-    vector<Condition> Apixu::Conditions() {
+    std::vector<Response::Condition> Apixu::Conditions() {
         try {
-            return json::parse(get(DOC_WEATHER_CONDITIONS_URL));
-        } catch (ApiException &e) {
-            throw ApiException(e.what(), e.getCode());
-        } catch (exception &e) {
-            throw ApixuException(e.what());
+            return nlohmann::json::parse(get(DOC_WEATHER_CONDITIONS_URL));
+        } catch (Exception::ApiException &e) {
+            throw Exception::ApiException(e.what(), e.getCode());
+        } catch (std::exception &e) {
+            throw Exception::ApixuException(e.what());
         }
     }
 
-    CurrentWeather Apixu::Current(const string &q) {
-        map<string, string> params;
+    Response::CurrentWeather Apixu::Current(const std::string &q) {
+        std::map<std::string, std::string> params;
         params["key"] = apiKey;
         params["q"] = q;
 
         try {
-            return json::parse(get(url("current"), params));
-        } catch (ApiException &e) {
-            throw ApiException(e.what(), e.getCode());
-        } catch (exception &e) {
-            throw ApixuException(e.what());
+            return nlohmann::json::parse(get(url("current"), params));
+        } catch (Exception::ApiException &e) {
+            throw Exception::ApiException(e.what(), e.getCode());
+        } catch (std::exception &e) {
+            throw Exception::ApixuException(e.what());
         }
     }
 
-    vector<Location> Apixu::Search(const string &q) {
-        map<string, string> params;
+    std::vector<Response::Location> Apixu::Search(const std::string &q) {
+        std::map<std::string, std::string> params;
         params["key"] = apiKey;
         params["q"] = q;
 
         try {
-            return json::parse(get(url("search"), params));
-        } catch (ApiException &e) {
-            throw ApiException(e.what(), e.getCode());
-        } catch (exception &e) {
-            throw ApixuException(e.what());
+            return nlohmann::json::parse(get(url("search"), params));
+        } catch (Exception::ApiException &e) {
+            throw Exception::ApiException(e.what(), e.getCode());
+        } catch (std::exception &e) {
+            throw Exception::ApixuException(e.what());
         }
     }
 
-    WeatherForecast Apixu::Forecast(const string &q, int days, const int *hour) {
-        map<string, string> params;
+    Response::Forecast::WeatherForecast Apixu::Forecast(const std::string &q, int days, const int *hour) {
+        std::map<std::string, std::string> params;
         params["key"] = apiKey;
         params["q"] = q;
-        params["days"] = to_string(days);
+        params["days"] = std::to_string(days);
         if (hour) {
-            params["hour"] = to_string(*hour);
+            params["hour"] = std::to_string(*hour);
         }
 
         try {
-            return json::parse(get(url("forecast"), params));
-        } catch (ApiException &e) {
-            throw ApiException(e.what(), e.getCode());
-        } catch (exception &e) {
-            throw ApixuException(e.what());
+            return nlohmann::json::parse(get(url("forecast"), params));
+        } catch (Exception::ApiException &e) {
+            throw Exception::ApiException(e.what(), e.getCode());
+        } catch (std::exception &e) {
+            throw Exception::ApixuException(e.what());
         }
     }
 
-    WeatherHistory Apixu::History(const string &q, const string &since, string *until) {
-        map<string, string> params;
+    Response::WeatherHistory Apixu::History(const std::string &q, const std::string &since, std::string *until) {
+        std::map<std::string, std::string> params;
         params["key"] = apiKey;
         params["q"] = q;
         params["dt"] = since;
@@ -95,29 +87,29 @@ namespace Apixu {
         }
 
         try {
-            return json::parse(get(url("history"), params));
-        } catch (ApiException &e) {
-            throw ApiException(e.what(), e.getCode());
-        } catch (exception &e) {
-            throw ApixuException(e.what());
+            return nlohmann::json::parse(get(url("history"), params));
+        } catch (Exception::ApiException &e) {
+            throw Exception::ApiException(e.what(), e.getCode());
+        } catch (std::exception &e) {
+            throw Exception::ApixuException(e.what());
         }
     }
 
-    string Apixu::url(const string &method) {
+    std::string Apixu::url(const std::string &method) {
         return API_URL + method + "." + API_FORMAT;
     }
 
-    string Apixu::get(const string &url, map<string, string> params) {
+    std::string Apixu::get(const std::string &url, std::map<std::string, std::string> params) {
         auto response = httpClient->get(url, std::move(params));
         int status = response->getStatus();
-        string body = response->getBody();
+        std::string body = response->getBody();
         delete response;
 
-        if (status >= STATUS_INTERNAL_SERVER_ERROR) {
-            throw ApixuException("Internal Server Error");
-        } else if (status >= STATUS_BAD_REQUEST) {
-            ErrorResponse errRes = json::parse(body);
-            throw ApiException(errRes.getError().getMessage(), errRes.getError().getCode());
+        if (status >= Http::STATUS_INTERNAL_SERVER_ERROR) {
+            throw Exception::ApixuException("Internal Server Error");
+        } else if (status >= Http::STATUS_BAD_REQUEST) {
+            Response::ErrorResponse errRes = nlohmann::json::parse(body);
+            throw Exception::ApiException(errRes.getError().getMessage(), errRes.getError().getCode());
         }
 
         return body;

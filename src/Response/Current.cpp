@@ -8,9 +8,6 @@
 
 namespace Apixu {
     namespace Response {
-        using std::string;
-        using nlohmann::json;
-
         std::shared_ptr<int> Current::getLastUpdatedEpoch() const {
             return lastUpdatedEpoch;
         }
@@ -47,7 +44,7 @@ namespace Apixu {
             return windDegree;
         }
 
-        std::shared_ptr<string> Current::getWindDir() const {
+        std::shared_ptr<std::string> Current::getWindDir() const {
             return windDir;
         }
 

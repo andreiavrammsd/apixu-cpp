@@ -9,26 +9,22 @@
 
 namespace Apixu {
     namespace Response {
-        using nlohmann::json;
-        using Apixu::Response::Location;
-        using Apixu::Response::Forecast::ForecastWeather;
-
         class WeatherHistory {
         public:
             const Location &getLocation() const;
 
-            const ForecastWeather &getForecast() const;
+            const Forecast::ForecastWeather &getForecast() const;
 
             virtual ~WeatherHistory() = default;
 
         private:
             Location location;
-            ForecastWeather forecast;
+            Forecast::ForecastWeather forecast;
 
-            friend void from_json(const json &j, WeatherHistory &h); // NOLINT
+            friend void from_json(const nlohmann::json &j, WeatherHistory &h); // NOLINT
         };
 
-        inline void from_json(const json &j, WeatherHistory &h) { // NOLINT
+        inline void from_json(const nlohmann::json &j, WeatherHistory &h) { // NOLINT
             h.location = j.at("location");
             h.forecast = j.at("forecast");
         }

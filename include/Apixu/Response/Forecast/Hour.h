@@ -10,14 +10,11 @@
 namespace Apixu {
     namespace Response {
         namespace Forecast {
-            using nlohmann::json;
-            using std::string;
-
             class Hour {
             public:
                 time_t getTimeEpoch() const;
 
-                const string &getTime() const;
+                const std::string &getTime() const;
 
                 double getTempC() const;
 
@@ -33,7 +30,7 @@ namespace Apixu {
 
                 int64_t getWindDegree() const;
 
-                const string &getWindDir() const;
+                const std::string &getWindDir() const;
 
                 int64_t getPressureMb() const;
 
@@ -65,11 +62,11 @@ namespace Apixu {
 
                 bool willItRain() const;
 
-                const string &getChanceOfRain() const;
+                const std::string &getChanceOfRain() const;
 
                 bool willItSnow() const;
 
-                const string &getChanceOfSnow() const;
+                const std::string &getChanceOfSnow() const;
 
                 int64_t getVisKm() const;
 
@@ -115,10 +112,10 @@ namespace Apixu {
                 double gustMph;
                 double gustKph;
 
-                friend void from_json(const json &j, Hour &h); // NOLINT
+                friend void from_json(const nlohmann::json &j, Hour &h); // NOLINT
             };
 
-            inline void from_json(const json &j, Hour &h) { // NOLINT
+            inline void from_json(const nlohmann::json &j, Hour &h) { // NOLINT
                 if (j.contains("time_epoch")) {
                     h.timeEpoch = j.at("time_epoch");
                 }

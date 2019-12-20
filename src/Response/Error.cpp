@@ -9,7 +9,7 @@ namespace Apixu {
             return code;
         }
 
-        const string &Error::getMessage() const {
+        const std::string &Error::getMessage() const {
             return message;
         }
 

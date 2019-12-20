@@ -10,23 +10,20 @@
 namespace Apixu {
     namespace Response {
         namespace Forecast {
-            using std::vector;
-            using nlohmann::json;
-
             class ForecastWeather {
             public:
-                const vector<ForecastDay> &getForecastDay() const;
+                const std::vector<ForecastDay> &getForecastDay() const;
 
                 virtual ~ForecastWeather() = default;
 
             private:
-                vector<ForecastDay> forecastDay;
+                std::vector<ForecastDay> forecastDay;
 
-                friend void from_json(const json &j, ForecastWeather &f); // NOLINT
+                friend void from_json(const nlohmann::json &j, ForecastWeather &f); // NOLINT
             };
 
-            inline void from_json(const json &j, ForecastWeather &f) { // NOLINT
-                f.forecastDay = j.at("forecastday").get<vector<ForecastDay>>();
+            inline void from_json(const nlohmann::json &j, ForecastWeather &f) { // NOLINT
+                f.forecastDay = j.at("forecastday").get<std::vector<ForecastDay>>();
             }
         }  // namespace Forecast
     }  // namespace Response

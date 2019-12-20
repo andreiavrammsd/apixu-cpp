@@ -9,11 +9,9 @@
 
 namespace Apixu {
     namespace Exception {
-        using std::string;
-
         class ApiException : public ApixuException {
         public:
-            ApiException(string message, int code);
+            ApiException(std::string message, int code);
 
             int getCode() const;
 

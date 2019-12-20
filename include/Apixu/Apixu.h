@@ -16,45 +16,36 @@
 #include "Apixu/Http/Http.h"
 
 namespace Apixu {
-    using std::string;
-    using std::vector;
-    using std::map;
-    using Apixu::Response::Condition;
-    using Apixu::Response::CurrentWeather;
-    using Apixu::Response::Location;
-    using Apixu::Response::Forecast::WeatherForecast;
-    using Apixu::Response::WeatherHistory;
-
     class Apixu {
     public:
-        explicit Apixu(string apiKey);
+        explicit Apixu(std::string apiKey);
 
-        Apixu(string apiKey, Http::Http *httpClient);
+        Apixu(std::string apiKey, Http::Http *httpClient);
 
-        vector<Condition> Conditions();
+        std::vector<Response::Condition> Conditions();
 
-        CurrentWeather Current(const string &q);
+        Response::CurrentWeather Current(const std::string &q);
 
-        vector<Location> Search(const string &q);
+        std::vector<Response::Location> Search(const std::string &q);
 
-        WeatherForecast Forecast(const string &q, int days, const int *hour = nullptr);
+        Response::Forecast::WeatherForecast Forecast(const std::string &q, int days, const int *hour = nullptr);
 
-        WeatherHistory History(const string &q, const string &since, string *until = nullptr);
+        Response::WeatherHistory History(const std::string &q, const std::string &since, std::string *until = nullptr);
 
         virtual ~Apixu();
 
     private:
-        string apiKey;
+        std::string apiKey;
         Http::Http *httpClient;
 
-        const string API_URL = "http://localhost:5000/";
-        const string API_FORMAT = "json";
-        const string DOC_WEATHER_CONDITIONS_URL = "http://localhost:5000/conditions.json";
-        const string USER_AGENT = "Apixu C++/0.1.0";
+        const std::string API_URL = "http://localhost:5000/";
+        const std::string API_FORMAT = "json";
+        const std::string DOC_WEATHER_CONDITIONS_URL = "http://localhost:5000/conditions.json";
+        const std::string USER_AGENT = "Apixu C++/0.1.0";
 
-        string url(const string &method);
+        std::string url(const std::string &method);
 
-        string get(const string &url, map<string, string> params = {});
+        std::string get(const std::string &url, std::map<std::string, std::string> params = {});
     };
 }  // namespace Apixu
 

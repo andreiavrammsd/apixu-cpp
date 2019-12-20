@@ -5,14 +5,13 @@
 #include <string>
 #include <memory>
 
+#include "nlohmann/json.hpp"
+
 #include "CurrentCondition.h"
 #include "Apixu/Time.h"
 
 namespace Apixu {
     namespace Response {
-        using std::string;
-        using nlohmann::json;
-
         class Current {
         public:
             std::shared_ptr<int> getLastUpdatedEpoch() const;
@@ -33,7 +32,7 @@ namespace Apixu {
 
             std::shared_ptr<int> getWindDegree() const;
 
-            std::shared_ptr<string> getWindDir() const;
+            std::shared_ptr<std::string> getWindDir() const;
 
             std::shared_ptr<float> getPressureMb() const;
 
@@ -73,7 +72,7 @@ namespace Apixu {
             std::shared_ptr<float> windMph{};
             std::shared_ptr<float> windKph{};
             std::shared_ptr<int> windDegree{};
-            std::shared_ptr<string>windDir{};
+            std::shared_ptr<std::string>windDir{};
             std::shared_ptr<float> pressureMb{};
             std::shared_ptr<float> pressureIn{};
             std::shared_ptr<float> precipMm{};
@@ -88,10 +87,10 @@ namespace Apixu {
             std::shared_ptr<float> gustMph{};
             std::shared_ptr<float> gustKph{};
 
-            friend void from_json(const json &j, Current &c); // NOLINT
+            friend void from_json(const nlohmann::json &j, Current &c); // NOLINT
         };
 
-        inline void from_json(const json &j, Current &c) { // NOLINT
+        inline void from_json(const nlohmann::json &j, Current &c) { // NOLINT
             if (j.contains("last_updated_epoch")) {
                 c.lastUpdatedEpoch = std::make_shared<int>(j.at("last_updated_epoch"));
             }
@@ -127,7 +126,7 @@ namespace Apixu {
             }
 
             if (j.contains("wind_dir")) {
-                c.windDir = std::make_shared<string>(j.at("wind_dir"));
+                c.windDir = std::make_shared<std::string>(j.at("wind_dir"));
             }
 
             if (j.contains("pressure_mb")) {

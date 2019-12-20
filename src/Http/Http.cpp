@@ -12,12 +12,10 @@
 
 namespace Apixu {
     namespace Http {
-        using std::ostringstream;
+        Client::Client(std::string userAgent) : userAgent(std::move(userAgent)) {}
 
-        Client::Client(string userAgent) : userAgent(std::move(userAgent)) {}
-
-        inline string paramsToQuery(CURL *curl, map<string, string> params) {
-            ostringstream query;
+        inline std::string paramsToQuery(CURL *curl, std::map<std::string, std::string> params) {
+            std::ostringstream query;
 
             for (auto iter = params.begin(); iter != params.end();) {
                 char *key = curl_easy_escape(curl, iter->first.c_str(), iter->first.length());
@@ -44,25 +42,25 @@ namespace Apixu {
             return size * nmemb;
         }
 
-        const Response *Client::get(const string &url) {
-            map<string, string> params;
+        const Response *Client::get(const std::string &url) {
+            std::map<std::string, std::string> params;
             return get(url, params);
         }
 
-        const Response *Client::get(const string &url, map<string, string> params) {
+        const Response *Client::get(const std::string &url, std::map<std::string, std::string> params) {
             CURL *curl = curl_easy_init();
             if (!curl) {
                 throw Exception("Cannot init curl");
             }
 
-            string apiUrl = url + "?" + paramsToQuery(curl, params);
+            std::string apiUrl = url + "?" + paramsToQuery(curl, params);
 
             curl_easy_setopt(curl, CURLOPT_URL, apiUrl.c_str());
             curl_easy_setopt(curl, CURLOPT_USERAGENT, userAgent.c_str());
             curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
             curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeCallback);
 
-            string readBuffer;
+            std::string readBuffer;
             curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
 
             CURLcode res = curl_easy_perform(curl);
@@ -82,10 +80,10 @@ namespace Apixu {
             return status;
         }
 
-        const string &Response::getBody() const {
+        const std::string &Response::getBody() const {
             return body;
         }
 
-        Response::Response(int status, string body) : status(status), body(std::move(body)) {}
+        Response::Response(int status, std::string body) : status(status), body(std::move(body)) {}
     }  // namespace Http
 }  // namespace Apixu

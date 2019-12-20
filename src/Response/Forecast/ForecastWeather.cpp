@@ -8,9 +8,7 @@
 namespace Apixu {
     namespace Response {
         namespace Forecast {
-            using std::vector;
-
-            const vector<ForecastDay> &ForecastWeather::getForecastDay() const {
+            const std::vector<ForecastDay> &ForecastWeather::getForecastDay() const {
                 return forecastDay;
             }
         }  // namespace Forecast
