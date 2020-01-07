@@ -2,18 +2,11 @@
 
 C++ library for [Apixu Weather API](https://www.apixu.com/api.aspx)
 
-## Install
-
-## Usage
+Apixu is now [weatherstack](https://weatherstack.com/). This library is developed only for learning, not for any kind of usage, and is not associated with any company.
 
 ## Development
-* CMake
 
-##### Dependencies
-```
-sudo apt install libcurl4-openssl-dev
-https://github.com/nlohmann/json
-```
+See [Makefile](Makefile) for tools and dependencies.
 
 #### Runtime dependencies
 ```
@@ -30,10 +23,7 @@ sudo apt install libcurl3 -y
 - clangd/clang tidy
 - coding standards
 - linter
-- check fields names and types
-- package management
 - implement json serialize
-- return const vector
 - pack:
     - https://mavsdk.mavlink.io/develop/en/guide/toolchain.html#sdk_local_install
     - https://cmake.org/cmake/help/git-stage/cpack_gen/deb.html
