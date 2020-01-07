@@ -32,8 +32,6 @@ sudo apt install libcurl3 -y
 - linter
 - check fields names and types
 - package management
-- overload vs default arg
-- multi language
 - implement json serialize
 - return const vector
 - pack:
@@ -47,3 +45,17 @@ sudo apt install libcurl3 -y
 gcc -L/src/cmake-build-lib/ -Wl,-rpath=/src/cmake-build-lib/ -Wall -o testshared examples/conditions.cpp -lapixu -lstdc++ -lcurl
 gcc -L/src/cmake-build-lib/ -Wl,-rpath=/src/cmake-build-lib/ -Wall -o teststatic examples/conditions.cpp cmake-build-lib/libapixu.a -lstdc++ -lcurl
 ```
+
+### Resources
+- ! http://www.stroustrup.com/C++.html
+- https://www.viva64.com/en/b/0658/
+- https://stackoverflow.com/questions/4781852/how-to-convert-a-string-to-datetime-in-c
+- https://github.com/oclint/oclint
+- https://blog.jetbrains.com/clion/2019/10/clion-2019-3-eap-coverage-cmake-defaults-lldb/
+- https://github.com/pyarmak/cmake-gtest-coverage-example/blob/master/cmake/modules/CodeCoverage.cmake
+- https://medium.com/@naveen.maltesh/generating-code-coverage-report-using-gnu-gcov-lcov-ee54a4de3f11
+- https://github.com/lefticus/cppbestpractices/blob/master/03-Style.md
+- https://github.com/lefticus/cppbestpractices/blob/master/00-Table_of_Contents.md
+- https://google.github.io/styleguide/cppguide.html#Ownership_and_Smart_Pointers
+- https://www.jetbrains.com/help/clion/clangformat-as-alternative-formatter.html
+- https://codereview.stackexchange.com/questions/176508/basic-cmake-c-project-structure
