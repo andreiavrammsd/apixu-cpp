@@ -138,7 +138,7 @@ TEST_F(ApixuHistoryTest, error)
     auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
     auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
 
-    ASSERT_THROW(apixu->History(q, "2019-01-01"),
+    EXPECT_THROW(apixu->History(q, "2019-01-01"),
                  Apixu::Exception::ApiException);
 
     delete apixu;

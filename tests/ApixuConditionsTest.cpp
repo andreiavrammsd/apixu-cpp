@@ -57,7 +57,7 @@ TEST_F(ApixuConditionsTest, error)
     auto mockHttpClient = HttpClientMock::GetHttpClient(url, status, body);
     auto apixu = new Apixu::Apixu("", mockHttpClient);
 
-    ASSERT_THROW(apixu->Conditions(), Apixu::Exception::ApixuException);
+    EXPECT_THROW(apixu->Conditions(), Apixu::Exception::ApixuException);
 
     delete apixu;
 }

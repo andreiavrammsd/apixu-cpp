@@ -163,7 +163,7 @@ TEST_F(ApixuForecastTest, error)
     auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
     auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
 
-    ASSERT_THROW(apixu->Forecast(q, 1), Apixu::Exception::ApiException);
+    EXPECT_THROW(apixu->Forecast(q, 1), Apixu::Exception::ApiException);
 
     delete apixu;
 }

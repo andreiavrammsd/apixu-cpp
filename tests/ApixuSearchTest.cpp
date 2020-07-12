@@ -74,7 +74,7 @@ TEST_F(ApixuSearchTest, error)
     auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
     auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
 
-    ASSERT_THROW(apixu->Search(q), Apixu::Exception::ApiException);
+    EXPECT_THROW(apixu->Search(q), Apixu::Exception::ApiException);
 
     delete apixu;
 }
