@@ -47,7 +47,7 @@ TEST_F(ApixuSearchTest, success)
         HttpClientMock::GetClient(url_, params_, status, body);
 
     apixu::Apixu apixu{api_key_, mock_http_client};
-    auto search = apixu.Search(q_);
+    const auto& search = apixu.Search(q_);
 
     EXPECT_EQ(988, *search[0].id);
     EXPECT_EQ("ABCDEFG", search[0].name);

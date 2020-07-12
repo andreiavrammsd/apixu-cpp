@@ -25,8 +25,9 @@ class HttpClientMock : public apixu::http::Http {
     HttpClientMock() = default;
 
     MOCK_METHOD(const apixu::http::Response*, get,
-                (const string&, (map<string, string>)), (override));
-    MOCK_METHOD(const apixu::http::Response*, get, (const string&), (override));
+                (const string&, (map<string, string>)), (const override));
+    MOCK_METHOD(const apixu::http::Response*, get, (const string&),
+                (const override));
 
     static HttpClientMock* GetClient(const string& url,
                                      map<string, string> params, int status,

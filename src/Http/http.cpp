@@ -24,7 +24,7 @@ inline std::string paramsToQuery(CURL* curl,
             curl_easy_escape(curl, iter->first.c_str(), iter->first.length());
         char* value =
             curl_easy_escape(curl, iter->second.c_str(), iter->second.length());
-        if (!key || !value) {
+        if (key == nullptr || value == nullptr) {
             throw Exception("Cannot escape query params");
         }
 
@@ -49,21 +49,21 @@ inline size_t writeCallback(void* contents, size_t size, size_t nmemb,
     return size * nmemb;
 }
 
-const Response* Client::get(const std::string& url)
+const Response* Client::get(const std::string& url) const
 {
     std::map<std::string, std::string> params;
     return get(url, params);
 }
 
 const Response* Client::get(const std::string& url,
-                            std::map<std::string, std::string> params)
+                            std::map<std::string, std::string> params) const
 {
     CURL* curl = curl_easy_init();
     if (!curl) {
         throw Exception("Cannot init curl");
     }
 
-    std::string api_url = url + "?" + paramsToQuery(curl, params);
+    std::string api_url = url + "?" + paramsToQuery(curl, move(params));
 
     curl_easy_setopt(curl, CURLOPT_URL, api_url.c_str());
     curl_easy_setopt(curl, CURLOPT_USERAGENT, userAgent.c_str());

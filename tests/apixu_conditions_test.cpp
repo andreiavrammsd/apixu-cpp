@@ -32,7 +32,7 @@ TEST_F(ApixuConditionsTest, success)
 
     apixu::Apixu apixu{"", mock_http_client};
 
-    auto conditions = apixu.Conditions();
+    const auto& conditions = apixu.Conditions();
 
     EXPECT_EQ(1, conditions.size());
     EXPECT_EQ(1, conditions[0].code);

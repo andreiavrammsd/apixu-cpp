@@ -21,18 +21,18 @@ class Apixu {
 
     Apixu(const std::string& api_key, http::Http* http_client);
 
-    std::vector<response::Condition> Conditions();
+    std::vector<response::Condition> Conditions() const;
 
-    response::CurrentWeather Current(const std::string& q);
+    response::CurrentWeather Current(const std::string& q) const;
 
-    std::vector<response::Location> Search(const std::string& q);
+    std::vector<response::Location> Search(const std::string& q) const;
 
-    response::forecast::WeatherForecast Forecast(const std::string& q, int days,
-                                                 const int* hour = nullptr);
+    response::forecast::WeatherForecast Forecast(
+        const std::string& q, int days, const int* hour = nullptr) const;
 
     response::WeatherHistory History(const std::string& q,
                                      const std::string& since,
-                                     std::string* until = nullptr);
+                                     std::string* until = nullptr) const;
 
     virtual ~Apixu();
 
@@ -46,10 +46,10 @@ class Apixu {
         "http://localhost:5000/conditions.json";
     const std::string user_agent_ = "Apixu C++/0.1.0";
 
-    std::string url(const std::string& method);
+    std::string url(const std::string& method) const;
 
     std::string get(const std::string& url,
-                    std::map<std::string, std::string> params = {});
+                    std::map<std::string, std::string> params = {}) const;
 };
 }  // namespace apixu
 

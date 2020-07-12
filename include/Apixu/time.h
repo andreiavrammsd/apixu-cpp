@@ -8,8 +8,6 @@ namespace apixu {
 class Time {
    public:
     static struct tm parse(const std::string& input);
-
-    virtual ~Time() = default;
 };
 }  // namespace apixu
 

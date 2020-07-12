@@ -27,10 +27,11 @@ class Response {
 
 class Http {
    public:
-    virtual const Response* get(const std::string& path,
-                                std::map<std::string, std::string> params) = 0;
+    virtual const Response* get(
+        const std::string& path,
+        std::map<std::string, std::string> params) const = 0;
 
-    virtual const Response* get(const std::string& path) = 0;
+    virtual const Response* get(const std::string& path) const = 0;
 
     virtual ~Http() = default;
 };
@@ -39,10 +40,11 @@ class Client : public Http {
    public:
     explicit Client(std::string userAgent);
 
-    const Response* get(const std::string& url,
-                        std::map<std::string, std::string> params) override;
+    const Response* get(
+        const std::string& url,
+        std::map<std::string, std::string> params) const override;
 
-    const Response* get(const std::string& url) override;
+    const Response* get(const std::string& url) const override;
 
    private:
     std::string userAgent;

@@ -75,7 +75,7 @@ TEST_F(ApixuCurrentTest, success)
         HttpClientMock::GetClient(url_, params_, status, body);
 
     apixu::Apixu apixu{api_key_, mock_http_client};
-    auto current = apixu.Current(q_);
+    const auto& current = apixu.Current(q_);
 
     // Location
     EXPECT_EQ("ABCDEFGHIJKLMNOPQRST", current.location.name);

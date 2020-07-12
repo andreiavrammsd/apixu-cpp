@@ -22,7 +22,7 @@ Apixu::Apixu(const std::string& apiKey, http::Http* http_client)
 
 Apixu::~Apixu() { delete http_client_; }
 
-std::vector<response::Condition> Apixu::Conditions()
+std::vector<response::Condition> Apixu::Conditions() const
 {
     try {
         return nlohmann::json::parse(get(doc_weather_conditions_url_));
@@ -35,7 +35,7 @@ std::vector<response::Condition> Apixu::Conditions()
     }
 }
 
-response::CurrentWeather Apixu::Current(const std::string& q)
+response::CurrentWeather Apixu::Current(const std::string& q) const
 {
     std::map<std::string, std::string> params;
     params["key"] = api_key_;
@@ -52,7 +52,7 @@ response::CurrentWeather Apixu::Current(const std::string& q)
     }
 }
 
-std::vector<response::Location> Apixu::Search(const std::string& q)
+std::vector<response::Location> Apixu::Search(const std::string& q) const
 {
     std::map<std::string, std::string> params;
     params["key"] = api_key_;
@@ -70,13 +70,14 @@ std::vector<response::Location> Apixu::Search(const std::string& q)
 }
 
 response::forecast::WeatherForecast Apixu::Forecast(const std::string& q,
-                                                    int days, const int* hour)
+                                                    const int days,
+                                                    const int* hour) const
 {
     std::map<std::string, std::string> params;
     params["key"] = api_key_;
     params["q"] = q;
     params["days"] = std::to_string(days);
-    if (hour) {
+    if (hour != nullptr) {
         params["hour"] = std::to_string(*hour);
     }
 
@@ -93,13 +94,13 @@ response::forecast::WeatherForecast Apixu::Forecast(const std::string& q,
 
 response::WeatherHistory Apixu::History(const std::string& q,
                                         const std::string& since,
-                                        std::string* until)
+                                        std::string* until) const
 {
     std::map<std::string, std::string> params;
     params["key"] = api_key_;
     params["q"] = q;
     params["dt"] = since;
-    if (until) {
+    if (until != nullptr) {
         params["end_dt"] = *until;
     }
 
@@ -114,13 +115,13 @@ response::WeatherHistory Apixu::History(const std::string& q,
     }
 }
 
-std::string Apixu::url(const std::string& method)
+std::string Apixu::url(const std::string& method) const
 {
     return api_url_ + method + "." + api_format_;
 }
 
 std::string Apixu::get(const std::string& url,
-                       std::map<std::string, std::string> params)
+                       std::map<std::string, std::string> params) const
 {
     auto response = http_client_->get(url, std::move(params));
     int status = response->getStatus();

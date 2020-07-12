@@ -117,7 +117,7 @@ TEST_F(ApixuHistoryTest, success)
         HttpClientMock::GetClient(url_, params_, status, body);
 
     apixu::Apixu apixu{api_key_, mock_http_client};
-    auto history = apixu.History(q_, "2019-01-01");
+    const auto& history = apixu.History(q_, "2019-01-01");
 
     EXPECT_EQ("ABCDEFGHIJK", history.location.name);
 }
