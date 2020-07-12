@@ -31,4 +31,5 @@ api-up:
 	docker run -tid --rm -p 5000:5000 --name=apixuapi apixuapi
 
 api-down:
-	docker stop apixuapi
+	docker stop apixuapi || true
+	docker rmi  apixuapi || true
