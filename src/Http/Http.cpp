@@ -3,87 +3,96 @@
 
 #include <curl/curl.h>
 
-#include <sstream>
 #include <map>
+#include <sstream>
 #include <string>
 #include <utility>
 
 #include "Exception.cpp"
 
 namespace Apixu {
-    namespace Http {
-        Client::Client(std::string userAgent) : userAgent(std::move(userAgent)) {}
+namespace Http {
+Client::Client(std::string userAgent) : userAgent(std::move(userAgent)) {}
 
-        inline std::string paramsToQuery(CURL *curl, std::map<std::string, std::string> params) {
-            std::ostringstream query;
+inline std::string paramsToQuery(CURL *curl,
+                                 std::map<std::string, std::string> params)
+{
+    std::ostringstream query;
 
-            for (auto iter = params.begin(); iter != params.end();) {
-                char *key = curl_easy_escape(curl, iter->first.c_str(), iter->first.length());
-                char *value = curl_easy_escape(curl, iter->second.c_str(), iter->second.length());
-                if (!key || !value) {
-                    throw Exception("Cannot escape query params");
-                }
-
-                query << key << "=" << value;
-                curl_free(key);
-                curl_free(value);
-
-                if (next(iter) != params.end()) {
-                    query << "&";
-                }
-                ++iter;
-            }
-
-            return query.str();
+    for (auto iter = params.begin(); iter != params.end();) {
+        char *key =
+            curl_easy_escape(curl, iter->first.c_str(), iter->first.length());
+        char *value =
+            curl_easy_escape(curl, iter->second.c_str(), iter->second.length());
+        if (!key || !value) {
+            throw Exception("Cannot escape query params");
         }
 
-        inline size_t writeCallback(void *contents, size_t size, size_t nmemb, void *userp) {
-            (static_cast<std::string *>(userp))->append(static_cast<char *>(contents), size * nmemb);
-            return size * nmemb;
+        query << key << "=" << value;
+        curl_free(key);
+        curl_free(value);
+
+        if (next(iter) != params.end()) {
+            query << "&";
         }
+        ++iter;
+    }
 
-        const Response *Client::get(const std::string &url) {
-            std::map<std::string, std::string> params;
-            return get(url, params);
-        }
+    return query.str();
+}
 
-        const Response *Client::get(const std::string &url, std::map<std::string, std::string> params) {
-            CURL *curl = curl_easy_init();
-            if (!curl) {
-                throw Exception("Cannot init curl");
-            }
+inline size_t writeCallback(void *contents, size_t size, size_t nmemb,
+                            void *userp)
+{
+    (static_cast<std::string *>(userp))
+        ->append(static_cast<char *>(contents), size * nmemb);
+    return size * nmemb;
+}
 
-            std::string apiUrl = url + "?" + paramsToQuery(curl, params);
+const Response *Client::get(const std::string &url)
+{
+    std::map<std::string, std::string> params;
+    return get(url, params);
+}
 
-            curl_easy_setopt(curl, CURLOPT_URL, apiUrl.c_str());
-            curl_easy_setopt(curl, CURLOPT_USERAGENT, userAgent.c_str());
-            curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
-            curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeCallback);
+const Response *Client::get(const std::string &url,
+                            std::map<std::string, std::string> params)
+{
+    CURL *curl = curl_easy_init();
+    if (!curl) {
+        throw Exception("Cannot init curl");
+    }
 
-            std::string readBuffer;
-            curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+    std::string apiUrl = url + "?" + paramsToQuery(curl, params);
 
-            CURLcode res = curl_easy_perform(curl);
-            if (res != CURLE_OK) {
-                throw Exception(curl_easy_strerror(res));
-            }
+    curl_easy_setopt(curl, CURLOPT_URL, apiUrl.c_str());
+    curl_easy_setopt(curl, CURLOPT_USERAGENT, userAgent.c_str());
+    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeCallback);
 
-            int responseCode;
-            curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
+    std::string readBuffer;
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
 
-            curl_easy_cleanup(curl);
+    CURLcode res = curl_easy_perform(curl);
+    if (res != CURLE_OK) {
+        throw Exception(curl_easy_strerror(res));
+    }
 
-            return new Response(responseCode, readBuffer);
-        }
+    int responseCode;
+    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
 
-        int Response::getStatus() const {
-            return status;
-        }
+    curl_easy_cleanup(curl);
 
-        const std::string &Response::getBody() const {
-            return body;
-        }
+    return new Response(responseCode, readBuffer);
+}
 
-        Response::Response(int status, std::string body) : status(status), body(std::move(body)) {}
-    }  // namespace Http
+int Response::getStatus() const { return status; }
+
+const std::string &Response::getBody() const { return body; }
+
+Response::Response(int status, std::string body)
+    : status(status), body(std::move(body))
+{
+}
+}  // namespace Http
 }  // namespace Apixu

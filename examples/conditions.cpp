@@ -5,15 +5,16 @@
 #include "Apixu/Apixu.h"
 #include "Apixu/Exception/ApiException.h"
 
-using std::vector;
 using std::cout;
 using std::endl;
+using std::vector;
 
-using Apixu::Response::Condition;
 using Apixu::Exception::ApiException;
 using Apixu::Exception::ApixuException;
+using Apixu::Response::Condition;
 
-int main() {
+int main()
+{
     const char *apiKey = getenv("APIXUKEY");
     if (!apiKey) {
         cout << "APIXUKEY not set";
@@ -25,15 +26,18 @@ int main() {
     vector<Condition> conditions;
     try {
         conditions = apixu->Conditions();
-    } catch (ApiException &e) {
-        cout << "ApiException: " << e.what() << " (code: " << e.getCode() << ")";
+    }
+    catch (ApiException &e) {
+        cout << "ApiException: " << e.what() << " (code: " << e.getCode()
+             << ")";
         return 1;
-    } catch (ApixuException &e) {
+    }
+    catch (ApixuException &e) {
         cout << "ApixuException: " << e.what();
         return 1;
     }
 
-    for (const auto& c : conditions) {
+    for (const auto &c : conditions) {
         cout << "code: " << c.getCode() << endl;
         cout << "day: " << c.getDay() << endl;
         cout << "night: " << c.getNight() << endl;

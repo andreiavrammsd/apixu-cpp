@@ -5,19 +5,13 @@
 #include "Apixu/Response/Forecast/ForecastWeather.h"
 
 namespace Apixu {
-    namespace Response {
-        namespace Forecast {
-            const Location &WeatherForecast::getLocation() const {
-                return location;
-            }
+namespace Response {
+namespace Forecast {
+const Location &WeatherForecast::getLocation() const { return location; }
 
-            const Current &WeatherForecast::getCurrent() const {
-                return current;
-            }
+const Current &WeatherForecast::getCurrent() const { return current; }
 
-            const ForecastWeather &WeatherForecast::getForecast() const {
-                return forecast;
-            }
-        }  // namespace Forecast
-    }  // namespace Response
+const ForecastWeather &WeatherForecast::getForecast() const { return forecast; }
+}  // namespace Forecast
+}  // namespace Response
 }  // namespace Apixu

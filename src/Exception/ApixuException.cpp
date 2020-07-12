@@ -6,11 +6,9 @@
 #include <utility>
 
 namespace Apixu {
-    namespace Exception {
-        ApixuException::ApixuException(std::string msg) : msg(move(msg)) {}
+namespace Exception {
+ApixuException::ApixuException(std::string msg) : msg(move(msg)) {}
 
-        const char *ApixuException::what() const noexcept {
-            return msg.c_str();
-        }
-    }  // namespace Exception
+const char *ApixuException::what() const noexcept { return msg.c_str(); }
+}  // namespace Exception
 }  // namespace Apixu

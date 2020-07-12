@@ -2,33 +2,34 @@
 #include <map>
 #include <string>
 
-#include "gtest/gtest.h"
 #include "Apixu/Apixu.h"
 #include "Apixu/Exception/ApiException.h"
 #include "HttpClientMock.cpp"
-
+#include "gtest/gtest.h"
 
 namespace ApixuTest {
-    using std::string;
-    using std::map;
+using std::map;
+using std::string;
 
-    class ApixuSearchTest : public ::testing::Test {
-    public:
-        const string url = "http://localhost:5000/search.json";
-        const char *apiKey = "apikey";
-        const string q = "Paris";
-        map<string, string> params;
+class ApixuSearchTest : public ::testing::Test {
+   public:
+    const string url = "http://localhost:5000/search.json";
+    const char *apiKey = "apikey";
+    const string q = "Paris";
+    map<string, string> params;
 
-    protected:
-        void SetUp() override {
-            params["key"] = apiKey;
-            params["q"] = q;
-        }
-    };
+   protected:
+    void SetUp() override
+    {
+        params["key"] = apiKey;
+        params["q"] = q;
+    }
+};
 
-    TEST_F(ApixuSearchTest, success) {
-        int status = 200;
-        string body = R"(
+TEST_F(ApixuSearchTest, success)
+{
+    int status = 200;
+    string body = R"(
            [
                {
                   "id":988,
@@ -42,25 +43,26 @@ namespace ApixuTest {
            ]
         )";
 
-        auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
+    auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
 
-        auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
-        auto search = apixu->Search(q);
+    auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
+    auto search = apixu->Search(q);
 
-        EXPECT_EQ(988, *search[0].getId());
-        EXPECT_EQ("ABCDEFG", search[0].getName());
-        EXPECT_EQ("ABCDEFGHI", search[0].getRegion());
-        EXPECT_EQ("ABCDEFGHIJKLMNOPQRSTUVW", search[0].getCountry());
-        EXPECT_EQ(861.75, search[0].getLat());
-        EXPECT_EQ(-72.75, search[0].getLon());
-        EXPECT_EQ("ABCDEFGHIJKLMNOPQ", *search[0].getUrl());
+    EXPECT_EQ(988, *search[0].getId());
+    EXPECT_EQ("ABCDEFG", search[0].getName());
+    EXPECT_EQ("ABCDEFGHI", search[0].getRegion());
+    EXPECT_EQ("ABCDEFGHIJKLMNOPQRSTUVW", search[0].getCountry());
+    EXPECT_EQ(861.75, search[0].getLat());
+    EXPECT_EQ(-72.75, search[0].getLon());
+    EXPECT_EQ("ABCDEFGHIJKLMNOPQ", *search[0].getUrl());
 
-        delete apixu;
-    }
+    delete apixu;
+}
 
-    TEST_F(ApixuSearchTest, error) {
-        int status = 400;
-        string body = R"(
+TEST_F(ApixuSearchTest, error)
+{
+    int status = 400;
+    string body = R"(
             {
                 "error": {
                   "message":"err",
@@ -69,11 +71,11 @@ namespace ApixuTest {
             }
         )";
 
-        auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
-        auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
+    auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
+    auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
 
-        ASSERT_THROW(apixu->Search(q), Apixu::Exception::ApiException);
+    ASSERT_THROW(apixu->Search(q), Apixu::Exception::ApiException);
 
-        delete apixu;
-    }
+    delete apixu;
+}
 }  // namespace ApixuTest

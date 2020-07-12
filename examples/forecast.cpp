@@ -5,21 +5,22 @@
 #include "Apixu/Apixu.h"
 #include "Apixu/Exception/ApiException.h"
 
-using std::vector;
 using std::cout;
 using std::endl;
+using std::vector;
 
-using Apixu::Response::Forecast::WeatherForecast;
 using Apixu::Exception::ApiException;
 using Apixu::Exception::ApixuException;
-using Apixu::Response::Location;
 using Apixu::Response::Current;
-using Apixu::Response::Forecast::ForecastDay;
-using Apixu::Response::Forecast::Day;
+using Apixu::Response::Location;
 using Apixu::Response::Forecast::Astro;
+using Apixu::Response::Forecast::Day;
+using Apixu::Response::Forecast::ForecastDay;
 using Apixu::Response::Forecast::Hour;
+using Apixu::Response::Forecast::WeatherForecast;
 
-int main() {
+int main()
+{
     const char *apiKey = getenv("APIXUKEY");
     if (!apiKey) {
         cout << "APIXUKEY not set";
@@ -32,17 +33,20 @@ int main() {
     try {
         int h = 12;
         forecast = apixu->Forecast("Paris", 2, &h);
-    } catch (ApiException &e) {
-        cout << "ApiException: " << e.what() << " (code: " << e.getCode() << ")";
+    }
+    catch (ApiException &e) {
+        cout << "ApiException: " << e.what() << " (code: " << e.getCode()
+             << ")";
         return 1;
-    } catch (ApixuException &e) {
+    }
+    catch (ApixuException &e) {
         cout << "ApixuException: " << e.what();
         return 1;
     }
 
     cout << "location" << endl;
 
-    const Location& location = forecast.getLocation();
+    const Location &location = forecast.getLocation();
 
     cout << "\tname = " << location.getName() << endl;
     cout << "\tregion = " << location.getRegion() << endl;
@@ -54,21 +58,25 @@ int main() {
 
     auto localtime = location.getLocaltime();
     cout << "\tlocaltime:" << endl;
-    cout << "\t\tyear = " << localtime.tm_year << ", month = " << localtime.tm_mon
-        << ", day = " << localtime.tm_mday << endl;
-    cout << "\t\thour = " << localtime.tm_hour << ", minute = " << localtime.tm_min << endl;
+    cout << "\t\tyear = " << localtime.tm_year
+         << ", month = " << localtime.tm_mon << ", day = " << localtime.tm_mday
+         << endl;
+    cout << "\t\thour = " << localtime.tm_hour
+         << ", minute = " << localtime.tm_min << endl;
 
     cout << endl << "current weather" << endl;
 
-    const Current& current = forecast.getCurrent();
+    const Current &current = forecast.getCurrent();
 
     cout << "\tlast updated epoch = " << *current.getLastUpdatedEpoch() << endl;
 
     auto lastUpdated = current.getLastUpdated();
     cout << "\tlast updated:" << endl;
-    cout << "\t\tyear = " << lastUpdated.tm_year << ", month = " << lastUpdated.tm_mon
+    cout << "\t\tyear = " << lastUpdated.tm_year
+         << ", month = " << lastUpdated.tm_mon
          << ", day = " << lastUpdated.tm_mday << endl;
-    cout << "\t\thour = " << lastUpdated.tm_hour << ", minute = " << lastUpdated.tm_min << endl;
+    cout << "\t\thour = " << lastUpdated.tm_hour
+         << ", minute = " << lastUpdated.tm_min << endl;
 
     cout << "\ttemp C = " << *current.getTempC() << endl;
     cout << "\ttemp F = " << *current.getTempF() << endl;
@@ -100,12 +108,11 @@ int main() {
     cout << endl << "day forecast" << endl;
 
     vector<ForecastDay> days = forecast.getForecast().getForecastDay();
-    for (auto const& day : days) {
+    for (auto const &day : days) {
         cout << "\tdate = " << day.getDate() << endl;
         cout << "\tdate epoch = " << day.getDateEpoch() << endl;
 
-
-        const Day& d = day.getDay();
+        const Day &d = day.getDay();
         cout << "\tday" << endl;
         cout << "\t\tmax temp C = " << d.getMaxTempCelsius() << endl;
         cout << "\t\tmax temp F = " << d.getMaxTempFahrenheit() << endl;
@@ -126,8 +133,9 @@ int main() {
         cout << "\t\t\tcode = " << *d.getCondition().getCode() << endl;
         cout << "\t\tuv = " << d.getUv() << endl;
 
-        const Astro& a = day.getAstro();
-        cout << "\tastro" << endl;;
+        const Astro &a = day.getAstro();
+        cout << "\tastro" << endl;
+        ;
         cout << "\t\tsunrise = " << a.getSunrise() << endl;
         cout << "\t\tsunset = " << a.getSunset() << endl;
         cout << "\t\tmoonrise = " << a.getMoonrise() << endl;
@@ -135,9 +143,10 @@ int main() {
         cout << "\t\tmoon phase = " << a.getMoonPhase() << endl;
         cout << "\t\tmoon illumination = " << a.getMoonIllumination() << endl;
 
-        const vector<Hour>& hour = day.getHour();
-        for (auto const& h : hour) {
-            cout << "\thour" << endl;;
+        const vector<Hour> &hour = day.getHour();
+        for (auto const &h : hour) {
+            cout << "\thour" << endl;
+            ;
             cout << "\t\ttime epoch = " << h.getTimeEpoch() << endl;
             cout << "\t\ttime = " << h.getTime() << endl;
             cout << "\t\ttemp C = " << h.getTempC() << endl;

@@ -4,17 +4,11 @@
 #include <string>
 
 namespace Apixu {
-    namespace Response {
-        int Error::getCode() const {
-            return code;
-        }
+namespace Response {
+int Error::getCode() const { return code; }
 
-        const std::string &Error::getMessage() const {
-            return message;
-        }
+const std::string &Error::getMessage() const { return message; }
 
-        const Error &ErrorResponse::getError() const {
-            return error;
-        }
-    }  // namespace Response
+const Error &ErrorResponse::getError() const { return error; }
+}  // namespace Response
 }  // namespace Apixu

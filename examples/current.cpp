@@ -8,13 +8,14 @@
 using std::cout;
 using std::endl;
 
-using Apixu::Response::CurrentWeather;
 using Apixu::Exception::ApiException;
 using Apixu::Exception::ApixuException;
-using Apixu::Response::Location;
 using Apixu::Response::Current;
+using Apixu::Response::CurrentWeather;
+using Apixu::Response::Location;
 
-int main() {
+int main()
+{
     const char *apiKey = getenv("APIXUKEY");
     if (!apiKey) {
         cout << "APIXUKEY not set";
@@ -26,17 +27,20 @@ int main() {
     CurrentWeather currentWeather;
     try {
         currentWeather = apixu->Current("Paris");
-    } catch (ApiException &e) {
-        cout << "ApiException: " << e.what() << " (code: " << e.getCode() << ")";
+    }
+    catch (ApiException &e) {
+        cout << "ApiException: " << e.what() << " (code: " << e.getCode()
+             << ")";
         return 1;
-    } catch (ApixuException &e) {
+    }
+    catch (ApixuException &e) {
         cout << "ApixuException: " << e.what();
         return 1;
     }
 
     cout << "location" << endl;
 
-    const Location& location = currentWeather.getLocation();
+    const Location &location = currentWeather.getLocation();
 
     cout << "\tname = " << location.getName() << endl;
     cout << "\tregion = " << location.getRegion() << endl;
@@ -48,23 +52,27 @@ int main() {
 
     auto localtime = location.getLocaltime();
     cout << "\tlocaltime:" << endl;
-    cout << "\t\tyear = " << localtime.tm_year << ", month = " << localtime.tm_mon
-        << ", day = " << localtime.tm_mday << endl;
-    cout << "\t\thour = " << localtime.tm_hour << ", minute = " << localtime.tm_min << endl;
+    cout << "\t\tyear = " << localtime.tm_year
+         << ", month = " << localtime.tm_mon << ", day = " << localtime.tm_mday
+         << endl;
+    cout << "\t\thour = " << localtime.tm_hour
+         << ", minute = " << localtime.tm_min << endl;
 
     cout << endl << "current weather" << endl;
 
-    const Current& current = currentWeather.getCurrent();
+    const Current &current = currentWeather.getCurrent();
 
     cout << "\tlast updated epoch = " << *current.getLastUpdatedEpoch() << endl;
 
     auto lastUpdated = current.getLastUpdated();
     cout << "\tlast updated:" << endl;
-    cout << "\t\tyear = " << lastUpdated.tm_year << ", month = " << lastUpdated.tm_mon
+    cout << "\t\tyear = " << lastUpdated.tm_year
+         << ", month = " << lastUpdated.tm_mon
          << ", day = " << lastUpdated.tm_mday << endl;
-    cout << "\t\thour = " << lastUpdated.tm_hour << ", minute = " << lastUpdated.tm_min << endl;
+    cout << "\t\thour = " << lastUpdated.tm_hour
+         << ", minute = " << lastUpdated.tm_min << endl;
 
-        cout << "\ttemp C = " << *current.getTempC() << endl;
+    cout << "\ttemp C = " << *current.getTempC() << endl;
     cout << "\ttemp F = " << *current.getTempF() << endl;
     cout << "\tis day = " << *current.isDay() << endl;
 

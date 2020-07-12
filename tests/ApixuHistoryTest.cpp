@@ -2,34 +2,35 @@
 #include <map>
 #include <string>
 
-#include "gtest/gtest.h"
 #include "Apixu/Apixu.h"
 #include "Apixu/Exception/ApiException.h"
 #include "HttpClientMock.cpp"
-
+#include "gtest/gtest.h"
 
 namespace ApixuTest {
-    using std::string;
-    using std::map;
+using std::map;
+using std::string;
 
-    class ApixuHistoryTest : public ::testing::Test {
-    public:
-        const string url = "http://localhost:5000/history.json";
-        const char *apiKey = "apikey";
-        const string q = "Paris";
-        map<string, string> params;
+class ApixuHistoryTest : public ::testing::Test {
+   public:
+    const string url = "http://localhost:5000/history.json";
+    const char *apiKey = "apikey";
+    const string q = "Paris";
+    map<string, string> params;
 
-    protected:
-        void SetUp() override {
-            params["key"] = apiKey;
-            params["q"] = q;
-            params["dt"] = "2019-01-01";
-        }
-    };
+   protected:
+    void SetUp() override
+    {
+        params["key"] = apiKey;
+        params["q"] = q;
+        params["dt"] = "2019-01-01";
+    }
+};
 
-    TEST_F(ApixuHistoryTest, success) {
-        int status = 200;
-        string body = R"(
+TEST_F(ApixuHistoryTest, success)
+{
+    int status = 200;
+    string body = R"(
            {
               "location": {
                 "name": "ABCDEFGHIJK",
@@ -112,19 +113,20 @@ namespace ApixuTest {
             }
         )";
 
-        auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
+    auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
 
-        auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
-        auto history = apixu->History(q, "2019-01-01");
+    auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
+    auto history = apixu->History(q, "2019-01-01");
 
-        EXPECT_EQ("ABCDEFGHIJK", history.getLocation().getName());
+    EXPECT_EQ("ABCDEFGHIJK", history.getLocation().getName());
 
-        delete apixu;
-    }
+    delete apixu;
+}
 
-    TEST_F(ApixuHistoryTest, error) {
-        int status = 400;
-        string body = R"(
+TEST_F(ApixuHistoryTest, error)
+{
+    int status = 400;
+    string body = R"(
             {
                 "error": {
                   "message":"err",
@@ -133,11 +135,12 @@ namespace ApixuTest {
             }
         )";
 
-        auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
-        auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
+    auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
+    auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
 
-        ASSERT_THROW(apixu->History(q, "2019-01-01"), Apixu::Exception::ApiException);
+    ASSERT_THROW(apixu->History(q, "2019-01-01"),
+                 Apixu::Exception::ApiException);
 
-        delete apixu;
-    }
+    delete apixu;
+}
 }  // namespace ApixuTest

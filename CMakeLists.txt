@@ -23,7 +23,7 @@ set(SOURCE_FILES
         src/Response/Forecast/Astro.cpp
         src/Response/Location.cpp
         src/Response/CurrentCondition.cpp
-)
+        )
 
 # Include directory
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/)

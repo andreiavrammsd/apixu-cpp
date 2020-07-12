@@ -1,8 +1,8 @@
 // Copyright 2019 <Andrei Avram>
+#include <ctime>
+#include <iomanip>
 #include <iostream>
 #include <vector>
-#include <iomanip>
-#include <ctime>
 
 #include "Apixu/Apixu.h"
 #include "Apixu/Exception/ApiException.h"
@@ -10,13 +10,14 @@
 using std::cout;
 using std::endl;
 
-using Apixu::Response::WeatherHistory;
 using Apixu::Exception::ApiException;
 using Apixu::Exception::ApixuException;
 using Apixu::Response::Location;
+using Apixu::Response::WeatherHistory;
 using Apixu::Response::Forecast::ForecastWeather;
 
-int main() {
+int main()
+{
     const char *apiKey = getenv("APIXUKEY");
     if (!apiKey) {
         cout << "APIXUKEY not set";
@@ -34,10 +35,13 @@ int main() {
         since << std::put_time(&tm, "%Y-%m-%d");
 
         history = apixu->History("Prague", since.str());
-    } catch (ApiException &e) {
-        cout << "ApiException: " << e.what() << " (code: " << e.getCode() << ")";
+    }
+    catch (ApiException &e) {
+        cout << "ApiException: " << e.what() << " (code: " << e.getCode()
+             << ")";
         return 1;
-    } catch (ApixuException &e) {
+    }
+    catch (ApixuException &e) {
         cout << "ApixuException: " << e.what();
         return 1;
     }
@@ -56,9 +60,11 @@ int main() {
 
     auto localtime = location.getLocaltime();
     cout << "\tlocaltime:" << endl;
-    cout << "\t\tyear = " << localtime.tm_year << ", month = " << localtime.tm_mon
-         << ", day = " << localtime.tm_mday << endl;
-    cout << "\t\thour = " << localtime.tm_hour << ", minute = " << localtime.tm_min << endl;
+    cout << "\t\tyear = " << localtime.tm_year
+         << ", month = " << localtime.tm_mon << ", day = " << localtime.tm_mday
+         << endl;
+    cout << "\t\thour = " << localtime.tm_hour
+         << ", minute = " << localtime.tm_min << endl;
 
     cout << endl << "forecast weather" << endl;
 
@@ -70,7 +76,8 @@ int main() {
 
         cout << "\tday" << endl;
         cout << "\t\tmax temp C = " << f.getDay().getMaxTempCelsius() << endl;
-        cout << "\t\tmax temp F = " << f.getDay().getMaxTempFahrenheit() << endl;
+        cout << "\t\tmax temp F = " << f.getDay().getMaxTempFahrenheit()
+             << endl;
 
         cout << "\tastro" << endl;
         cout << "\t\tsunrise = " << f.getAstro().getSunrise() << endl;
