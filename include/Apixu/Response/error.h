@@ -1,4 +1,4 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
 #ifndef INCLUDE_APIXU_RESPONSE_ERROR_H_
 #define INCLUDE_APIXU_RESPONSE_ERROR_H_
 
@@ -12,11 +12,11 @@ struct Error {
     int code{};
     std::string message;
 
-    friend void from_json(const nlohmann::json &j, Error &e);  // NOLINT
+    friend void from_json(const nlohmann::json& j, Error& e);
 };
 
-inline void from_json(const nlohmann::json &j, Error &e)
-{  // NOLINT
+inline void from_json(const nlohmann::json& j, Error& e)
+{
     e.code = j.at("code");
     e.message = j.at("message");
 }
@@ -24,11 +24,11 @@ inline void from_json(const nlohmann::json &j, Error &e)
 struct ErrorResponse {
     Error error;
 
-    friend void from_json(const nlohmann::json &j, ErrorResponse &e);  // NOLINT
+    friend void from_json(const nlohmann::json& j, ErrorResponse& e);
 };
 
-inline void from_json(const nlohmann::json &j, ErrorResponse &e)
-{  // NOLINT
+inline void from_json(const nlohmann::json& j, ErrorResponse& e)
+{
     e.error = j.at("error");
 }
 }  // namespace response

@@ -1,4 +1,4 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
 #ifndef INCLUDE_APIXU_RESPONSE_FORECAST_ASTRO_H_
 #define INCLUDE_APIXU_RESPONSE_FORECAST_ASTRO_H_
 
@@ -17,11 +17,11 @@ struct Astro {
     std::string moon_phase;
     std::string moon_illumination;
 
-    friend void from_json(const nlohmann::json &j, Astro &d);  // NOLINT
+    friend void from_json(const nlohmann::json& j, Astro& d);
 };
 
-inline void from_json(const nlohmann::json &j, Astro &d)
-{  // NOLINT
+inline void from_json(const nlohmann::json& j, Astro& d)
+{
     if (j.contains("sunrise")) {
         d.sunrise = j.at("sunrise");
     }

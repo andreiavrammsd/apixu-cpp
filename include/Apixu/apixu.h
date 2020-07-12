@@ -1,4 +1,4 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
 #ifndef INCLUDE_APIXU_APIXU_H_
 #define INCLUDE_APIXU_APIXU_H_
 

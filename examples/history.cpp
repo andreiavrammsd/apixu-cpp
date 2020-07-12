@@ -1,4 +1,4 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
 #include <ctime>
 #include <iomanip>
 #include <iostream>
@@ -18,13 +18,13 @@ using apixu::response::forecast::ForecastWeather;
 
 int main()
 {
-    const char *api_key = getenv("APIXUKEY");
+    const char* api_key = getenv("APIXUKEY");
     if (!api_key) {
         cout << "APIXUKEY not set";
         return 1;
     }
 
-    auto apixu = new apixu::Apixu(api_key);
+    apixu::Apixu apixu{api_key};
 
     class WeatherHistory history;
     try {
@@ -34,21 +34,21 @@ int main()
         std::ostringstream since;
         since << std::put_time(&tm, "%Y-%m-%d");
 
-        history = apixu->History("Prague", since.str());
+        history = apixu.History("Prague", since.str());
     }
-    catch (ApiException &e) {
+    catch (ApiException& e) {
         cout << "ApiException: " << e.what() << " (code: " << e.getCode()
              << ")";
         return 1;
     }
-    catch (ApixuException &e) {
+    catch (ApixuException& e) {
         cout << "ApixuException: " << e.what();
         return 1;
     }
 
     cout << "location" << endl;
 
-    const Location &location = history.location;
+    const Location& location = history.location;
 
     cout << "\tname = " << location.name << endl;
     cout << "\tregion = " << location.region << endl;
@@ -68,9 +68,9 @@ int main()
 
     cout << endl << "forecast weather" << endl;
 
-    const ForecastWeather &forecast = history.forecast;
+    const ForecastWeather& forecast = history.forecast;
 
-    for (const auto &f : forecast.forecast_day) {
+    for (const auto& f : forecast.forecast_day) {
         cout << "\tdate = " << f.date << endl;
         cout << "\tdate epoch = " << f.date_epoch << endl;
 
@@ -83,7 +83,7 @@ int main()
         cout << "\t\tsunset = " << f.astro.sunset << endl;
 
         cout << "\thour" << endl;
-        for (const auto &h : f.hour) {
+        for (const auto& h : f.hour) {
             cout << "\t\ttime epoch = " << h.time_epoch << endl;
             cout << "\t\ttime = " << h.time << endl;
             cout << "\t\ttemp C = " << h.temp_c << endl;
@@ -91,8 +91,6 @@ int main()
             cout << endl;
         }
     }
-
-    delete apixu;
 
     return 0;
 }

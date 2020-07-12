@@ -1,4 +1,4 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
 #ifndef INCLUDE_APIXU_HTTP_HTTP_H_
 #define INCLUDE_APIXU_HTTP_HTTP_H_
 
@@ -16,7 +16,7 @@ class Response {
 
     virtual int getStatus() const;
 
-    virtual const std::string &getBody() const;
+    virtual const std::string& getBody() const;
 
     virtual ~Response() = default;
 
@@ -27,10 +27,10 @@ class Response {
 
 class Http {
    public:
-    virtual const Response *get(const std::string &path,
+    virtual const Response* get(const std::string& path,
                                 std::map<std::string, std::string> params) = 0;
 
-    virtual const Response *get(const std::string &path) = 0;
+    virtual const Response* get(const std::string& path) = 0;
 
     virtual ~Http() = default;
 };
@@ -39,10 +39,10 @@ class Client : public Http {
    public:
     explicit Client(std::string userAgent);
 
-    const Response *get(const std::string &url,
+    const Response* get(const std::string& url,
                         std::map<std::string, std::string> params) override;
 
-    const Response *get(const std::string &url) override;
+    const Response* get(const std::string& url) override;
 
    private:
     std::string userAgent;

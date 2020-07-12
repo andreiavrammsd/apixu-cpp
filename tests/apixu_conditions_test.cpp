@@ -1,4 +1,4 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
 #include <string>
 
 #include "Apixu/Exception/api_exception.h"
@@ -30,16 +30,15 @@ TEST_F(ApixuConditionsTest, success)
 
     auto mock_http_client = HttpClientMock::GetHttpClient(url_, status, body);
 
-    auto apixu = new apixu::Apixu("", mock_http_client);
-    auto conditions = apixu->Conditions();
+    apixu::Apixu apixu{"", mock_http_client};
+
+    auto conditions = apixu.Conditions();
 
     EXPECT_EQ(1, conditions.size());
     EXPECT_EQ(1, conditions[0].code);
     EXPECT_EQ("day", conditions[0].day);
     EXPECT_EQ("night", conditions[0].night);
     EXPECT_EQ(22, conditions[0].icon);
-
-    delete apixu;
 }
 
 TEST_F(ApixuConditionsTest, error)
@@ -55,10 +54,8 @@ TEST_F(ApixuConditionsTest, error)
         )";
 
     auto mock_http_client = HttpClientMock::GetHttpClient(url_, status, body);
-    auto apixu = new apixu::Apixu("", mock_http_client);
+    apixu::Apixu apixu{"", mock_http_client};
 
-    EXPECT_THROW(apixu->Conditions(), apixu::exception::ApixuException);
-
-    delete apixu;
+    EXPECT_THROW(apixu.Conditions(), apixu::exception::ApixuException);
 }
 }  // namespace apixutest

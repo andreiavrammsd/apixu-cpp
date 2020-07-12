@@ -1,6 +1,6 @@
-// Copyright 2019 <Andrei Avram>
-#ifndef INCLUDE_APIXU_RESPONSE_FORECAST_FORECASTDAY_H_
-#define INCLUDE_APIXU_RESPONSE_FORECAST_FORECASTDAY_H_
+// Copyright 2020 <Andrei Avram>
+#ifndef INCLUDE_APIXU_RESPONSE_FORECAST_FORECAST_DAY_H_
+#define INCLUDE_APIXU_RESPONSE_FORECAST_FORECAST_DAY_H_
 
 #include <string>
 #include <vector>
@@ -20,11 +20,11 @@ struct ForecastDay {
     Astro astro;
     std::vector<Hour> hour;
 
-    friend void from_json(const nlohmann::json &j, ForecastDay &f);  // NOLINT
+    friend void from_json(const nlohmann::json& j, ForecastDay& f);
 };
 
-inline void from_json(const nlohmann::json &j, ForecastDay &f)
-{  // NOLINT
+inline void from_json(const nlohmann::json& j, ForecastDay& f)
+{
     f.date = j.at("date");
     f.date_epoch = j.at("date_epoch");
     f.day = j.at("day");
@@ -38,4 +38,4 @@ inline void from_json(const nlohmann::json &j, ForecastDay &f)
 }  // namespace response
 }  // namespace apixu
 
-#endif  // INCLUDE_APIXU_RESPONSE_FORECAST_FORECASTDAY_H_
+#endif  // INCLUDE_APIXU_RESPONSE_FORECAST_FORECAST_DAY_H_

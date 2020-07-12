@@ -1,10 +1,10 @@
-// Copyright 2019 <Andrei Avram>
-#ifndef INCLUDE_APIXU_EXCEPTION_APIEXCEPTION_H_
-#define INCLUDE_APIXU_EXCEPTION_APIEXCEPTION_H_
+// Copyright 2020 <Andrei Avram>
+#ifndef INCLUDE_APIXU_EXCEPTION_API_EXCEPTION_H_
+#define INCLUDE_APIXU_EXCEPTION_API_EXCEPTION_H_
 
 #include <string>
 
-#include "apixu_exception.h"
+#include "./apixu_exception.h"
 
 namespace apixu {
 namespace exception {
@@ -23,4 +23,4 @@ class ApiException : public ApixuException {
 }  // namespace exception
 }  // namespace apixu
 
-#endif  // INCLUDE_APIXU_EXCEPTION_APIEXCEPTION_H_
+#endif  // INCLUDE_APIXU_EXCEPTION_API_EXCEPTION_H_

@@ -1,4 +1,4 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
 #include "Apixu/Http/http.h"
 
 #include <curl/curl.h>
@@ -14,15 +14,15 @@ namespace apixu {
 namespace http {
 Client::Client(std::string userAgent) : userAgent(std::move(userAgent)) {}
 
-inline std::string paramsToQuery(CURL *curl,
+inline std::string paramsToQuery(CURL* curl,
                                  std::map<std::string, std::string> params)
 {
     std::ostringstream query;
 
     for (auto iter = params.begin(); iter != params.end();) {
-        char *key =
+        char* key =
             curl_easy_escape(curl, iter->first.c_str(), iter->first.length());
-        char *value =
+        char* value =
             curl_easy_escape(curl, iter->second.c_str(), iter->second.length());
         if (!key || !value) {
             throw Exception("Cannot escape query params");
@@ -41,24 +41,24 @@ inline std::string paramsToQuery(CURL *curl,
     return query.str();
 }
 
-inline size_t writeCallback(void *contents, size_t size, size_t nmemb,
-                            void *userp)
+inline size_t writeCallback(void* contents, size_t size, size_t nmemb,
+                            void* userp)
 {
-    (static_cast<std::string *>(userp))
-        ->append(static_cast<char *>(contents), size * nmemb);
+    (static_cast<std::string*>(userp))
+        ->append(static_cast<char*>(contents), size * nmemb);
     return size * nmemb;
 }
 
-const Response *Client::get(const std::string &url)
+const Response* Client::get(const std::string& url)
 {
     std::map<std::string, std::string> params;
     return get(url, params);
 }
 
-const Response *Client::get(const std::string &url,
+const Response* Client::get(const std::string& url,
                             std::map<std::string, std::string> params)
 {
-    CURL *curl = curl_easy_init();
+    CURL* curl = curl_easy_init();
     if (!curl) {
         throw Exception("Cannot init curl");
     }
@@ -88,7 +88,7 @@ const Response *Client::get(const std::string &url,
 
 int Response::getStatus() const { return status_; }
 
-const std::string &Response::getBody() const { return body_; }
+const std::string& Response::getBody() const { return body_; }
 
 Response::Response(int status, std::string body)
     : status_(status), body_(std::move(body))

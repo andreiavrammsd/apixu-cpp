@@ -18,7 +18,7 @@ dep:
 
 lint:
 	@python dev/cpplint.py --linelength=120 \
-		--filter=-runtime/indentation_namespace,-whitespace/indent \
+		--filter=-runtime/indentation_namespace,-whitespace/indent,-whitespace/braces,-whitespace/newline \
 		--quiet \
 		$(HEADERS) $(SOURCES) $(TESTS) $(EXAMPLES)
 

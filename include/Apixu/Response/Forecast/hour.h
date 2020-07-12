@@ -1,4 +1,4 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
 #ifndef INCLUDE_APIXU_RESPONSE_FORECAST_HOUR_H_
 #define INCLUDE_APIXU_RESPONSE_FORECAST_HOUR_H_
 
@@ -45,11 +45,11 @@ struct Hour {
     double gust_mph;
     double gust_kph;
 
-    friend void from_json(const nlohmann::json &j, Hour &h);  // NOLINT
+    friend void from_json(const nlohmann::json& j, Hour& h);
 };
 
-inline void from_json(const nlohmann::json &j, Hour &h)
-{  // NOLINT
+inline void from_json(const nlohmann::json& j, Hour& h)
+{
     if (j.contains("time_epoch")) {
         h.time_epoch = j.at("time_epoch");
     }

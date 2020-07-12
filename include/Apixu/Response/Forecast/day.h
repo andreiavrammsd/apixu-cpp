@@ -1,4 +1,4 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
 #ifndef INCLUDE_APIXU_RESPONSE_FORECAST_DAY_H_
 #define INCLUDE_APIXU_RESPONSE_FORECAST_DAY_H_
 
@@ -25,11 +25,11 @@ struct Day {
     CurrentCondition condition;
     float uv{};
 
-    friend void from_json(const nlohmann::json &j, Day &d);  // NOLINT
+    friend void from_json(const nlohmann::json& j, Day& d);
 };
 
-inline void from_json(const nlohmann::json &j, Day &d)
-{  // NOLINT
+inline void from_json(const nlohmann::json& j, Day& d)
+{
     if (j.contains("maxtemp_c")) {
         d.max_temp_celsius = j.at("maxtemp_c");
     }

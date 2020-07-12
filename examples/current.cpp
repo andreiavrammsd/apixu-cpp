@@ -1,4 +1,4 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
 #include <iostream>
 #include <vector>
 
@@ -16,31 +16,31 @@ using apixu::response::Location;
 
 int main()
 {
-    const char *api_key = getenv("APIXUKEY");
+    const char* api_key = getenv("APIXUKEY");
     if (!api_key) {
         cout << "APIXUKEY not set";
         return 1;
     }
 
-    auto apixu = new apixu::Apixu(api_key);
+    apixu::Apixu apixu{api_key};
 
     CurrentWeather current_weather;
     try {
-        current_weather = apixu->Current("Paris");
+        current_weather = apixu.Current("Paris");
     }
-    catch (ApiException &e) {
+    catch (ApiException& e) {
         cout << "ApiException: " << e.what() << " (code: " << e.getCode()
              << ")";
         return 1;
     }
-    catch (ApixuException &e) {
+    catch (ApixuException& e) {
         cout << "ApixuException: " << e.what();
         return 1;
     }
 
     cout << "location" << endl;
 
-    const Location &location = current_weather.location;
+    const Location& location = current_weather.location;
 
     cout << "\tname = " << location.name << endl;
     cout << "\tregion = " << location.region << endl;
@@ -60,7 +60,7 @@ int main()
 
     cout << endl << "current weather" << endl;
 
-    const Current &current = current_weather.current;
+    const Current& current = current_weather.current;
 
     cout << "\tlast updated epoch = " << *current.last_updated_epoch << endl;
 
@@ -98,8 +98,6 @@ int main()
     cout << "\t_u_v = " << *current.uv << endl;
     cout << "\tgust MPH = " << *current.gust_mph << endl;
     cout << "\tgust KPH = " << *current.gust_kph << endl;
-
-    delete apixu;
 
     return 0;
 }

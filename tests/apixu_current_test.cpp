@@ -1,4 +1,4 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
 #include <map>
 #include <string>
 
@@ -74,8 +74,8 @@ TEST_F(ApixuCurrentTest, success)
     auto mock_http_client =
         HttpClientMock::GetClient(url_, params_, status, body);
 
-    auto apixu = new apixu::Apixu(api_key_, mock_http_client);
-    auto current = apixu->Current(q_);
+    apixu::Apixu apixu{api_key_, mock_http_client};
+    auto current = apixu.Current(q_);
 
     // Location
     EXPECT_EQ("ABCDEFGHIJKLMNOPQRST", current.location.name);
@@ -127,8 +127,6 @@ TEST_F(ApixuCurrentTest, success)
     EXPECT_EQ(356.75, *current.current.vis_km);
     EXPECT_EQ(440.5, *current.current.vis_miles);
     EXPECT_EQ(-8.0, *current.current.uv);
-
-    delete apixu;
 }
 
 TEST_F(ApixuCurrentTest, error)
@@ -145,10 +143,8 @@ TEST_F(ApixuCurrentTest, error)
 
     auto mock_http_client =
         HttpClientMock::GetClient(url_, params_, status, body);
-    auto apixu = new apixu::Apixu(api_key_, mock_http_client);
+    apixu::Apixu apixu{api_key_, mock_http_client};
 
-    EXPECT_THROW(apixu->Current(q_), apixu::exception::ApiException);
-
-    delete apixu;
+    EXPECT_THROW(apixu.Current(q_), apixu::exception::ApiException);
 }
 }  // namespace apixutest

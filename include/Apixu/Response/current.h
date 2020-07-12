@@ -1,4 +1,4 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
 #ifndef INCLUDE_APIXU_RESPONSE_CURRENT_H_
 #define INCLUDE_APIXU_RESPONSE_CURRENT_H_
 
@@ -6,8 +6,8 @@
 #include <memory>
 #include <string>
 
+#include "./current_condition.h"
 #include "Apixu/time.h"
-#include "current_condition.h"
 #include "nlohmann/json.hpp"
 
 namespace apixu {
@@ -38,11 +38,11 @@ struct Current {
     std::shared_ptr<float> gust_mph{};
     std::shared_ptr<float> gust_kph{};
 
-    friend void from_json(const nlohmann::json &j, Current &c);  // NOLINT
+    friend void from_json(const nlohmann::json& j, Current& c);
 };
 
-inline void from_json(const nlohmann::json &j, Current &c)
-{  // NOLINT
+inline void from_json(const nlohmann::json& j, Current& c)
+{
     if (j.contains("last_updated_epoch")) {
         c.last_updated_epoch =
             std::make_shared<int>(j.at("last_updated_epoch"));

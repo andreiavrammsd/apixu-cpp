@@ -1,4 +1,4 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
 #include <map>
 #include <string>
 
@@ -46,8 +46,8 @@ TEST_F(ApixuSearchTest, success)
     auto mock_http_client =
         HttpClientMock::GetClient(url_, params_, status, body);
 
-    auto apixu = new apixu::Apixu(api_key_, mock_http_client);
-    auto search = apixu->Search(q_);
+    apixu::Apixu apixu{api_key_, mock_http_client};
+    auto search = apixu.Search(q_);
 
     EXPECT_EQ(988, *search[0].id);
     EXPECT_EQ("ABCDEFG", search[0].name);
@@ -56,8 +56,6 @@ TEST_F(ApixuSearchTest, success)
     EXPECT_EQ(861.75, search[0].lat);
     EXPECT_EQ(-72.75, search[0].lon);
     EXPECT_EQ("ABCDEFGHIJKLMNOPQ", *search[0].url);
-
-    delete apixu;
 }
 
 TEST_F(ApixuSearchTest, error)
@@ -74,10 +72,8 @@ TEST_F(ApixuSearchTest, error)
 
     auto mock_http_client =
         HttpClientMock::GetClient(url_, params_, status, body);
-    auto apixu = new apixu::Apixu(api_key_, mock_http_client);
+    apixu::Apixu apixu{api_key_, mock_http_client};
 
-    EXPECT_THROW(apixu->Search(q_), apixu::exception::ApiException);
-
-    delete apixu;
+    EXPECT_THROW(apixu.Search(q_), apixu::exception::ApiException);
 }
 }  // namespace apixutest

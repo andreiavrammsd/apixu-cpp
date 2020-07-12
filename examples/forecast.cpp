@@ -1,4 +1,4 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
 #include <iostream>
 #include <vector>
 
@@ -21,32 +21,32 @@ using apixu::response::forecast::WeatherForecast;
 
 int main()
 {
-    const char *api_key = getenv("APIXUKEY");
+    const char* api_key = getenv("APIXUKEY");
     if (!api_key) {
         cout << "APIXUKEY not set";
         return 1;
     }
 
-    auto apixu = new apixu::Apixu(api_key);
+    apixu::Apixu apixu{api_key};
 
     WeatherForecast forecast;
     try {
         int h = 12;
-        forecast = apixu->Forecast("Paris", 2, &h);
+        forecast = apixu.Forecast("Paris", 2, &h);
     }
-    catch (ApiException &e) {
+    catch (ApiException& e) {
         cout << "ApiException: " << e.what() << " (code: " << e.getCode()
              << ")";
         return 1;
     }
-    catch (ApixuException &e) {
+    catch (ApixuException& e) {
         cout << "ApixuException: " << e.what();
         return 1;
     }
 
     cout << "location" << endl;
 
-    const Location &location = forecast.location;
+    const Location& location = forecast.location;
 
     cout << "\tname = " << location.name << endl;
     cout << "\tregion = " << location.region << endl;
@@ -66,7 +66,7 @@ int main()
 
     cout << endl << "current weather" << endl;
 
-    const Current &current = forecast.current;
+    const Current& current = forecast.current;
 
     cout << "\tlast updated epoch = " << *current.last_updated_epoch << endl;
 
@@ -108,11 +108,11 @@ int main()
     cout << endl << "day forecast" << endl;
 
     vector<ForecastDay> days = forecast.forecast.forecast_day;
-    for (auto const &day : days) {
+    for (auto const& day : days) {
         cout << "\tdate = " << day.date << endl;
         cout << "\tdate epoch = " << day.date_epoch << endl;
 
-        const Day &d = day.day;
+        const Day& d = day.day;
         cout << "\tday" << endl;
         cout << "\t\tmax temp C = " << d.max_temp_celsius << endl;
         cout << "\t\tmax temp F = " << d.max_temp_fahrenheit << endl;
@@ -133,9 +133,8 @@ int main()
         cout << "\t\t\tcode = " << *d.condition.code << endl;
         cout << "\t\tuv = " << d.uv << endl;
 
-        const Astro &a = day.astro;
+        const Astro& a = day.astro;
         cout << "\tastro" << endl;
-        ;
         cout << "\t\tsunrise = " << a.sunrise << endl;
         cout << "\t\tsunset = " << a.sunset << endl;
         cout << "\t\tmoonrise = " << a.moonrise << endl;
@@ -143,10 +142,9 @@ int main()
         cout << "\t\tmoon phase = " << a.moon_phase << endl;
         cout << "\t\tmoon illumination = " << a.moon_illumination << endl;
 
-        const vector<Hour> &hour = day.hour;
-        for (auto const &h : hour) {
+        const vector<Hour>& hour = day.hour;
+        for (auto const& h : hour) {
             cout << "\thour" << endl;
-            ;
             cout << "\t\ttime epoch = " << h.time_epoch << endl;
             cout << "\t\ttime = " << h.time << endl;
             cout << "\t\ttemp C = " << h.temp_c << endl;
@@ -187,8 +185,6 @@ int main()
 
         cout << endl;
     }
-
-    delete apixu;
 
     return 0;
 }

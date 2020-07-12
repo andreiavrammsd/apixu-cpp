@@ -1,4 +1,4 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
 #include <iostream>
 #include <vector>
 
@@ -15,17 +15,17 @@ using apixu::response::Location;
 
 int main()
 {
-    const char *api_key = getenv("APIXUKEY");
+    const char* api_key = getenv("APIXUKEY");
     if (!api_key) {
         cout << "APIXUKEY not set";
         return 1;
     }
 
-    auto apixu = new apixu::Apixu(api_key);
+    apixu::Apixu apixu{api_key};
 
-    vector<Location> locations = apixu->Search("Koln, Germany");
+    vector<Location> locations = apixu.Search("Koln, Germany");
 
-    for (const auto &loc : locations) {
+    for (const auto& loc : locations) {
         if (loc.id) {
             cout << "id = " << *loc.id << endl;
         }
@@ -40,8 +40,6 @@ int main()
         cout << "localtime = " << loc.localtime.tm_min << endl;
         cout << endl;
     }
-
-    delete apixu;
 
     return 0;
 }

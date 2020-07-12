@@ -1,4 +1,4 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
 #include <map>
 #include <string>
 
@@ -141,12 +141,10 @@ TEST_F(ApixuForecastTest, success)
     auto mock_http_client =
         HttpClientMock::GetClient(url_, params_, status, body);
 
-    auto apixu = new apixu::Apixu(api_key_, mock_http_client);
-    auto forecast = apixu->Forecast(q_, 1);
+    apixu::Apixu apixu{api_key_, mock_http_client};
+    auto forecast = apixu.Forecast(q_, 1);
 
     EXPECT_EQ("ABCDEFGHIJKLMNOPQRST", forecast.location.name);
-
-    delete apixu;
 }
 
 TEST_F(ApixuForecastTest, error)
@@ -163,10 +161,8 @@ TEST_F(ApixuForecastTest, error)
 
     auto mock_http_client =
         HttpClientMock::GetClient(url_, params_, status, body);
-    auto apixu = new apixu::Apixu(api_key_, mock_http_client);
+    apixu::Apixu apixu{api_key_, mock_http_client};
 
-    EXPECT_THROW(apixu->Forecast(q_, 1), apixu::exception::ApiException);
-
-    delete apixu;
+    EXPECT_THROW(apixu.Forecast(q_, 1), apixu::exception::ApiException);
 }
 }  // namespace apixutest

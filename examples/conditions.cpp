@@ -1,4 +1,4 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
 #include <iostream>
 #include <vector>
 
@@ -15,36 +15,34 @@ using apixu::response::Condition;
 
 int main()
 {
-    const char *api_key = getenv("APIXUKEY");
+    const char* api_key = getenv("APIXUKEY");
     if (!api_key) {
         cout << "APIXUKEY not set";
         return 1;
     }
 
-    auto apixu = new apixu::Apixu(api_key);
+    apixu::Apixu apixu{api_key};
 
     vector<Condition> conditions;
     try {
-        conditions = apixu->Conditions();
+        conditions = apixu.Conditions();
     }
-    catch (ApiException &e) {
+    catch (ApiException& e) {
         cout << "ApiException: " << e.what() << " (code: " << e.getCode()
              << ")";
         return 1;
     }
-    catch (ApixuException &e) {
+    catch (ApixuException& e) {
         cout << "ApixuException: " << e.what();
         return 1;
     }
 
-    for (const auto &c : conditions) {
+    for (const auto& c : conditions) {
         cout << "code: " << c.code << endl;
         cout << "day: " << c.day << endl;
         cout << "night: " << c.night << endl;
         cout << "icon: " << c.icon << endl << endl;
     }
-
-    delete apixu;
 
     return 0;
 }
