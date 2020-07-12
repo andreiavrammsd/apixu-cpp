@@ -4,17 +4,17 @@
 #include <iostream>
 #include <vector>
 
-#include "Apixu/Apixu.h"
-#include "Apixu/Exception/ApiException.h"
+#include "Apixu/Exception/api_exception.h"
+#include "Apixu/apixu.h"
 
 using std::cout;
 using std::endl;
 
-using Apixu::Exception::ApiException;
-using Apixu::Exception::ApixuException;
-using Apixu::Response::Location;
-using Apixu::Response::WeatherHistory;
-using Apixu::Response::Forecast::ForecastWeather;
+using apixu::exception::ApiException;
+using apixu::exception::ApixuException;
+using apixu::response::Location;
+using apixu::response::WeatherHistory;
+using apixu::response::forecast::ForecastWeather;
 
 int main()
 {
@@ -24,7 +24,7 @@ int main()
         return 1;
     }
 
-    auto apixu = new Apixu::Apixu(apiKey);
+    auto apixu = new apixu::Apixu(apiKey);
 
     class WeatherHistory history;
     try {

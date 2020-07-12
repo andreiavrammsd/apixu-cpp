@@ -6,8 +6,8 @@
 
 #include "nlohmann/json.hpp"
 
-namespace Apixu {
-namespace Response {
+namespace apixu {
+namespace response {
 struct Error {
     int code{};
     std::string message;
@@ -31,7 +31,7 @@ inline void from_json(const nlohmann::json &j, ErrorResponse &e)
 {  // NOLINT
     e.error = j.at("error");
 }
-}  // namespace Response
-}  // namespace Apixu
+}  // namespace response
+}  // namespace apixu
 
 #endif  // INCLUDE_APIXU_RESPONSE_ERROR_H_

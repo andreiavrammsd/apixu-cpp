@@ -4,12 +4,12 @@
 
 #include <vector>
 
-#include "Apixu/Response/Forecast/ForecastDay.h"
+#include "Apixu/Response/Forecast/forecast_day.h"
 #include "nlohmann/json.hpp"
 
-namespace Apixu {
-namespace Response {
-namespace Forecast {
+namespace apixu {
+namespace response {
+namespace forecast {
 struct ForecastWeather {
     std::vector<ForecastDay> forecast_day;
 
@@ -21,8 +21,8 @@ inline void from_json(const nlohmann::json &j, ForecastWeather &f)
 {  // NOLINT
     f.forecast_day = j.at("forecastday").get<std::vector<ForecastDay>>();
 }
-}  // namespace Forecast
-}  // namespace Response
-}  // namespace Apixu
+}  // namespace forecast
+}  // namespace response
+}  // namespace apixu
 
 #endif  // INCLUDE_APIXU_RESPONSE_FORECAST_FORECASTWEATHER_H_

@@ -2,27 +2,27 @@
 #include <map>
 #include <string>
 
-#include "Apixu/Apixu.h"
-#include "Apixu/Exception/ApiException.h"
-#include "HttpClientMock.cpp"
+#include "Apixu/Exception/api_exception.h"
+#include "Apixu/apixu.h"
 #include "gtest/gtest.h"
+#include "http_client_mock.cpp"
 
-namespace ApixuTest {
+namespace apixutest {
 using std::map;
 using std::string;
 
 class ApixuSearchTest : public ::testing::Test {
    public:
-    const string url = "http://localhost:5000/search.json";
-    const char *apiKey = "apikey";
-    const string q = "Paris";
-    map<string, string> params;
+    const string url_ = "http://localhost:5000/search.json";
+    const string api_key_ = "apikey";
+    const string q_ = "Paris";
+    map<string, string> params_;
 
    protected:
     void SetUp() override
     {
-        params["key"] = apiKey;
-        params["q"] = q;
+        params_["key"] = api_key_;
+        params_["q"] = q_;
     }
 };
 
@@ -43,10 +43,11 @@ TEST_F(ApixuSearchTest, success)
            ]
         )";
 
-    auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
+    auto mock_http_client =
+        HttpClientMock::GetClient(url_, params_, status, body);
 
-    auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
-    auto search = apixu->Search(q);
+    auto apixu = new apixu::Apixu(api_key_, mock_http_client);
+    auto search = apixu->Search(q_);
 
     EXPECT_EQ(988, *search[0].id);
     EXPECT_EQ("ABCDEFG", search[0].name);
@@ -71,11 +72,12 @@ TEST_F(ApixuSearchTest, error)
             }
         )";
 
-    auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
-    auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
+    auto mock_http_client =
+        HttpClientMock::GetClient(url_, params_, status, body);
+    auto apixu = new apixu::Apixu(api_key_, mock_http_client);
 
-    EXPECT_THROW(apixu->Search(q), Apixu::Exception::ApiException);
+    EXPECT_THROW(apixu->Search(q_), apixu::exception::ApiException);
 
     delete apixu;
 }
-}  // namespace ApixuTest
+}  // namespace apixutest

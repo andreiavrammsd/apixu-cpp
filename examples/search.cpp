@@ -2,16 +2,16 @@
 #include <iostream>
 #include <vector>
 
-#include "Apixu/Apixu.h"
-#include "Apixu/Exception/ApiException.h"
+#include "Apixu/Exception/api_exception.h"
+#include "Apixu/apixu.h"
 
 using std::cout;
 using std::endl;
 using std::vector;
 
-using Apixu::Exception::ApiException;
-using Apixu::Exception::ApixuException;
-using Apixu::Response::Location;
+using apixu::exception::ApiException;
+using apixu::exception::ApixuException;
+using apixu::response::Location;
 
 int main()
 {
@@ -21,7 +21,7 @@ int main()
         return 1;
     }
 
-    auto apixu = new Apixu::Apixu(api_key);
+    auto apixu = new apixu::Apixu(api_key);
 
     vector<Location> locations = apixu->Search("Koln, Germany");
 

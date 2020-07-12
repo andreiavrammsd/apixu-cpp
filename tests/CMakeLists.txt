@@ -11,55 +11,55 @@ endmacro()
 
 # Test files
 set(TEST_FILES
-        ApixuConditionsTest.cpp
-        ApixuCurrentTest.cpp
-        ApixuForecastTest.cpp
-        ApixuHistoryTest.cpp
-        ApixuSearchTest.cpp)
+        apixu_conditions_test.cpp
+        apixu_current_test.cpp
+        apixu_forecast_test.cpp
+        apixu_history_test.cpp
+        apixu_search_test.cpp)
 
 # Sources
 set(SOURCE_FILES
-        ../src/Http/Exception.cpp
-        ../src/Http/Http.cpp
-        ../src/Apixu.cpp
-        ../src/Time.cpp
+        ../src/Http/exception.cpp
+        ../src/Http/http.cpp
+        ../src/apixu.cpp
+        ../src/time.cpp
         )
 
 package_add_test(test ${TEST_FILES} ${SOURCE_FILES})
 
 package_add_test(test_conditions
-        ApixuConditionsTest.cpp
-        ../src/Apixu.cpp
-        ../src/Http/Http.cpp
-        ../src/Time.cpp
+        apixu_conditions_test.cpp
+        ../src/apixu.cpp
+        ../src/Http/http.cpp
+        ../src/time.cpp
         )
 
 package_add_test(test_current
-        ApixuCurrentTest.cpp
-        ../src/Apixu.cpp
-        ../src/Http/Http.cpp
-        ../src/Time.cpp
+        apixu_current_test.cpp
+        ../src/apixu.cpp
+        ../src/Http/http.cpp
+        ../src/time.cpp
         )
 
 package_add_test(test_search
-        ApixuSearchTest.cpp
-        ../src/Apixu.cpp
-        ../src/Http/Http.cpp
-        ../src/Time.cpp
+        apixu_search_test.cpp
+        ../src/apixu.cpp
+        ../src/Http/http.cpp
+        ../src/time.cpp
         )
 
 package_add_test(test_history
-        ApixuHistoryTest.cpp
-        ../src/Apixu.cpp
-        ../src/Http/Http.cpp
-        ../src/Time.cpp
+        apixu_history_test.cpp
+        ../src/apixu.cpp
+        ../src/Http/http.cpp
+        ../src/time.cpp
         )
 
 package_add_test(test_forecast
-        ApixuForecastTest.cpp
-        ../src/Apixu.cpp
-        ../src/Http/Http.cpp
-        ../src/Time.cpp
+        apixu_forecast_test.cpp
+        ../src/apixu.cpp
+        ../src/Http/http.cpp
+        ../src/time.cpp
         )
 
 # Dependencies

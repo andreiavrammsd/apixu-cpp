@@ -6,8 +6,8 @@
 
 #include "nlohmann/json.hpp"
 
-namespace Apixu {
-namespace Response {
+namespace apixu {
+namespace response {
 struct Condition {
     int code{};
     std::string day{};
@@ -24,7 +24,7 @@ inline void from_json(const nlohmann::json &j, Condition &c)
     c.night = j.at("night");
     c.icon = j.at("icon");
 }
-}  // namespace Response
-}  // namespace Apixu
+}  // namespace response
+}  // namespace apixu
 
 #endif  // INCLUDE_APIXU_RESPONSE_CONDITION_H_

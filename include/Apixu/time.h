@@ -4,13 +4,13 @@
 
 #include <string>
 
-namespace Apixu {
+namespace apixu {
 class Time {
    public:
     static struct tm parse(const std::string &input);
 
     virtual ~Time() = default;
 };
-}  // namespace Apixu
+}  // namespace apixu
 
 #endif  // INCLUDE_APIXU_TIME_H_

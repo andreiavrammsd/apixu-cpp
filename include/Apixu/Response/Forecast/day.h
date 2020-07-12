@@ -2,12 +2,12 @@
 #ifndef INCLUDE_APIXU_RESPONSE_FORECAST_DAY_H_
 #define INCLUDE_APIXU_RESPONSE_FORECAST_DAY_H_
 
-#include "Apixu/Response/CurrentCondition.h"
+#include "Apixu/Response/current_condition.h"
 #include "nlohmann/json.hpp"
 
-namespace Apixu {
-namespace Response {
-namespace Forecast {
+namespace apixu {
+namespace response {
+namespace forecast {
 struct Day {
     float max_temp_celsius{};
     float max_temp_fahrenheit{};
@@ -90,8 +90,8 @@ inline void from_json(const nlohmann::json &j, Day &d)
         d.uv = j.at("uv");
     }
 }
-}  // namespace Forecast
-}  // namespace Response
-}  // namespace Apixu
+}  // namespace forecast
+}  // namespace response
+}  // namespace apixu
 
 #endif  // INCLUDE_APIXU_RESPONSE_FORECAST_DAY_H_

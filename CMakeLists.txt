@@ -4,10 +4,10 @@ set(CMAKE_CXX_STANDARD 14)
 
 # Sources
 set(SOURCE_FILES
-        src/Http/Exception.cpp
-        src/Http/Http.cpp
-        src/Apixu.cpp
-        src/Time.cpp
+        src/Http/exception.cpp
+        src/Http/http.cpp
+        src/apixu.cpp
+        src/time.cpp
         )
 
 # Include directory

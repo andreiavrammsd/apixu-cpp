@@ -5,12 +5,12 @@
 #include <cstdint>
 #include <string>
 
-#include "Apixu/Response/CurrentCondition.h"
+#include "Apixu/Response/current_condition.h"
 #include "nlohmann/json.hpp"
 
-namespace Apixu {
-namespace Response {
-namespace Forecast {
+namespace apixu {
+namespace response {
+namespace forecast {
 struct Hour {
     time_t time_epoch{};
     std::string time;
@@ -178,8 +178,8 @@ inline void from_json(const nlohmann::json &j, Hour &h)
         h.gust_kph = j.at("gust_kph");
     }
 }
-}  // namespace Forecast
-}  // namespace Response
-}  // namespace Apixu
+}  // namespace forecast
+}  // namespace response
+}  // namespace apixu
 
 #endif  // INCLUDE_APIXU_RESPONSE_FORECAST_HOUR_H_

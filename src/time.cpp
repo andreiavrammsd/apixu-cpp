@@ -1,10 +1,10 @@
 // Copyright 2019 <Andrei Avram>
-#include "Apixu/Time.h"
+#include "Apixu/time.h"
 
 #include <string>
 
-namespace Apixu {
-struct tm Apixu::Time::parse(const std::string &input)
+namespace apixu {
+struct tm apixu::Time::parse(const std::string &input)
 {
     struct tm time {
         0
@@ -12,10 +12,10 @@ struct tm Apixu::Time::parse(const std::string &input)
     int year = 0, month = 0, day = 0, hour = 0, min = 0;
 
     const char *format = "%4d-%2d-%2d %2d:%2d";
-    const int numberOfFieldsConverted = 5;
+    const int number_of_fields_converted = 5;
 
     if (sscanf(input.c_str(), format, &year, &month, &day, &hour, &min) ==
-        numberOfFieldsConverted) {
+        number_of_fields_converted) {
         time.tm_year = year - 1900;
         time.tm_mon = month - 1;
         time.tm_mday = day;
@@ -25,4 +25,4 @@ struct tm Apixu::Time::parse(const std::string &input)
 
     return time;
 }
-}  // namespace Apixu
+}  // namespace apixu

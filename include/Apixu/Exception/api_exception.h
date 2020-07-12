@@ -4,23 +4,23 @@
 
 #include <string>
 
-#include "ApixuException.h"
+#include "apixu_exception.h"
 
-namespace Apixu {
-namespace Exception {
+namespace apixu {
+namespace exception {
 class ApiException : public ApixuException {
    public:
     ApiException(const std::string& message, int code)
-        : ApixuException(message), code(code)
+        : ApixuException(message), code_(code)
     {
     }
 
-    int getCode() const { return code; }
+    int getCode() const { return code_; }
 
    private:
-    int code;
+    int code_;
 };
-}  // namespace Exception
-}  // namespace Apixu
+}  // namespace exception
+}  // namespace apixu
 
 #endif  // INCLUDE_APIXU_EXCEPTION_APIEXCEPTION_H_

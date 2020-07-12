@@ -5,8 +5,8 @@
 #include <map>
 #include <string>
 
-namespace Apixu {
-namespace Http {
+namespace apixu {
+namespace http {
 const int STATUS_INTERNAL_SERVER_ERROR = 500;
 const int STATUS_BAD_REQUEST = 400;
 
@@ -21,8 +21,8 @@ class Response {
     virtual ~Response() = default;
 
    private:
-    int status;
-    std::string body;
+    int status_;
+    std::string body_;
 };
 
 class Http {
@@ -47,7 +47,7 @@ class Client : public Http {
    private:
     std::string userAgent;
 };
-}  // namespace Http
-}  // namespace Apixu
+}  // namespace http
+}  // namespace apixu
 
 #endif  // INCLUDE_APIXU_HTTP_HTTP_H_

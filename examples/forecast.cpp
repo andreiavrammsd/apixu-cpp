@@ -2,22 +2,22 @@
 #include <iostream>
 #include <vector>
 
-#include "Apixu/Apixu.h"
-#include "Apixu/Exception/ApiException.h"
+#include "Apixu/Exception/api_exception.h"
+#include "Apixu/apixu.h"
 
 using std::cout;
 using std::endl;
 using std::vector;
 
-using Apixu::Exception::ApiException;
-using Apixu::Exception::ApixuException;
-using Apixu::Response::Current;
-using Apixu::Response::Location;
-using Apixu::Response::Forecast::Astro;
-using Apixu::Response::Forecast::Day;
-using Apixu::Response::Forecast::ForecastDay;
-using Apixu::Response::Forecast::Hour;
-using Apixu::Response::Forecast::WeatherForecast;
+using apixu::exception::ApiException;
+using apixu::exception::ApixuException;
+using apixu::response::Current;
+using apixu::response::Location;
+using apixu::response::forecast::Astro;
+using apixu::response::forecast::Day;
+using apixu::response::forecast::ForecastDay;
+using apixu::response::forecast::Hour;
+using apixu::response::forecast::WeatherForecast;
 
 int main()
 {
@@ -27,7 +27,7 @@ int main()
         return 1;
     }
 
-    auto apixu = new Apixu::Apixu(api_key);
+    auto apixu = new apixu::Apixu(api_key);
 
     WeatherForecast forecast;
     try {

@@ -6,12 +6,12 @@
 #include <memory>
 #include <string>
 
-#include "Apixu/Time.h"
-#include "CurrentCondition.h"
+#include "Apixu/time.h"
+#include "current_condition.h"
 #include "nlohmann/json.hpp"
 
-namespace Apixu {
-namespace Response {
+namespace apixu {
+namespace response {
 struct Current {
     std::shared_ptr<int> last_updated_epoch{};
     struct tm last_updated {
@@ -134,7 +134,7 @@ inline void from_json(const nlohmann::json &j, Current &c)
         c.gust_kph = std::make_shared<float>(j.at("gust_kph"));
     }
 }
-}  // namespace Response
-}  // namespace Apixu
+}  // namespace response
+}  // namespace apixu
 
 #endif  // INCLUDE_APIXU_RESPONSE_CURRENT_H_

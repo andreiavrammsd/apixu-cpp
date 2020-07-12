@@ -6,9 +6,9 @@
 
 #include "nlohmann/json.hpp"
 
-namespace Apixu {
-namespace Response {
-namespace Forecast {
+namespace apixu {
+namespace response {
+namespace forecast {
 struct Astro {
     std::string sunrise;
     std::string sunset;
@@ -46,8 +46,8 @@ inline void from_json(const nlohmann::json &j, Astro &d)
         d.moon_illumination = j.at("moon_illumination");
     }
 }
-}  // namespace Forecast
-}  // namespace Response
-}  // namespace Apixu
+}  // namespace forecast
+}  // namespace response
+}  // namespace apixu
 
 #endif  // INCLUDE_APIXU_RESPONSE_FORECAST_ASTRO_H_

@@ -7,8 +7,8 @@
 
 #include "nlohmann/json.hpp"
 
-namespace Apixu {
-namespace Response {
+namespace apixu {
+namespace response {
 struct CurrentCondition {
     std::shared_ptr<std::string> text{};
     std::shared_ptr<std::string> icon{};
@@ -24,7 +24,7 @@ inline void from_json(const nlohmann::json &j, CurrentCondition &c)
     c.icon = std::make_shared<std::string>(j.at("icon"));
     c.code = std::make_shared<int>(j.at("code"));
 }
-}  // namespace Response
-}  // namespace Apixu
+}  // namespace response
+}  // namespace apixu
 
 #endif  // INCLUDE_APIXU_RESPONSE_CURRENTCONDITION_H_

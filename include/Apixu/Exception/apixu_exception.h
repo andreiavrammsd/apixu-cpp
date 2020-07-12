@@ -6,18 +6,18 @@
 #include <string>
 #include <utility>
 
-namespace Apixu {
-namespace Exception {
+namespace apixu {
+namespace exception {
 class ApixuException : public std::exception {
    public:
-    explicit ApixuException(const std::string &msg) : msg(msg) {}
+    explicit ApixuException(const std::string &msg) : msg_(msg) {}
 
-    const char *what() const noexcept override { return msg.c_str(); }
+    const char *what() const noexcept override { return msg_.c_str(); }
 
    private:
-    const std::string msg;
+    const std::string msg_;
 };
-}  // namespace Exception
-}  // namespace Apixu
+}  // namespace exception
+}  // namespace apixu
 
 #endif  // INCLUDE_APIXU_EXCEPTION_APIXUEXCEPTION_H_

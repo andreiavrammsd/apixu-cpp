@@ -2,28 +2,28 @@
 #include <map>
 #include <string>
 
-#include "Apixu/Apixu.h"
-#include "Apixu/Exception/ApiException.h"
-#include "HttpClientMock.cpp"
+#include "Apixu/Exception/api_exception.h"
+#include "Apixu/apixu.h"
 #include "gtest/gtest.h"
+#include "http_client_mock.cpp"
 
-namespace ApixuTest {
+namespace apixutest {
 using std::map;
 using std::string;
 
 class ApixuForecastTest : public ::testing::Test {
    public:
-    const string url = "http://localhost:5000/forecast.json";
-    const char *api_key = "apikey";
-    const string q = "Paris";
-    map<string, string> params;
+    const string url_ = "http://localhost:5000/forecast.json";
+    const string api_key_ = "apikey";
+    const string q_ = "Paris";
+    map<string, string> params_;
 
    protected:
     void SetUp() override
     {
-        params["key"] = api_key;
-        params["q"] = q;
-        params["days"] = "1";
+        params_["key"] = api_key_;
+        params_["q"] = q_;
+        params_["days"] = "1";
     }
 };
 
@@ -138,10 +138,11 @@ TEST_F(ApixuForecastTest, success)
             }
         )";
 
-    auto mock_http_client = HttpClientMock::GetClient(url, params, status, body);
+    auto mock_http_client =
+        HttpClientMock::GetClient(url_, params_, status, body);
 
-    auto apixu = new Apixu::Apixu(api_key, mock_http_client);
-    auto forecast = apixu->Forecast(q, 1);
+    auto apixu = new apixu::Apixu(api_key_, mock_http_client);
+    auto forecast = apixu->Forecast(q_, 1);
 
     EXPECT_EQ("ABCDEFGHIJKLMNOPQRST", forecast.location.name);
 
@@ -160,11 +161,12 @@ TEST_F(ApixuForecastTest, error)
             }
         )";
 
-    auto mock_http_client = HttpClientMock::GetClient(url, params, status, body);
-    auto apixu = new Apixu::Apixu(api_key, mock_http_client);
+    auto mock_http_client =
+        HttpClientMock::GetClient(url_, params_, status, body);
+    auto apixu = new apixu::Apixu(api_key_, mock_http_client);
 
-    EXPECT_THROW(apixu->Forecast(q, 1), Apixu::Exception::ApiException);
+    EXPECT_THROW(apixu->Forecast(q_, 1), apixu::exception::ApiException);
 
     delete apixu;
 }
-}  // namespace ApixuTest
+}  // namespace apixutest

@@ -2,16 +2,16 @@
 #include <iostream>
 #include <vector>
 
-#include "Apixu/Apixu.h"
-#include "Apixu/Exception/ApiException.h"
+#include "Apixu/Exception/api_exception.h"
+#include "Apixu/apixu.h"
 
 using std::cout;
 using std::endl;
 using std::vector;
 
-using Apixu::Exception::ApiException;
-using Apixu::Exception::ApixuException;
-using Apixu::Response::Condition;
+using apixu::exception::ApiException;
+using apixu::exception::ApixuException;
+using apixu::response::Condition;
 
 int main()
 {
@@ -21,7 +21,7 @@ int main()
         return 1;
     }
 
-    auto apixu = new Apixu::Apixu(apiKey);
+    auto apixu = new apixu::Apixu(apiKey);
 
     vector<Condition> conditions;
     try {

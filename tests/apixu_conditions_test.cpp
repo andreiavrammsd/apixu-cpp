@@ -1,17 +1,17 @@
 // Copyright 2019 <Andrei Avram>
 #include <string>
 
-#include "Apixu/Apixu.h"
-#include "Apixu/Exception/ApiException.h"
-#include "HttpClientMock.cpp"
+#include "Apixu/Exception/api_exception.h"
+#include "Apixu/apixu.h"
 #include "gtest/gtest.h"
+#include "http_client_mock.cpp"
 
-namespace ApixuTest {
+namespace apixutest {
 using std::string;
 
 class ApixuConditionsTest : public ::testing::Test {
    public:
-    const string url = "http://localhost:5000/conditions.json";
+    const string url_ = "http://localhost:5000/conditions.json";
 };
 
 TEST_F(ApixuConditionsTest, success)
@@ -28,9 +28,9 @@ TEST_F(ApixuConditionsTest, success)
             ]
         )";
 
-    auto mockHttpClient = HttpClientMock::GetHttpClient(url, status, body);
+    auto mock_http_client = HttpClientMock::GetHttpClient(url_, status, body);
 
-    auto apixu = new Apixu::Apixu("", mockHttpClient);
+    auto apixu = new apixu::Apixu("", mock_http_client);
     auto conditions = apixu->Conditions();
 
     EXPECT_EQ(1, conditions.size());
@@ -54,11 +54,11 @@ TEST_F(ApixuConditionsTest, error)
             }
         )";
 
-    auto mockHttpClient = HttpClientMock::GetHttpClient(url, status, body);
-    auto apixu = new Apixu::Apixu("", mockHttpClient);
+    auto mock_http_client = HttpClientMock::GetHttpClient(url_, status, body);
+    auto apixu = new apixu::Apixu("", mock_http_client);
 
-    EXPECT_THROW(apixu->Conditions(), Apixu::Exception::ApixuException);
+    EXPECT_THROW(apixu->Conditions(), apixu::exception::ApixuException);
 
     delete apixu;
 }
-}  // namespace ApixuTest
+}  // namespace apixutest

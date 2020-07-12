@@ -5,11 +5,11 @@
 #include <memory>
 #include <string>
 
-#include "Apixu/Time.h"
+#include "Apixu/time.h"
 #include "nlohmann/json.hpp"
 
-namespace Apixu {
-namespace Response {
+namespace apixu {
+namespace response {
 struct Location {
     std::shared_ptr<int> id;
     std::string name;
@@ -54,7 +54,7 @@ inline void from_json(const nlohmann::json &j, Location &l)
         l.localtime = Time::parse(j.at("localtime"));
     }
 }
-}  // namespace Response
-}  // namespace Apixu
+}  // namespace response
+}  // namespace apixu
 
 #endif  // INCLUDE_APIXU_RESPONSE_LOCATION_H_

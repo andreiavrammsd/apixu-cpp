@@ -2,28 +2,28 @@
 #include <map>
 #include <string>
 
-#include "Apixu/Apixu.h"
-#include "Apixu/Exception/ApiException.h"
-#include "HttpClientMock.cpp"
+#include "Apixu/Exception/api_exception.h"
+#include "Apixu/apixu.h"
 #include "gtest/gtest.h"
+#include "http_client_mock.cpp"
 
-namespace ApixuTest {
+namespace apixutest {
 using std::map;
 using std::string;
 
 class ApixuHistoryTest : public ::testing::Test {
    public:
-    const string url = "http://localhost:5000/history.json";
-    const char *apiKey = "apikey";
-    const string q = "Paris";
-    map<string, string> params;
+    const string url_ = "http://localhost:5000/history.json";
+    const string api_key_ = "apikey";
+    const string q_ = "Paris";
+    map<string, string> params_;
 
    protected:
     void SetUp() override
     {
-        params["key"] = apiKey;
-        params["q"] = q;
-        params["dt"] = "2019-01-01";
+        params_["key"] = api_key_;
+        params_["q"] = q_;
+        params_["dt"] = "2019-01-01";
     }
 };
 
@@ -113,10 +113,11 @@ TEST_F(ApixuHistoryTest, success)
             }
         )";
 
-    auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
+    auto mock_http_client =
+        HttpClientMock::GetClient(url_, params_, status, body);
 
-    auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
-    auto history = apixu->History(q, "2019-01-01");
+    auto apixu = new apixu::Apixu(api_key_, mock_http_client);
+    auto history = apixu->History(q_, "2019-01-01");
 
     EXPECT_EQ("ABCDEFGHIJK", history.location.name);
 
@@ -135,12 +136,13 @@ TEST_F(ApixuHistoryTest, error)
             }
         )";
 
-    auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
-    auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
+    auto mock_http_client =
+        HttpClientMock::GetClient(url_, params_, status, body);
+    auto apixu = new apixu::Apixu(api_key_, mock_http_client);
 
-    EXPECT_THROW(apixu->History(q, "2019-01-01"),
-                 Apixu::Exception::ApiException);
+    EXPECT_THROW(apixu->History(q_, "2019-01-01"),
+                 apixu::exception::ApiException);
 
     delete apixu;
 }
-}  // namespace ApixuTest
+}  // namespace apixutest

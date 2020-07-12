@@ -5,14 +5,14 @@
 #include <string>
 #include <vector>
 
-#include "Apixu/Response/Forecast/Astro.h"
-#include "Apixu/Response/Forecast/Day.h"
-#include "Apixu/Response/Forecast/Hour.h"
+#include "Apixu/Response/Forecast/astro.h"
+#include "Apixu/Response/Forecast/day.h"
+#include "Apixu/Response/Forecast/hour.h"
 #include "nlohmann/json.hpp"
 
-namespace Apixu {
-namespace Response {
-namespace Forecast {
+namespace apixu {
+namespace response {
+namespace forecast {
 struct ForecastDay {
     std::string date;
     time_t date_epoch;
@@ -34,8 +34,8 @@ inline void from_json(const nlohmann::json &j, ForecastDay &f)
         f.hour = j.at("hour").get<std::vector<Hour>>();
     }
 }
-}  // namespace Forecast
-}  // namespace Response
-}  // namespace Apixu
+}  // namespace forecast
+}  // namespace response
+}  // namespace apixu
 
 #endif  // INCLUDE_APIXU_RESPONSE_FORECAST_FORECASTDAY_H_

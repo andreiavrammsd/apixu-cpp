@@ -2,12 +2,12 @@
 #ifndef INCLUDE_APIXU_RESPONSE_CURRENTWEATHER_H_
 #define INCLUDE_APIXU_RESPONSE_CURRENTWEATHER_H_
 
-#include "Apixu/Response/Current.h"
-#include "Apixu/Response/Location.h"
+#include "Apixu/Response/current.h"
+#include "Apixu/Response/location.h"
 #include "nlohmann/json.hpp"
 
-namespace Apixu {
-namespace Response {
+namespace apixu {
+namespace response {
 struct CurrentWeather {
     Location location;
     Current current;
@@ -21,7 +21,7 @@ inline void from_json(const nlohmann::json &j, CurrentWeather &cw)
     cw.location = j.at("location");
     cw.current = j.at("current");
 }
-}  // namespace Response
-}  // namespace Apixu
+}  // namespace response
+}  // namespace apixu
 
 #endif  // INCLUDE_APIXU_RESPONSE_CURRENTWEATHER_H_

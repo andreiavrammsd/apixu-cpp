@@ -1,5 +1,5 @@
 // Copyright 2019 <Andrei Avram>
-#include "Apixu/Http/Http.h"
+#include "Apixu/Http/http.h"
 
 #include <curl/curl.h>
 
@@ -8,10 +8,10 @@
 #include <string>
 #include <utility>
 
-#include "Exception.cpp"
+#include "exception.cpp"
 
-namespace Apixu {
-namespace Http {
+namespace apixu {
+namespace http {
 Client::Client(std::string userAgent) : userAgent(std::move(userAgent)) {}
 
 inline std::string paramsToQuery(CURL *curl,
@@ -63,15 +63,15 @@ const Response *Client::get(const std::string &url,
         throw Exception("Cannot init curl");
     }
 
-    std::string apiUrl = url + "?" + paramsToQuery(curl, params);
+    std::string api_url = url + "?" + paramsToQuery(curl, params);
 
-    curl_easy_setopt(curl, CURLOPT_URL, apiUrl.c_str());
+    curl_easy_setopt(curl, CURLOPT_URL, api_url.c_str());
     curl_easy_setopt(curl, CURLOPT_USERAGENT, userAgent.c_str());
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeCallback);
 
-    std::string readBuffer;
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+    std::string read_buffer;
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &read_buffer);
 
     CURLcode res = curl_easy_perform(curl);
     if (res != CURLE_OK) {
@@ -83,16 +83,16 @@ const Response *Client::get(const std::string &url,
 
     curl_easy_cleanup(curl);
 
-    return new Response(responseCode, readBuffer);
+    return new Response(responseCode, read_buffer);
 }
 
-int Response::getStatus() const { return status; }
+int Response::getStatus() const { return status_; }
 
-const std::string &Response::getBody() const { return body; }
+const std::string &Response::getBody() const { return body_; }
 
 Response::Response(int status, std::string body)
-    : status(status), body(std::move(body))
+    : status_(status), body_(std::move(body))
 {
 }
-}  // namespace Http
-}  // namespace Apixu
+}  // namespace http
+}  // namespace apixu
