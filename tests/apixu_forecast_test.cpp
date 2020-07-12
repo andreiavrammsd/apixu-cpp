@@ -140,8 +140,8 @@ TEST_F(ApixuForecastTest, success)
 
     auto mock_http_client =
         HttpClientMock::GetClient(url_, params_, status, body);
+    apixu::Apixu apixu{api_key_, std::move(mock_http_client)};
 
-    apixu::Apixu apixu{api_key_, mock_http_client};
     const auto& forecast = apixu.Forecast(q_, 1);
 
     EXPECT_EQ("ABCDEFGHIJKLMNOPQRST", forecast.location.name);
@@ -161,7 +161,7 @@ TEST_F(ApixuForecastTest, error)
 
     auto mock_http_client =
         HttpClientMock::GetClient(url_, params_, status, body);
-    apixu::Apixu apixu{api_key_, mock_http_client};
+    apixu::Apixu apixu{api_key_, std::move(mock_http_client)};
 
     EXPECT_THROW(apixu.Forecast(q_, 1), apixu::exception::ApiException);
 }

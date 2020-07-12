@@ -11,6 +11,7 @@ endmacro()
 
 # Test files
 set(TEST_FILES
+        apixu_test.cpp
         apixu_conditions_test.cpp
         apixu_current_test.cpp
         apixu_forecast_test.cpp
@@ -26,6 +27,13 @@ set(SOURCE_FILES
         )
 
 package_add_test(test ${TEST_FILES} ${SOURCE_FILES})
+
+package_add_test(test_apixu
+        apixu_test.cpp
+        ../src/apixu.cpp
+        ../src/Http/http.cpp
+        ../src/time.cpp
+        )
 
 package_add_test(test_conditions
         apixu_conditions_test.cpp

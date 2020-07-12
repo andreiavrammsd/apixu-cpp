@@ -12,15 +12,17 @@
 namespace apixu {
 Apixu::Apixu(const std::string& api_key) : api_key_(api_key)
 {
-    http_client_ = new http::Client(user_agent_);
+    http_client_ = std::make_unique<http::Client>(user_agent_);
 }
 
-Apixu::Apixu(const std::string& apiKey, http::Http* http_client)
-    : api_key_(apiKey), http_client_(http_client)
+Apixu::Apixu(const std::string& api_key,
+             std::unique_ptr<http::Http> http_client)
+    : api_key_(api_key), http_client_(std::move(http_client))
 {
+    if (http_client_ == nullptr) {
+        throw std::invalid_argument{"http client is null"};
+    }
 }
-
-Apixu::~Apixu() { delete http_client_; }
 
 std::vector<response::Condition> Apixu::Conditions() const
 {
@@ -124,18 +126,15 @@ std::string Apixu::get(const std::string& url,
                        std::map<std::string, std::string> params) const
 {
     auto response = http_client_->get(url, std::move(params));
-    int status = response->getStatus();
-    std::string body = response->getBody();
-    delete response;
 
-    if (status >= http::STATUS_INTERNAL_SERVER_ERROR) {
+    if (response.status >= http::STATUS_INTERNAL_SERVER_ERROR) {
         throw exception::ApixuException("Internal Server Error");
     }
-    else if (status >= http::STATUS_BAD_REQUEST) {
-        response::ErrorResponse errRes = nlohmann::json::parse(body);
+    else if (response.status >= http::STATUS_BAD_REQUEST) {
+        response::ErrorResponse errRes = nlohmann::json::parse(response.body);
         throw exception::ApiException(errRes.error.message, errRes.error.code);
     }
 
-    return body;
+    return response.body;
 }
 }  // namespace apixu

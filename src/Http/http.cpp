@@ -12,10 +12,10 @@
 
 namespace apixu {
 namespace http {
-Client::Client(std::string userAgent) : userAgent(std::move(userAgent)) {}
+Client::Client(std::string userAgent) : user_agent_(std::move(userAgent)) {}
 
-inline std::string paramsToQuery(CURL* curl,
-                                 std::map<std::string, std::string> params)
+inline std::string paramsToQuery(
+    CURL* curl, const std::map<std::string, std::string>& params)
 {
     std::ostringstream query;
 
@@ -49,24 +49,24 @@ inline size_t writeCallback(void* contents, size_t size, size_t nmemb,
     return size * nmemb;
 }
 
-const Response* Client::get(const std::string& url) const
+Response Client::get(const std::string& url) const
 {
     std::map<std::string, std::string> params;
     return get(url, params);
 }
 
-const Response* Client::get(const std::string& url,
-                            std::map<std::string, std::string> params) const
+Response Client::get(const std::string& url,
+                     const std::map<std::string, std::string>& params) const
 {
     CURL* curl = curl_easy_init();
     if (!curl) {
         throw Exception("Cannot init curl");
     }
 
-    std::string api_url = url + "?" + paramsToQuery(curl, move(params));
+    std::string api_url = url + "?" + paramsToQuery(curl, params);
 
     curl_easy_setopt(curl, CURLOPT_URL, api_url.c_str());
-    curl_easy_setopt(curl, CURLOPT_USERAGENT, userAgent.c_str());
+    curl_easy_setopt(curl, CURLOPT_USERAGENT, user_agent_.c_str());
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeCallback);
 
@@ -83,16 +83,8 @@ const Response* Client::get(const std::string& url,
 
     curl_easy_cleanup(curl);
 
-    return new Response(responseCode, read_buffer);
+    return Response{responseCode, read_buffer};
 }
 
-int Response::getStatus() const { return status_; }
-
-const std::string& Response::getBody() const { return body_; }
-
-Response::Response(int status, std::string body)
-    : status_(status), body_(std::move(body))
-{
-}
 }  // namespace http
 }  // namespace apixu

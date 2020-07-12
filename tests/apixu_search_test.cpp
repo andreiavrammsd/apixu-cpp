@@ -46,7 +46,7 @@ TEST_F(ApixuSearchTest, success)
     auto mock_http_client =
         HttpClientMock::GetClient(url_, params_, status, body);
 
-    apixu::Apixu apixu{api_key_, mock_http_client};
+    apixu::Apixu apixu{api_key_, std::move(mock_http_client)};
     const auto& search = apixu.Search(q_);
 
     EXPECT_EQ(988, *search[0].id);
@@ -72,7 +72,7 @@ TEST_F(ApixuSearchTest, error)
 
     auto mock_http_client =
         HttpClientMock::GetClient(url_, params_, status, body);
-    apixu::Apixu apixu{api_key_, mock_http_client};
+    apixu::Apixu apixu{api_key_, std::move(mock_http_client)};
 
     EXPECT_THROW(apixu.Search(q_), apixu::exception::ApiException);
 }

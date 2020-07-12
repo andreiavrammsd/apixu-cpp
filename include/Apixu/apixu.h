@@ -19,7 +19,7 @@ class Apixu {
    public:
     explicit Apixu(const std::string& api_key);
 
-    Apixu(const std::string& api_key, http::Http* http_client);
+    Apixu(const std::string& api_key, std::unique_ptr<http::Http> http_client);
 
     std::vector<response::Condition> Conditions() const;
 
@@ -34,11 +34,9 @@ class Apixu {
                                      const std::string& since,
                                      std::string* until = nullptr) const;
 
-    virtual ~Apixu();
-
    private:
     const std::string api_key_;
-    http::Http* http_client_;
+    std::unique_ptr<http::Http> http_client_;
 
     const std::string api_url_ = "http://localhost:5000/";
     const std::string api_format_ = "json";

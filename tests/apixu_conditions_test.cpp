@@ -29,8 +29,7 @@ TEST_F(ApixuConditionsTest, success)
         )";
 
     auto mock_http_client = HttpClientMock::GetHttpClient(url_, status, body);
-
-    apixu::Apixu apixu{"", mock_http_client};
+    apixu::Apixu apixu{"", std::move(mock_http_client)};
 
     const auto& conditions = apixu.Conditions();
 
@@ -54,7 +53,7 @@ TEST_F(ApixuConditionsTest, error)
         )";
 
     auto mock_http_client = HttpClientMock::GetHttpClient(url_, status, body);
-    apixu::Apixu apixu{"", mock_http_client};
+    apixu::Apixu apixu{"", std::move(mock_http_client)};
 
     EXPECT_THROW(apixu.Conditions(), apixu::exception::ApixuException);
 }

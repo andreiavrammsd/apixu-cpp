@@ -10,28 +10,18 @@ namespace http {
 const int STATUS_INTERNAL_SERVER_ERROR = 500;
 const int STATUS_BAD_REQUEST = 400;
 
-class Response {
-   public:
-    Response(int status, std::string body);
-
-    virtual int getStatus() const;
-
-    virtual const std::string& getBody() const;
-
-    virtual ~Response() = default;
-
-   private:
-    int status_;
-    std::string body_;
+struct Response {
+    int status{};
+    std::string body;
 };
 
 class Http {
    public:
-    virtual const Response* get(
+    virtual Response get(
         const std::string& path,
-        std::map<std::string, std::string> params) const = 0;
+        const std::map<std::string, std::string>& params) const = 0;
 
-    virtual const Response* get(const std::string& path) const = 0;
+    virtual Response get(const std::string& path) const = 0;
 
     virtual ~Http() = default;
 };
@@ -40,14 +30,14 @@ class Client : public Http {
    public:
     explicit Client(std::string userAgent);
 
-    const Response* get(
+    Response get(
         const std::string& url,
-        std::map<std::string, std::string> params) const override;
+        const std::map<std::string, std::string>& params) const override;
 
-    const Response* get(const std::string& url) const override;
+    Response get(const std::string& url) const override;
 
    private:
-    std::string userAgent;
+    std::string user_agent_;
 };
 }  // namespace http
 }  // namespace apixu
