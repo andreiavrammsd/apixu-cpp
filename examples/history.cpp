@@ -18,13 +18,13 @@ using apixu::response::forecast::ForecastWeather;
 
 int main()
 {
-    const char *apiKey = getenv("APIXUKEY");
-    if (!apiKey) {
+    const char *api_key = getenv("APIXUKEY");
+    if (!api_key) {
         cout << "APIXUKEY not set";
         return 1;
     }
 
-    auto apixu = new apixu::Apixu(apiKey);
+    auto apixu = new apixu::Apixu(api_key);
 
     class WeatherHistory history;
     try {
