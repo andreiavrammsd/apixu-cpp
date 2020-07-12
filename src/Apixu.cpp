@@ -132,8 +132,7 @@ std::string Apixu::get(const std::string &url,
     }
     else if (status >= Http::STATUS_BAD_REQUEST) {
         Response::ErrorResponse errRes = nlohmann::json::parse(body);
-        throw Exception::ApiException(errRes.getError().getMessage(),
-                                      errRes.getError().getCode());
+        throw Exception::ApiException(errRes.error.message, errRes.error.code);
     }
 
     return body;

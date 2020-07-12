@@ -38,10 +38,10 @@ int main()
     }
 
     for (const auto &c : conditions) {
-        cout << "code: " << c.getCode() << endl;
-        cout << "day: " << c.getDay() << endl;
-        cout << "night: " << c.getNight() << endl;
-        cout << "icon: " << c.getIcon() << endl << endl;
+        cout << "code: " << c.code << endl;
+        cout << "day: " << c.day << endl;
+        cout << "night: " << c.night << endl;
+        cout << "icon: " << c.icon << endl << endl;
     }
 
     delete apixu;

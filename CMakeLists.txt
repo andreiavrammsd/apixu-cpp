@@ -7,22 +7,7 @@ set(SOURCE_FILES
         src/Http/Exception.cpp
         src/Http/Http.cpp
         src/Apixu.cpp
-        src/Exception/ApixuException.cpp
-        src/Exception/ApiException.cpp
         src/Time.cpp
-        src/Response/Condition.cpp
-        src/Response/Current.cpp
-        src/Response/Error.cpp
-        src/Response/WeatherHistory.cpp
-        src/Response/CurrentWeather.cpp
-        src/Response/Forecast/WeatherForecast.cpp
-        src/Response/Forecast/ForecastDay.cpp
-        src/Response/Forecast/Day.cpp
-        src/Response/Forecast/ForecastWeather.cpp
-        src/Response/Forecast/Hour.cpp
-        src/Response/Forecast/Astro.cpp
-        src/Response/Location.cpp
-        src/Response/CurrentCondition.cpp
         )
 
 # Include directory

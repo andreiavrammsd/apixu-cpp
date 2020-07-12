@@ -14,14 +14,14 @@ using std::string;
 class ApixuForecastTest : public ::testing::Test {
    public:
     const string url = "http://localhost:5000/forecast.json";
-    const char *apiKey = "apikey";
+    const char *api_key = "apikey";
     const string q = "Paris";
     map<string, string> params;
 
    protected:
     void SetUp() override
     {
-        params["key"] = apiKey;
+        params["key"] = api_key;
         params["q"] = q;
         params["days"] = "1";
     }
@@ -138,12 +138,12 @@ TEST_F(ApixuForecastTest, success)
             }
         )";
 
-    auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
+    auto mock_http_client = HttpClientMock::GetClient(url, params, status, body);
 
-    auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
+    auto apixu = new Apixu::Apixu(api_key, mock_http_client);
     auto forecast = apixu->Forecast(q, 1);
 
-    EXPECT_EQ("ABCDEFGHIJKLMNOPQRST", forecast.getLocation().getName());
+    EXPECT_EQ("ABCDEFGHIJKLMNOPQRST", forecast.location.name);
 
     delete apixu;
 }
@@ -160,8 +160,8 @@ TEST_F(ApixuForecastTest, error)
             }
         )";
 
-    auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
-    auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
+    auto mock_http_client = HttpClientMock::GetClient(url, params, status, body);
+    auto apixu = new Apixu::Apixu(api_key, mock_http_client);
 
     EXPECT_THROW(apixu->Forecast(q, 1), Apixu::Exception::ApiException);
 

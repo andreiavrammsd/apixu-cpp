@@ -8,15 +8,7 @@
 
 namespace Apixu {
 namespace Response {
-class WeatherHistory {
-   public:
-    const Location &getLocation() const;
-
-    const Forecast::ForecastWeather &getForecast() const;
-
-    virtual ~WeatherHistory() = default;
-
-   private:
+struct WeatherHistory {
     Location location;
     Forecast::ForecastWeather forecast;
 

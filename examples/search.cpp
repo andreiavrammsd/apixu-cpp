@@ -15,29 +15,29 @@ using Apixu::Response::Location;
 
 int main()
 {
-    const char *apiKey = getenv("APIXUKEY");
-    if (!apiKey) {
+    const char *api_key = getenv("APIXUKEY");
+    if (!api_key) {
         cout << "APIXUKEY not set";
         return 1;
     }
 
-    auto apixu = new Apixu::Apixu(apiKey);
+    auto apixu = new Apixu::Apixu(api_key);
 
     vector<Location> locations = apixu->Search("Koln, Germany");
 
     for (const auto &loc : locations) {
-        if (loc.getId()) {
-            cout << "id = " << *loc.getId() << endl;
+        if (loc.id) {
+            cout << "id = " << *loc.id << endl;
         }
-        cout << "name = " << loc.getName() << endl;
-        cout << "region = " << loc.getRegion() << endl;
-        cout << "country = " << loc.getCountry() << endl;
-        cout << "lat = " << loc.getLat() << endl;
-        cout << "lon = " << loc.getLon() << endl;
-        cout << "url = " << *loc.getUrl() << endl;
-        cout << "timezone = " << *loc.getTimezone() << endl;
-        cout << "localtime epoch = " << *loc.getLocaltimeEpoch() << endl;
-        cout << "localtime = " << loc.getLocaltime().tm_min << endl;
+        cout << "name = " << loc.name << endl;
+        cout << "region = " << loc.region << endl;
+        cout << "country = " << loc.country << endl;
+        cout << "lat = " << loc.lat << endl;
+        cout << "lon = " << loc.lon << endl;
+        cout << "url = " << *loc.url << endl;
+        cout << "timezone = " << *loc.timezone << endl;
+        cout << "localtime epoch = " << *loc.localtime_epoch << endl;
+        cout << "localtime = " << loc.localtime.tm_min << endl;
         cout << endl;
     }
 

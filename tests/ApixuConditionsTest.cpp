@@ -34,10 +34,10 @@ TEST_F(ApixuConditionsTest, success)
     auto conditions = apixu->Conditions();
 
     EXPECT_EQ(1, conditions.size());
-    EXPECT_EQ(1, conditions[0].getCode());
-    EXPECT_EQ("day", conditions[0].getDay());
-    EXPECT_EQ("night", conditions[0].getNight());
-    EXPECT_EQ(22, conditions[0].getIcon());
+    EXPECT_EQ(1, conditions[0].code);
+    EXPECT_EQ("day", conditions[0].day);
+    EXPECT_EQ("night", conditions[0].night);
+    EXPECT_EQ(22, conditions[0].icon);
 
     delete apixu;
 }

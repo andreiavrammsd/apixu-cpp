@@ -48,17 +48,17 @@ int main()
 
     cout << "location" << endl;
 
-    const Location &location = history.getLocation();
+    const Location &location = history.location;
 
-    cout << "\tname = " << location.getName() << endl;
-    cout << "\tregion = " << location.getRegion() << endl;
-    cout << "\tcountry = " << location.getCountry() << endl;
-    cout << "\tlat = " << location.getLat() << endl;
-    cout << "\tlon = " << location.getLon() << endl;
-    cout << "\ttimezone = " << *location.getTimezone() << endl;
-    cout << "\tlocaltime epoch = " << *location.getLocaltimeEpoch() << endl;
+    cout << "\tname = " << location.name << endl;
+    cout << "\tregion = " << location.region << endl;
+    cout << "\tcountry = " << location.country << endl;
+    cout << "\tlat = " << location.lat << endl;
+    cout << "\tlon = " << location.lon << endl;
+    cout << "\ttimezone = " << *location.timezone << endl;
+    cout << "\tlocaltime epoch = " << *location.localtime_epoch << endl;
 
-    auto localtime = location.getLocaltime();
+    auto localtime = location.localtime;
     cout << "\tlocaltime:" << endl;
     cout << "\t\tyear = " << localtime.tm_year
          << ", month = " << localtime.tm_mon << ", day = " << localtime.tm_mday
@@ -68,27 +68,26 @@ int main()
 
     cout << endl << "forecast weather" << endl;
 
-    const ForecastWeather &forecast = history.getForecast();
+    const ForecastWeather &forecast = history.forecast;
 
-    for (const auto &f : forecast.getForecastDay()) {
-        cout << "\tdate = " << f.getDate() << endl;
-        cout << "\tdate epoch = " << f.getDateEpoch() << endl;
+    for (const auto &f : forecast.forecast_day) {
+        cout << "\tdate = " << f.date << endl;
+        cout << "\tdate epoch = " << f.date_epoch << endl;
 
         cout << "\tday" << endl;
-        cout << "\t\tmax temp C = " << f.getDay().getMaxTempCelsius() << endl;
-        cout << "\t\tmax temp F = " << f.getDay().getMaxTempFahrenheit()
-             << endl;
+        cout << "\t\tmax temp C = " << f.day.max_temp_celsius << endl;
+        cout << "\t\tmax temp F = " << f.day.max_temp_fahrenheit << endl;
 
         cout << "\tastro" << endl;
-        cout << "\t\tsunrise = " << f.getAstro().getSunrise() << endl;
-        cout << "\t\tsunset = " << f.getAstro().getSunset() << endl;
+        cout << "\t\tsunrise = " << f.astro.sunrise << endl;
+        cout << "\t\tsunset = " << f.astro.sunset << endl;
 
         cout << "\thour" << endl;
-        for (const auto &h : f.getHour()) {
-            cout << "\t\ttime epoch = " << h.getTimeEpoch() << endl;
-            cout << "\t\ttime = " << h.getTime() << endl;
-            cout << "\t\ttemp C = " << h.getTempC() << endl;
-            cout << "\t\ttemp F = " << h.getTempF() << endl;
+        for (const auto &h : f.hour) {
+            cout << "\t\ttime epoch = " << h.time_epoch << endl;
+            cout << "\t\ttime = " << h.time << endl;
+            cout << "\t\ttemp C = " << h.temp_c << endl;
+            cout << "\t\ttemp F = " << h.temp_f << endl;
             cout << endl;
         }
     }

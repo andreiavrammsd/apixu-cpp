@@ -8,26 +8,13 @@
 
 namespace Apixu {
 namespace Response {
-class Condition {
-   public:
-    int getCode() const;
-
-    const std::string &getDay() const;
-
-    const std::string &getNight() const;
-
-    int getIcon() const;
-
-    virtual ~Condition() = default;
-
-   private:
+struct Condition {
     int code{};
     std::string day{};
     std::string night{};
     int icon{};
 
-    friend void from_json(const nlohmann::json &j,
-                          Condition &c);  // NOLINT
+    friend void from_json(const nlohmann::json &j, Condition &c);  // NOLINT
 };
 
 inline void from_json(const nlohmann::json &j, Condition &c)

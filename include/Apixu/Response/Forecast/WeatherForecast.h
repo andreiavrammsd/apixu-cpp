@@ -10,17 +10,7 @@
 namespace Apixu {
 namespace Response {
 namespace Forecast {
-class WeatherForecast {
-   public:
-    const Location &getLocation() const;
-
-    const Current &getCurrent() const;
-
-    const ForecastWeather &getForecast() const;
-
-    virtual ~WeatherForecast() = default;
-
-   private:
+struct WeatherForecast {
     Location location;
     Current current;
     ForecastWeather forecast{};

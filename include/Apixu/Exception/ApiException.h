@@ -10,9 +10,12 @@ namespace Apixu {
 namespace Exception {
 class ApiException : public ApixuException {
    public:
-    ApiException(std::string message, int code);
+    ApiException(const std::string& message, int code)
+        : ApixuException(message), code(code)
+    {
+    }
 
-    int getCode() const;
+    int getCode() const { return code; }
 
    private:
     int code;

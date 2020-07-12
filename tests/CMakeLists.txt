@@ -22,22 +22,8 @@ set(SOURCE_FILES
         ../src/Http/Exception.cpp
         ../src/Http/Http.cpp
         ../src/Apixu.cpp
-        ../src/Exception/ApixuException.cpp
-        ../src/Exception/ApiException.cpp
         ../src/Time.cpp
-        ../src/Response/Condition.cpp
-        ../src/Response/Current.cpp
-        ../src/Response/Error.cpp
-        ../src/Response/WeatherHistory.cpp
-        ../src/Response/CurrentWeather.cpp
-        ../src/Response/Forecast/WeatherForecast.cpp
-        ../src/Response/Forecast/ForecastDay.cpp
-        ../src/Response/Forecast/Day.cpp
-        ../src/Response/Forecast/ForecastWeather.cpp
-        ../src/Response/Forecast/Hour.cpp
-        ../src/Response/Forecast/Astro.cpp
-        ../src/Response/Location.cpp
-        ../src/Response/CurrentCondition.cpp)
+        )
 
 package_add_test(test ${TEST_FILES} ${SOURCE_FILES})
 
@@ -46,61 +32,35 @@ package_add_test(test_conditions
         ../src/Apixu.cpp
         ../src/Http/Http.cpp
         ../src/Time.cpp
-        ../src/Exception/ApiException.cpp
-        ../src/Exception/ApixuException.cpp
-        ../src/Response/Condition.cpp
-        ../src/Response/Location.cpp
-        ../src/Response/Error.cpp)
+        )
 
 package_add_test(test_current
         ApixuCurrentTest.cpp
         ../src/Apixu.cpp
         ../src/Http/Http.cpp
         ../src/Time.cpp
-        ../src/Exception/ApiException.cpp
-        ../src/Exception/ApixuException.cpp
-        ../src/Response/Current.cpp
-        ../src/Response/CurrentCondition.cpp
-        ../src/Response/CurrentWeather.cpp
-        ../src/Response/Location.cpp
-        ../src/Response/Error.cpp)
+        )
 
 package_add_test(test_search
         ApixuSearchTest.cpp
         ../src/Apixu.cpp
         ../src/Http/Http.cpp
         ../src/Time.cpp
-        ../src/Exception/ApiException.cpp
-        ../src/Exception/ApixuException.cpp
-        ../src/Response/CurrentWeather.cpp
-        ../src/Response/Location.cpp
-        ../src/Response/Current.cpp
-        ../src/Response/CurrentCondition.cpp
-        ../src/Response/Error.cpp)
+        )
 
 package_add_test(test_history
         ApixuHistoryTest.cpp
         ../src/Apixu.cpp
         ../src/Http/Http.cpp
         ../src/Time.cpp
-        ../src/Exception/ApiException.cpp
-        ../src/Exception/ApixuException.cpp
-        ../src/Response/WeatherHistory.cpp
-        ../src/Response/Location.cpp
-        ../src/Response/Current.cpp
-        ../src/Response/CurrentCondition.cpp
-        ../src/Response/Error.cpp)
+        )
 
 package_add_test(test_forecast
         ApixuForecastTest.cpp
         ../src/Apixu.cpp
         ../src/Http/Http.cpp
         ../src/Time.cpp
-        ../src/Exception/ApiException.cpp
-        ../src/Exception/ApixuException.cpp
-        ../src/Response/Forecast/WeatherForecast.cpp
-        ../src/Response/Location.cpp
-        ../src/Response/Error.cpp)
+        )
 
 # Dependencies
 include(FetchContent)

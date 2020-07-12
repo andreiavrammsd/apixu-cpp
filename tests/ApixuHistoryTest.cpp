@@ -118,7 +118,7 @@ TEST_F(ApixuHistoryTest, success)
     auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
     auto history = apixu->History(q, "2019-01-01");
 
-    EXPECT_EQ("ABCDEFGHIJK", history.getLocation().getName());
+    EXPECT_EQ("ABCDEFGHIJK", history.location.name);
 
     delete apixu;
 }

@@ -8,15 +8,7 @@
 
 namespace Apixu {
 namespace Response {
-class Error {
-   public:
-    int getCode() const;
-
-    const std::string &getMessage() const;
-
-    virtual ~Error() = default;
-
-   private:
+struct Error {
     int code{};
     std::string message;
 
@@ -29,15 +21,10 @@ inline void from_json(const nlohmann::json &j, Error &e)
     e.message = j.at("message");
 }
 
-class ErrorResponse {
-   public:
-    const Error &getError() const;
-
-   private:
-    friend void from_json(const nlohmann::json &j,
-                          ErrorResponse &e);  // NOLINT
-
+struct ErrorResponse {
     Error error;
+
+    friend void from_json(const nlohmann::json &j, ErrorResponse &e);  // NOLINT
 };
 
 inline void from_json(const nlohmann::json &j, ErrorResponse &e)

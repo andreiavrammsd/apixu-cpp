@@ -14,14 +14,14 @@ using std::string;
 class ApixuCurrentTest : public ::testing::Test {
    public:
     const string url = "http://localhost:5000/current.json";
-    const char *apiKey = "apikey";
+    const char *api_key = "apikey";
     const string q = "Paris";
     map<string, string> params;
 
    protected:
     void SetUp() override
     {
-        params["key"] = apiKey;
+        params["key"] = api_key;
         params["q"] = q;
     }
 };
@@ -71,20 +71,20 @@ TEST_F(ApixuCurrentTest, success)
             }
         )";
 
-    auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
+    auto mock_http_client =
+        HttpClientMock::GetClient(url, params, status, body);
 
-    auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
+    auto apixu = new Apixu::Apixu(api_key, mock_http_client);
     auto current = apixu->Current(q);
 
     // Location
-    EXPECT_EQ("ABCDEFGHIJKLMNOPQRST", current.getLocation().getName());
-    EXPECT_EQ("ABCDEFGHIJKLMNOPQRSTUVWXYZ", current.getLocation().getRegion());
-    EXPECT_EQ("ABCDEFGHIJKLMNOPQRS", current.getLocation().getCountry());
-    EXPECT_EQ(934.25, current.getLocation().getLat());
-    EXPECT_EQ(617.0, current.getLocation().getLon());
-    EXPECT_EQ("ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-              *current.getLocation().getTimezone());
-    EXPECT_EQ(1574708193, *current.getLocation().getLocaltimeEpoch());
+    EXPECT_EQ("ABCDEFGHIJKLMNOPQRST", current.location.name);
+    EXPECT_EQ("ABCDEFGHIJKLMNOPQRSTUVWXYZ", current.location.region);
+    EXPECT_EQ("ABCDEFGHIJKLMNOPQRS", current.location.country);
+    EXPECT_EQ(934.25, current.location.lat);
+    EXPECT_EQ(617.0, current.location.lon);
+    EXPECT_EQ("ABCDEFGHIJKLMNOPQRSTUVWXYZ", *current.location.timezone);
+    EXPECT_EQ(1574708193, *current.location.localtime_epoch);
 
     struct tm expected {
         0
@@ -94,41 +94,39 @@ TEST_F(ApixuCurrentTest, success)
     expected.tm_mday = 25;
     expected.tm_hour = 18;
     expected.tm_min = 56;
-    auto actual = current.getLocation().getLocaltime();
+    auto actual = current.location.localtime;
 
     EXPECT_EQ(mktime(&expected), mktime(&actual));
 
     // Current
-    EXPECT_EQ(1574708193, *current.getCurrent().getLastUpdatedEpoch());
+    EXPECT_EQ(1574708193, *current.current.last_updated_epoch);
 
-    actual = current.getCurrent().getLastUpdated();
+    actual = current.current.last_updated;
     EXPECT_EQ(mktime(&expected), mktime(&actual));
 
-    EXPECT_EQ(335.5, *current.getCurrent().getTempC());
-    EXPECT_EQ(327.0, *current.getCurrent().getTempF());
-    EXPECT_EQ(true, *current.getCurrent().isDay());
+    EXPECT_EQ(335.5, *current.current.temp_c);
+    EXPECT_EQ(327.0, *current.current.temp_f);
+    EXPECT_EQ(true, *current.current.is_day);
 
-    EXPECT_EQ("ABCDE", *current.getCurrent().getCondition().getText());
-    EXPECT_EQ("ABCDEFGHIJKLMNOPQRSTUVW",
-              *current.getCurrent().getCondition().getIcon());
-    EXPECT_EQ(623, *current.getCurrent().getCondition().getCode());
+    EXPECT_EQ("ABCDE", *current.current.condition.text);
+    EXPECT_EQ("ABCDEFGHIJKLMNOPQRSTUVW", *current.current.condition.icon);
+    EXPECT_EQ(623, *current.current.condition.code);
 
-    EXPECT_EQ(159.5, *current.getCurrent().getWindMph());
-    EXPECT_EQ(-91.0, *current.getCurrent().getWindKph());
-    EXPECT_EQ(-6, *current.getCurrent().getWindDegree());
-    EXPECT_EQ("ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
-              *current.getCurrent().getWindDir());
-    EXPECT_EQ(-68.25, *current.getCurrent().getPressureMb());
-    EXPECT_EQ(2.5, *current.getCurrent().getPressureIn());
-    EXPECT_EQ(785.0, *current.getCurrent().getPrecipMm());
-    EXPECT_EQ(588.75, *current.getCurrent().getPrecipIn());
-    EXPECT_EQ(-11, *current.getCurrent().getHumidity());
-    EXPECT_EQ(509, *current.getCurrent().getCloud());
-    EXPECT_EQ(284.25, *current.getCurrent().getFeelslikeC());
-    EXPECT_EQ(413.25, *current.getCurrent().getFeelslikeF());
-    EXPECT_EQ(356.75, *current.getCurrent().getVisKm());
-    EXPECT_EQ(440.5, *current.getCurrent().getVisMiles());
-    EXPECT_EQ(-8.0, *current.getCurrent().getUv());
+    EXPECT_EQ(159.5, *current.current.wind_mph);
+    EXPECT_EQ(-91.0, *current.current.wind_kph);
+    EXPECT_EQ(-6, *current.current.wind_degree);
+    EXPECT_EQ("ABCDEFGHIJKLMNOPQRSTUVWXYZAB", *current.current.wind_dir);
+    EXPECT_EQ(-68.25, *current.current.pressure_mb);
+    EXPECT_EQ(2.5, *current.current.pressure_in);
+    EXPECT_EQ(785.0, *current.current.precip_mm);
+    EXPECT_EQ(588.75, *current.current.precip_in);
+    EXPECT_EQ(-11, *current.current.humidity);
+    EXPECT_EQ(509, *current.current.cloud);
+    EXPECT_EQ(284.25, *current.current.feelslike_c);
+    EXPECT_EQ(413.25, *current.current.feelslike_f);
+    EXPECT_EQ(356.75, *current.current.vis_km);
+    EXPECT_EQ(440.5, *current.current.vis_miles);
+    EXPECT_EQ(-8.0, *current.current.uv);
 
     delete apixu;
 }
@@ -145,8 +143,9 @@ TEST_F(ApixuCurrentTest, error)
             }
         )";
 
-    auto mockHttpClient = HttpClientMock::GetClient(url, params, status, body);
-    auto apixu = new Apixu::Apixu(apiKey, mockHttpClient);
+    auto mock_http_client =
+        HttpClientMock::GetClient(url, params, status, body);
+    auto apixu = new Apixu::Apixu(api_key, mock_http_client);
 
     EXPECT_THROW(apixu->Current(q), Apixu::Exception::ApiException);
 

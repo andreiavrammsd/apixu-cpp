@@ -8,54 +8,20 @@
 namespace Apixu {
 namespace Response {
 namespace Forecast {
-class Day {
-   public:
-    float getMaxTempCelsius() const;
-
-    float getMaxTempFahrenheit() const;
-
-    float getMinTempCelsius() const;
-
-    float getMinTempFahrenheit() const;
-
-    float getAvgTempCelsius() const;
-
-    float getAvgTempFahrenheit() const;
-
-    float getMaxWindMph() const;
-
-    float getMaxWindKph() const;
-
-    float getTotalPrecipMm() const;
-
-    float getTotalPrecipIn() const;
-
-    float getAvgVisKm() const;
-
-    float getAvgVisMiles() const;
-
-    float getAvgHumidity() const;
-
-    const CurrentCondition &getCondition() const;
-
-    float getUv() const;
-
-    virtual ~Day() = default;
-
-   private:
-    float maxTempCelsius{};
-    float maxTempFahrenheit{};
-    float minTempCelsius{};
-    float minTempFahrenheit{};
-    float avgTempCelsius{};
-    float avgTempFahrenheit{};
-    float maxWindMPH{};
-    float maxWindKPH{};
-    float totalPrecipMM{};
-    float totalPrecipIN{};
-    float avgVisKM{};
-    float avgVisMiles{};
-    float avgHumidity{};
+struct Day {
+    float max_temp_celsius{};
+    float max_temp_fahrenheit{};
+    float min_temp_celsius{};
+    float min_temp_fahrenheit{};
+    float avg_temp_celsius{};
+    float avg_temp_fahrenheit{};
+    float max_wind_mph{};
+    float max_wind_kph{};
+    float total_precip_mm{};
+    float total_precip_in{};
+    float avg_vis_km{};
+    float avg_vis_miles{};
+    float avg_humidity{};
     CurrentCondition condition;
     float uv{};
 
@@ -65,55 +31,55 @@ class Day {
 inline void from_json(const nlohmann::json &j, Day &d)
 {  // NOLINT
     if (j.contains("maxtemp_c")) {
-        d.maxTempCelsius = j.at("maxtemp_c");
+        d.max_temp_celsius = j.at("maxtemp_c");
     }
 
     if (j.contains("maxtemp_f")) {
-        d.maxTempFahrenheit = j.at("maxtemp_f");
+        d.max_temp_fahrenheit = j.at("maxtemp_f");
     }
 
     if (j.contains("mintemp_c")) {
-        d.minTempCelsius = j.at("mintemp_c");
+        d.min_temp_celsius = j.at("mintemp_c");
     }
 
     if (j.contains("mintemp_f")) {
-        d.minTempFahrenheit = j.at("mintemp_f");
+        d.min_temp_fahrenheit = j.at("mintemp_f");
     }
 
     if (j.contains("avgtemp_c")) {
-        d.avgTempCelsius = j.at("avgtemp_c");
+        d.avg_temp_celsius = j.at("avgtemp_c");
     }
 
     if (j.contains("avgtemp_f")) {
-        d.avgTempFahrenheit = j.at("avgtemp_f");
+        d.avg_temp_fahrenheit = j.at("avgtemp_f");
     }
 
     if (j.contains("maxwind_mph")) {
-        d.maxWindMPH = j.at("maxwind_mph");
+        d.max_wind_mph = j.at("maxwind_mph");
     }
 
     if (j.contains("maxwind_kph")) {
-        d.maxWindKPH = j.at("maxwind_kph");
+        d.max_wind_kph = j.at("maxwind_kph");
     }
 
     if (j.contains("totalprecip_mm")) {
-        d.totalPrecipMM = j.at("totalprecip_mm");
+        d.total_precip_mm = j.at("totalprecip_mm");
     }
 
     if (j.contains("totalprecip_in")) {
-        d.totalPrecipIN = j.at("totalprecip_in");
+        d.total_precip_in = j.at("totalprecip_in");
     }
 
     if (j.contains("avgvis_km")) {
-        d.avgVisKM = j.at("avgvis_km");
+        d.avg_vis_km = j.at("avgvis_km");
     }
 
     if (j.contains("avgvis_miles")) {
-        d.avgVisMiles = j.at("avgvis_miles");
+        d.avg_vis_miles = j.at("avgvis_miles");
     }
 
     if (j.contains("avghumidity")) {
-        d.avgHumidity = j.at("avghumidity");
+        d.avg_humidity = j.at("avghumidity");
     }
 
     if (j.contains("condition")) {

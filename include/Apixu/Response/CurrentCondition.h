@@ -9,17 +9,7 @@
 
 namespace Apixu {
 namespace Response {
-class CurrentCondition {
-   public:
-    std::shared_ptr<std::string> getText() const;
-
-    std::shared_ptr<std::string> getIcon() const;
-
-    std::shared_ptr<int> getCode() const;
-
-    virtual ~CurrentCondition() = default;
-
-   private:
+struct CurrentCondition {
     std::shared_ptr<std::string> text{};
     std::shared_ptr<std::string> icon{};
     std::shared_ptr<int> code{};

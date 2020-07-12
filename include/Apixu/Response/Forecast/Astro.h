@@ -9,29 +9,13 @@
 namespace Apixu {
 namespace Response {
 namespace Forecast {
-class Astro {
-   public:
-    const std::string &getSunrise() const;
-
-    const std::string &getSunset() const;
-
-    const std::string &getMoonrise() const;
-
-    const std::string &getMoonset() const;
-
-    const std::string &getMoonPhase() const;
-
-    const std::string &getMoonIllumination() const;
-
-    virtual ~Astro() = default;
-
-   private:
+struct Astro {
     std::string sunrise;
     std::string sunset;
     std::string moonrise;
     std::string moonset;
-    std::string moonPhase;
-    std::string moonIllumination;
+    std::string moon_phase;
+    std::string moon_illumination;
 
     friend void from_json(const nlohmann::json &j, Astro &d);  // NOLINT
 };
@@ -55,11 +39,11 @@ inline void from_json(const nlohmann::json &j, Astro &d)
     }
 
     if (j.contains("moon_phase")) {
-        d.moonPhase = j.at("moon_phase");
+        d.moon_phase = j.at("moon_phase");
     }
 
     if (j.contains("moon_illumination")) {
-        d.moonIllumination = j.at("moon_illumination");
+        d.moon_illumination = j.at("moon_illumination");
     }
 }
 }  // namespace Forecast

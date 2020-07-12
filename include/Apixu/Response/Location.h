@@ -10,31 +10,7 @@
 
 namespace Apixu {
 namespace Response {
-class Location {
-   public:
-    std::shared_ptr<int> getId() const;
-
-    const std::string &getName() const;
-
-    const std::string &getRegion() const;
-
-    const std::string &getCountry() const;
-
-    double getLat() const;
-
-    double getLon() const;
-
-    std::shared_ptr<std::string> getUrl() const;
-
-    std::shared_ptr<std::string> getTimezone() const;
-
-    std::shared_ptr<int64_t> getLocaltimeEpoch() const;
-
-    struct tm getLocaltime() const;
-
-    virtual ~Location() = default;
-
-   private:
+struct Location {
     std::shared_ptr<int> id;
     std::string name;
     std::string region;
@@ -43,12 +19,11 @@ class Location {
     double lon{};
     std::shared_ptr<std::string> url{};
     std::shared_ptr<std::string> timezone{};
-    std::shared_ptr<int64_t> localtimeEpoch{};
+    std::shared_ptr<int64_t> localtime_epoch{};
     struct tm localtime {
     };
 
-    friend void from_json(const nlohmann::json &j,
-                          Location &l);  // NOLINT
+    friend void from_json(const nlohmann::json &j, Location &l);  // NOLINT
 };
 
 inline void from_json(const nlohmann::json &j, Location &l)
@@ -72,7 +47,7 @@ inline void from_json(const nlohmann::json &j, Location &l)
     }
 
     if (j.contains("localtime_epoch")) {
-        l.localtimeEpoch = std::make_shared<int64_t>(j.at("localtime_epoch"));
+        l.localtime_epoch = std::make_shared<int64_t>(j.at("localtime_epoch"));
     }
 
     if (j.contains("localtime")) {

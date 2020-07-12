@@ -8,15 +8,7 @@
 
 namespace Apixu {
 namespace Response {
-class CurrentWeather {
-   public:
-    const Location &getLocation() const;
-
-    const Current &getCurrent() const;
-
-    virtual ~CurrentWeather() = default;
-
-   private:
+struct CurrentWeather {
     Location location;
     Current current;
 
