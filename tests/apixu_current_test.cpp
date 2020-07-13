@@ -71,8 +71,7 @@ TEST_F(ApixuCurrentTest, success)
             }
         )";
 
-    auto mock_http_client =
-        HttpClientMock::GetClient(url_, params_, status, body);
+    auto mock_http_client = HttpClientMock::GetClient(url_, params_, status, body);
     apixu::Apixu apixu{api_key_, std::move(mock_http_client)};
 
     const auto& current = apixu.Current(q_);
@@ -141,8 +140,7 @@ TEST_F(ApixuCurrentTest, error)
             }
         )";
 
-    auto mock_http_client =
-        HttpClientMock::GetClient(url_, params_, status, body);
+    auto mock_http_client = HttpClientMock::GetClient(url_, params_, status, body);
     apixu::Apixu apixu{api_key_, std::move(mock_http_client)};
 
     EXPECT_THROW(apixu.Current(q_), apixu::exception::ApiException);

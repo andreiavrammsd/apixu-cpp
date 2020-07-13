@@ -44,8 +44,7 @@ struct Current {
 inline void from_json(const nlohmann::json& j, Current& c)
 {
     if (j.contains("last_updated_epoch")) {
-        c.last_updated_epoch =
-            std::make_shared<int>(j.at("last_updated_epoch"));
+        c.last_updated_epoch = std::make_shared<int>(j.at("last_updated_epoch"));
     }
 
     if (j.contains("last_updated")) {

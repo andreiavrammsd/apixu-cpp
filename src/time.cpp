@@ -14,8 +14,7 @@ struct tm apixu::Time::parse(const std::string& input)
     const char* format = "%4d-%2d-%2d %2d:%2d";
     const int number_of_fields_converted = 5;
 
-    if (sscanf(input.c_str(), format, &year, &month, &day, &hour, &min) ==
-        number_of_fields_converted) {
+    if (sscanf(input.c_str(), format, &year, &month, &day, &hour, &min) == number_of_fields_converted) {
         time.tm_year = year - 1900;
         time.tm_mon = month - 1;
         time.tm_mday = day;

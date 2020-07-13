@@ -35,8 +35,7 @@ int main()
         forecast = apixu.Forecast("Paris", 2, &h);
     }
     catch (ApiException& e) {
-        cout << "ApiException: " << e.what() << " (code: " << e.getCode()
-             << ")";
+        cout << "ApiException: " << e.what() << " (code: " << e.getCode() << ")";
         return 1;
     }
     catch (ApixuException& e) {
@@ -58,11 +57,9 @@ int main()
 
     auto localtime = location.localtime;
     cout << "\tlocaltime:" << endl;
-    cout << "\t\tyear = " << localtime.tm_year
-         << ", month = " << localtime.tm_mon << ", day = " << localtime.tm_mday
+    cout << "\t\tyear = " << localtime.tm_year << ", month = " << localtime.tm_mon << ", day = " << localtime.tm_mday
          << endl;
-    cout << "\t\thour = " << localtime.tm_hour
-         << ", minute = " << localtime.tm_min << endl;
+    cout << "\t\thour = " << localtime.tm_hour << ", minute = " << localtime.tm_min << endl;
 
     cout << endl << "current weather" << endl;
 
@@ -72,11 +69,9 @@ int main()
 
     auto last_updated = current.last_updated;
     cout << "\tlast updated:" << endl;
-    cout << "\t\tyear = " << last_updated.tm_year
-         << ", month = " << last_updated.tm_mon
+    cout << "\t\tyear = " << last_updated.tm_year << ", month = " << last_updated.tm_mon
          << ", day = " << last_updated.tm_mday << endl;
-    cout << "\t\thour = " << last_updated.tm_hour
-         << ", minute = " << last_updated.tm_min << endl;
+    cout << "\t\thour = " << last_updated.tm_hour << ", minute = " << last_updated.tm_min << endl;
 
     cout << "\ttemp C = " << *current.temp_c << endl;
     cout << "\ttemp F = " << *current.temp_f << endl;

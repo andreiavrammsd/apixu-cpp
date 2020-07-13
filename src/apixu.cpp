@@ -15,8 +15,7 @@ Apixu::Apixu(const std::string& api_key) : api_key_(api_key)
     http_client_ = std::make_unique<http::Client>(user_agent_);
 }
 
-Apixu::Apixu(const std::string& api_key,
-             std::unique_ptr<http::Http> http_client)
+Apixu::Apixu(const std::string& api_key, std::unique_ptr<http::Http> http_client)
     : api_key_(api_key), http_client_(std::move(http_client))
 {
     if (http_client_ == nullptr) {
@@ -71,9 +70,7 @@ std::vector<response::Location> Apixu::Search(const std::string& q) const
     }
 }
 
-response::forecast::WeatherForecast Apixu::Forecast(const std::string& q,
-                                                    const int days,
-                                                    const int* hour) const
+response::forecast::WeatherForecast Apixu::Forecast(const std::string& q, const int days, const int* hour) const
 {
     std::map<std::string, std::string> params;
     params["key"] = api_key_;
@@ -94,9 +91,7 @@ response::forecast::WeatherForecast Apixu::Forecast(const std::string& q,
     }
 }
 
-response::WeatherHistory Apixu::History(const std::string& q,
-                                        const std::string& since,
-                                        std::string* until) const
+response::WeatherHistory Apixu::History(const std::string& q, const std::string& since, std::string* until) const
 {
     std::map<std::string, std::string> params;
     params["key"] = api_key_;
@@ -117,13 +112,9 @@ response::WeatherHistory Apixu::History(const std::string& q,
     }
 }
 
-std::string Apixu::url(const std::string& method) const
-{
-    return api_url_ + method + "." + api_format_;
-}
+std::string Apixu::url(const std::string& method) const { return api_url_ + method + "." + api_format_; }
 
-std::string Apixu::get(const std::string& url,
-                       std::map<std::string, std::string> params) const
+std::string Apixu::get(const std::string& url, std::map<std::string, std::string> params) const
 {
     auto response = http_client_->get(url, std::move(params));
 

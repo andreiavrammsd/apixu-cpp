@@ -27,10 +27,7 @@ struct ErrorResponse {
     friend void from_json(const nlohmann::json& j, ErrorResponse& e);
 };
 
-inline void from_json(const nlohmann::json& j, ErrorResponse& e)
-{
-    e.error = j.at("error");
-}
+inline void from_json(const nlohmann::json& j, ErrorResponse& e) { e.error = j.at("error"); }
 }  // namespace response
 }  // namespace apixu
 

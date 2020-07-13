@@ -27,11 +27,9 @@ class Apixu {
 
     std::vector<response::Location> Search(const std::string& q) const;
 
-    response::forecast::WeatherForecast Forecast(
-        const std::string& q, int days, const int* hour = nullptr) const;
+    response::forecast::WeatherForecast Forecast(const std::string& q, int days, const int* hour = nullptr) const;
 
-    response::WeatherHistory History(const std::string& q,
-                                     const std::string& since,
+    response::WeatherHistory History(const std::string& q, const std::string& since,
                                      std::string* until = nullptr) const;
 
    private:
@@ -40,14 +38,12 @@ class Apixu {
 
     const std::string api_url_ = "http://localhost:5000/";
     const std::string api_format_ = "json";
-    const std::string doc_weather_conditions_url_ =
-        "http://localhost:5000/conditions.json";
+    const std::string doc_weather_conditions_url_ = "http://localhost:5000/conditions.json";
     const std::string user_agent_ = "Apixu C++/0.1.0";
 
     std::string url(const std::string& method) const;
 
-    std::string get(const std::string& url,
-                    std::map<std::string, std::string> params = {}) const;
+    std::string get(const std::string& url, std::map<std::string, std::string> params = {}) const;
 };
 }  // namespace apixu
 

@@ -17,9 +17,7 @@ struct Response {
 
 class Http {
    public:
-    virtual Response get(
-        const std::string& path,
-        const std::map<std::string, std::string>& params) const = 0;
+    virtual Response get(const std::string& path, const std::map<std::string, std::string>& params) const = 0;
 
     virtual Response get(const std::string& path) const = 0;
 
@@ -30,9 +28,7 @@ class Client : public Http {
    public:
     explicit Client(std::string userAgent);
 
-    Response get(
-        const std::string& url,
-        const std::map<std::string, std::string>& params) const override;
+    Response get(const std::string& url, const std::map<std::string, std::string>& params) const override;
 
     Response get(const std::string& url) const override;
 

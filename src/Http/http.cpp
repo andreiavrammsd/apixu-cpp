@@ -14,16 +14,13 @@ namespace apixu {
 namespace http {
 Client::Client(std::string userAgent) : user_agent_(std::move(userAgent)) {}
 
-inline std::string paramsToQuery(
-    CURL* curl, const std::map<std::string, std::string>& params)
+inline std::string paramsToQuery(CURL* curl, const std::map<std::string, std::string>& params)
 {
     std::ostringstream query;
 
     for (auto iter = params.begin(); iter != params.end();) {
-        char* key =
-            curl_easy_escape(curl, iter->first.c_str(), iter->first.length());
-        char* value =
-            curl_easy_escape(curl, iter->second.c_str(), iter->second.length());
+        char* key = curl_easy_escape(curl, iter->first.c_str(), iter->first.length());
+        char* value = curl_easy_escape(curl, iter->second.c_str(), iter->second.length());
         if (key == nullptr || value == nullptr) {
             throw Exception("Cannot escape query params");
         }
@@ -41,11 +38,9 @@ inline std::string paramsToQuery(
     return query.str();
 }
 
-inline size_t writeCallback(void* contents, size_t size, size_t nmemb,
-                            void* userp)
+inline size_t writeCallback(void* contents, size_t size, size_t nmemb, void* userp)
 {
-    (static_cast<std::string*>(userp))
-        ->append(static_cast<char*>(contents), size * nmemb);
+    (static_cast<std::string*>(userp))->append(static_cast<char*>(contents), size * nmemb);
     return size * nmemb;
 }
 
@@ -55,8 +50,7 @@ Response Client::get(const std::string& url) const
     return get(url, params);
 }
 
-Response Client::get(const std::string& url,
-                     const std::map<std::string, std::string>& params) const
+Response Client::get(const std::string& url, const std::map<std::string, std::string>& params) const
 {
     CURL* curl = curl_easy_init();
     if (!curl) {
