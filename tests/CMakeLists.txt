@@ -22,7 +22,6 @@ set(TEST_FILES
 set(SOURCE_FILES
         ../include/apixu/http/exception.h
         ../src/apixu.cpp
-        ../src/time.cpp
         )
 
 package_add_test(test ${TEST_FILES} ${SOURCE_FILES})
@@ -30,31 +29,26 @@ package_add_test(test ${TEST_FILES} ${SOURCE_FILES})
 package_add_test(test_apixu
         apixu_test.cpp
         ../src/apixu.cpp
-        ../src/time.cpp
         )
 
 package_add_test(test_conditions
         apixu_conditions_test.cpp
         ../src/apixu.cpp
-        ../src/time.cpp
         )
 
 package_add_test(test_current
         apixu_current_test.cpp
         ../src/apixu.cpp
-        ../src/time.cpp
         )
 
 package_add_test(test_search
         apixu_search_test.cpp
         ../src/apixu.cpp
-        ../src/time.cpp
         )
 
 package_add_test(test_history
         apixu_history_test.cpp
         ../src/apixu.cpp
-        ../src/time.cpp
         )
 
 package_add_test(test_forecast

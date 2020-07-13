@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 14)
 set(SOURCE_FILES
         include/apixu/http/exception.h
         src/apixu.cpp
-        src/time.cpp
         )
 
 # Include directory

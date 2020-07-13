@@ -48,7 +48,7 @@ inline void from_json(const nlohmann::json& j, Current& c)
     }
 
     if (j.contains("last_updated")) {
-        c.last_updated = Time::parse(j.at("last_updated"));
+        c.last_updated = Time::Parse(j.at("last_updated"));
     }
 
     if (j.contains("temp_c")) {

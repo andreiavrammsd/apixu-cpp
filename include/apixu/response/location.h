@@ -51,7 +51,7 @@ inline void from_json(const nlohmann::json& j, Location& l)
     }
 
     if (j.contains("localtime")) {
-        l.localtime = Time::parse(j.at("localtime"));
+        l.localtime = Time::Parse(j.at("localtime"));
     }
 }
 }  // namespace response
