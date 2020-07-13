@@ -1,13 +1,13 @@
 // Copyright 2020 <Andrei Avram>
-#include "Apixu/apixu.h"
+#include "apixu/apixu.h"
 
 #include <map>
 #include <string>
 #include <utility>
 #include <vector>
 
-#include "Apixu/Exception/api_exception.h"
-#include "Apixu/Response/error.h"
+#include "apixu/exception/api_exception.h"
+#include "apixu/response/error.h"
 
 namespace apixu {
 Apixu::Apixu(const std::string& api_key) : api_key_(api_key)

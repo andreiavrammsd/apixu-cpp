@@ -5,7 +5,7 @@
 #include <cstdint>
 #include <string>
 
-#include "Apixu/Response/current_condition.h"
+#include "apixu/response/current_condition.h"
 #include "nlohmann/json.hpp"
 
 namespace apixu {

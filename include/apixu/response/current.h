@@ -7,7 +7,7 @@
 #include <string>
 
 #include "./current_condition.h"
-#include "Apixu/time.h"
+#include "apixu/time.h"
 #include "nlohmann/json.hpp"
 
 namespace apixu {

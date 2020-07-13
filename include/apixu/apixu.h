@@ -7,12 +7,12 @@
 #include <string>
 #include <vector>
 
-#include "Apixu/Http/client.h"
-#include "Apixu/Response/Forecast/weather_forecast.h"
-#include "Apixu/Response/condition.h"
-#include "Apixu/Response/current_weather.h"
-#include "Apixu/Response/location.h"
-#include "Apixu/Response/weather_history.h"
+#include "apixu/http/client.h"
+#include "apixu/response/forecast/weather_forecast.h"
+#include "apixu/response/condition.h"
+#include "apixu/response/current_weather.h"
+#include "apixu/response/location.h"
+#include "apixu/response/weather_history.h"
 
 namespace apixu {
 class Apixu {

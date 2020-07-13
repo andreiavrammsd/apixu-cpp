@@ -1,5 +1,5 @@
 // Copyright 2020 <Andrei Avram>
-#include "Apixu/apixu.h"
+#include "apixu/apixu.h"
 
 #include <exception>
 #include <memory>

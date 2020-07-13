@@ -4,8 +4,8 @@
 #include <iostream>
 #include <vector>
 
-#include "Apixu/Exception/api_exception.h"
-#include "Apixu/apixu.h"
+#include "apixu/exception/api_exception.h"
+#include "apixu/apixu.h"
 
 using std::cout;
 using std::endl;

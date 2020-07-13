@@ -4,7 +4,7 @@
 
 #include <vector>
 
-#include "Apixu/Response/Forecast/forecast_day.h"
+#include "apixu/response/forecast/forecast_day.h"
 #include "nlohmann/json.hpp"
 
 namespace apixu {

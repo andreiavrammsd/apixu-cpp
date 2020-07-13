@@ -20,7 +20,7 @@ set(TEST_FILES
 
 # Sources
 set(SOURCE_FILES
-        ../include/Apixu/Http/exception.h
+        ../include/apixu/http/exception.h
         ../src/apixu.cpp
         ../src/time.cpp
         )

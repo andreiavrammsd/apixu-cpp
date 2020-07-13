@@ -2,7 +2,7 @@
 #ifndef INCLUDE_APIXU_RESPONSE_FORECAST_DAY_H_
 #define INCLUDE_APIXU_RESPONSE_FORECAST_DAY_H_
 
-#include "Apixu/Response/current_condition.h"
+#include "apixu/response/current_condition.h"
 #include "nlohmann/json.hpp"
 
 namespace apixu {

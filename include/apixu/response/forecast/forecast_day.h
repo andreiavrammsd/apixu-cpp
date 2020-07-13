@@ -5,9 +5,9 @@
 #include <string>
 #include <vector>
 
-#include "Apixu/Response/Forecast/astro.h"
-#include "Apixu/Response/Forecast/day.h"
-#include "Apixu/Response/Forecast/hour.h"
+#include "apixu/response/forecast/astro.h"
+#include "apixu/response/forecast/day.h"
+#include "apixu/response/forecast/hour.h"
 #include "nlohmann/json.hpp"
 
 namespace apixu {

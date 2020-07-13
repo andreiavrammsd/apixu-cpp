@@ -3,7 +3,7 @@
 #include <string>
 #include <utility>
 
-#include "Apixu/Http/http.h"
+#include "apixu/http/http.h"
 #include "gmock/gmock.h"
 
 namespace apixutest {
