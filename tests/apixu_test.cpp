@@ -11,7 +11,9 @@ namespace apixutest {
 class ApixuTest : public ::testing::Test {
 };
 
-TEST_F(ApixuTest, null_http_client)
+TEST_F(ApixuTest, DefaultHttpClient) { EXPECT_NO_THROW(apixu::Apixu{""}); }
+
+TEST_F(ApixuTest, NullHttpClient)
 {
     EXPECT_THROW((apixu::Apixu{"", nullptr}), std::invalid_argument);
 
