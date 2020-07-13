@@ -4,8 +4,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 # Sources
 set(SOURCE_FILES
-        src/Http/exception.cpp
-        src/Http/http.cpp
+        include/Apixu/Http/exception.h
         src/apixu.cpp
         src/time.cpp
         )

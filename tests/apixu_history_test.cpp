@@ -8,15 +8,15 @@
 #include "http_client_mock.cpp"
 
 namespace apixutest {
-using std::map;
-using std::string;
+
+using apixu::http::Status;
 
 class ApixuHistoryTest : public ::testing::Test {
    public:
-    const string url_ = "http://localhost:5000/history.json";
-    const string api_key_ = "apikey";
-    const string q_ = "Paris";
-    map<string, string> params_;
+    const std::string url_ = "http://localhost:5000/history.json";
+    const std::string api_key_ = "apikey";
+    const std::string q_ = "Paris";
+    std::map<std::string, std::string> params_;
 
    protected:
     void SetUp() override
@@ -29,8 +29,8 @@ class ApixuHistoryTest : public ::testing::Test {
 
 TEST_F(ApixuHistoryTest, success)
 {
-    int status = 200;
-    string body = R"(
+    auto status = Status::Ok;
+    std::string body = R"(
            {
               "location": {
                 "name": "ABCDEFGHIJK",
@@ -113,7 +113,7 @@ TEST_F(ApixuHistoryTest, success)
             }
         )";
 
-    auto mock_http_client = HttpClientMock::GetClient(url_, params_, status, body);
+    auto mock_http_client = HttpClientMock::Create(url_, params_, status, body);
     apixu::Apixu apixu{api_key_, std::move(mock_http_client)};
 
     const auto& history = apixu.History(q_, "2019-01-01");
@@ -123,8 +123,8 @@ TEST_F(ApixuHistoryTest, success)
 
 TEST_F(ApixuHistoryTest, error)
 {
-    int status = 400;
-    string body = R"(
+    auto status = Status::BadRequest;
+    std::string body = R"(
             {
                 "error": {
                   "message":"err",
@@ -133,7 +133,7 @@ TEST_F(ApixuHistoryTest, error)
             }
         )";
 
-    auto mock_http_client = HttpClientMock::GetClient(url_, params_, status, body);
+    auto mock_http_client = HttpClientMock::Create(url_, params_, status, body);
     apixu::Apixu apixu{api_key_, std::move(mock_http_client)};
 
     EXPECT_THROW(apixu.History(q_, "2019-01-01"), apixu::exception::ApiException);

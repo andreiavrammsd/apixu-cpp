@@ -114,14 +114,14 @@ response::WeatherHistory Apixu::History(const std::string& q, const std::string&
 
 std::string Apixu::url(const std::string& method) const { return api_url_ + method + "." + api_format_; }
 
-std::string Apixu::get(const std::string& url, std::map<std::string, std::string> params) const
+std::string Apixu::get(const std::string& url, const http::Parameters& params) const
 {
-    auto response = http_client_->get(url, std::move(params));
+    auto response = http_client_->Get(url, params);
 
-    if (response.status >= http::STATUS_INTERNAL_SERVER_ERROR) {
+    if (response.status >= http::Status::InternalServerError) {
         throw exception::ApixuException("Internal Server Error");
     }
-    else if (response.status >= http::STATUS_BAD_REQUEST) {
+    else if (response.status >= http::Status::BadRequest) {
         response::ErrorResponse errRes = nlohmann::json::parse(response.body);
         throw exception::ApiException(errRes.error.message, errRes.error.code);
     }

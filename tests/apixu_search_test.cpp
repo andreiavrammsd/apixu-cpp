@@ -8,15 +8,15 @@
 #include "http_client_mock.cpp"
 
 namespace apixutest {
-using std::map;
-using std::string;
+
+using apixu::http::Status;
 
 class ApixuSearchTest : public ::testing::Test {
    public:
-    const string url_ = "http://localhost:5000/search.json";
-    const string api_key_ = "apikey";
-    const string q_ = "Paris";
-    map<string, string> params_;
+    const std::string url_ = "http://localhost:5000/search.json";
+    const std::string api_key_ = "apikey";
+    const std::string q_ = "Paris";
+    std::map<std::string, std::string> params_;
 
    protected:
     void SetUp() override
@@ -28,8 +28,8 @@ class ApixuSearchTest : public ::testing::Test {
 
 TEST_F(ApixuSearchTest, success)
 {
-    int status = 200;
-    string body = R"(
+    auto status = Status::Ok;
+    std::string body = R"(
            [
                {
                   "id":988,
@@ -43,7 +43,7 @@ TEST_F(ApixuSearchTest, success)
            ]
         )";
 
-    auto mock_http_client = HttpClientMock::GetClient(url_, params_, status, body);
+    auto mock_http_client = HttpClientMock::Create(url_, params_, status, body);
 
     apixu::Apixu apixu{api_key_, std::move(mock_http_client)};
     const auto& search = apixu.Search(q_);
@@ -59,8 +59,8 @@ TEST_F(ApixuSearchTest, success)
 
 TEST_F(ApixuSearchTest, error)
 {
-    int status = 400;
-    string body = R"(
+    auto status = Status::BadRequest;
+    std::string body = R"(
             {
                 "error": {
                   "message":"err",
@@ -69,7 +69,7 @@ TEST_F(ApixuSearchTest, error)
             }
         )";
 
-    auto mock_http_client = HttpClientMock::GetClient(url_, params_, status, body);
+    auto mock_http_client = HttpClientMock::Create(url_, params_, status, body);
     apixu::Apixu apixu{api_key_, std::move(mock_http_client)};
 
     EXPECT_THROW(apixu.Search(q_), apixu::exception::ApiException);

@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-#include "Apixu/Http/http.h"
+#include "Apixu/Http/client.h"
 #include "Apixu/Response/Forecast/weather_forecast.h"
 #include "Apixu/Response/condition.h"
 #include "Apixu/Response/current_weather.h"
@@ -43,7 +43,7 @@ class Apixu {
 
     std::string url(const std::string& method) const;
 
-    std::string get(const std::string& url, std::map<std::string, std::string> params = {}) const;
+    std::string get(const std::string& url, const http::Parameters& params = {}) const;
 };
 }  // namespace apixu
 

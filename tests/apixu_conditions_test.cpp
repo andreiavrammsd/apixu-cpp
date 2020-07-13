@@ -1,4 +1,5 @@
 // Copyright 2020 <Andrei Avram>
+#include <map>
 #include <string>
 
 #include "Apixu/Exception/api_exception.h"
@@ -7,17 +8,18 @@
 #include "http_client_mock.cpp"
 
 namespace apixutest {
-using std::string;
+
+using apixu::http::Status;
 
 class ApixuConditionsTest : public ::testing::Test {
    public:
-    const string url_ = "http://localhost:5000/conditions.json";
+    const std::string url_ = "http://localhost:5000/conditions.json";
 };
 
 TEST_F(ApixuConditionsTest, success)
 {
-    int status = 200;
-    string body = R"(
+    auto status = Status::Ok;
+    std::string body = R"(
             [
                {
                   "code":1,
@@ -28,7 +30,7 @@ TEST_F(ApixuConditionsTest, success)
             ]
         )";
 
-    auto mock_http_client = HttpClientMock::GetHttpClient(url_, status, body);
+    auto mock_http_client = HttpClientMock::Create(url_, std::map<std::string, std::string>{}, status, body);
     apixu::Apixu apixu{"", std::move(mock_http_client)};
 
     const auto& conditions = apixu.Conditions();
@@ -42,8 +44,8 @@ TEST_F(ApixuConditionsTest, success)
 
 TEST_F(ApixuConditionsTest, error)
 {
-    int status = 400;
-    string body = R"(
+    auto status = Status::BadRequest;
+    std::string body = R"(
             {
                 "error": {
                   "message":"err",
@@ -52,7 +54,7 @@ TEST_F(ApixuConditionsTest, error)
             }
         )";
 
-    auto mock_http_client = HttpClientMock::GetHttpClient(url_, status, body);
+    auto mock_http_client = HttpClientMock::Create(url_, std::map<std::string, std::string>{}, status, body);
     apixu::Apixu apixu{"", std::move(mock_http_client)};
 
     EXPECT_THROW(apixu.Conditions(), apixu::exception::ApixuException);

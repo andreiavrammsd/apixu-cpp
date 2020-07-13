@@ -1,7 +1,9 @@
 // Copyright 2020 <Andrei Avram>
+#ifndef INCLUDE_APIXU_HTTP_EXCEPTION_H_
+#define INCLUDE_APIXU_HTTP_EXCEPTION_H_
+
 #include <exception>
 #include <string>
-#include <utility>
 
 namespace apixu {
 namespace http {
@@ -16,3 +18,5 @@ class Exception : public std::exception {
 };
 }  // namespace http
 }  // namespace apixu
+
+#endif  // INCLUDE_APIXU_HTTP_EXCEPTION_H_
