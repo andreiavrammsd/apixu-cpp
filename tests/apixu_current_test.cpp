@@ -2,8 +2,8 @@
 #include <map>
 #include <string>
 
-#include "apixu/exception/api_exception.h"
 #include "apixu/apixu.h"
+#include "apixu/exception/api_exception.h"
 #include "gtest/gtest.h"
 #include "http_client_mock.cpp"
 
@@ -86,8 +86,8 @@ TEST_F(ApixuCurrentTest, success)
     EXPECT_EQ(1574708193, *current.location.localtime_epoch);
 
     struct tm expected {
-        0
     };
+    expected.tm_sec = 0;
     expected.tm_year = 2019 - 1900;
     expected.tm_mon = 11 - 1;
     expected.tm_mday = 25;

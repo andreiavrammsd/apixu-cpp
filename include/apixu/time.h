@@ -11,8 +11,8 @@ class Time {
     inline static struct tm Parse(const std::string& input)
     {
         struct tm time {
-            0
         };
+        time.tm_sec = 0;
         int year = 0, month = 0, day = 0, hour = 0, min = 0;
 
         const char* format = "%4d-%2d-%2d %2d:%2d";

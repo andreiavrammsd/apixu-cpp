@@ -1,3 +1,5 @@
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-gnu-zero-variadic-macro-arguments")
+
 # Add a test
 macro(package_add_test TESTNAME)
     add_executable(${TESTNAME} ${ARGN})
