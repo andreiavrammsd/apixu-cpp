@@ -2,8 +2,8 @@
 #include <map>
 #include <string>
 
-#include "apixu/exception/api_exception.h"
 #include "apixu/apixu.h"
+#include "apixu/exception/api_exception.h"
 #include "gtest/gtest.h"
 #include "http_client_mock.cpp"
 

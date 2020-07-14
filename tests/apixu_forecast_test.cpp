@@ -24,6 +24,7 @@ class ApixuForecastTest : public ::testing::Test {
         params_["key"] = api_key_;
         params_["q"] = q_;
         params_["days"] = "1";
+        params_["hour"] = "3";
     }
 };
 
@@ -141,7 +142,7 @@ TEST_F(ApixuForecastTest, success)
     auto mock_http_client = HttpClientMock::Create(url_, params_, status, body);
     apixu::Apixu apixu{api_key_, std::move(mock_http_client)};
 
-    const auto& forecast = apixu.Forecast(q_, 1);
+    const auto& forecast = apixu.Forecast(q_, 1, 3);
 
     EXPECT_EQ("ABCDEFGHIJKLMNOPQRST", forecast.location.name);
 }
@@ -161,6 +162,6 @@ TEST_F(ApixuForecastTest, error)
     auto mock_http_client = HttpClientMock::Create(url_, params_, status, body);
     apixu::Apixu apixu{api_key_, std::move(mock_http_client)};
 
-    EXPECT_THROW(apixu.Forecast(q_, 1), apixu::exception::ApiException);
+    EXPECT_THROW(apixu.Forecast(q_, 1, 3), apixu::exception::ApiException);
 }
 }  // namespace apixutest

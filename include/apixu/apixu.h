@@ -7,10 +7,10 @@
 #include <string>
 #include <vector>
 
-#include "apixu/http/client.h"
-#include "apixu/response/forecast/weather_forecast.h"
+#include "apixu/http/http.h"
 #include "apixu/response/condition.h"
 #include "apixu/response/current_weather.h"
+#include "apixu/response/forecast/weather_forecast.h"
 #include "apixu/response/location.h"
 #include "apixu/response/weather_history.h"
 
@@ -27,10 +27,11 @@ class Apixu {
 
     std::vector<response::Location> Search(const std::string& q) const;
 
-    response::forecast::WeatherForecast Forecast(const std::string& q, int days, const int* hour = nullptr) const;
+    response::forecast::WeatherForecast Forecast(const std::string& q, int days) const;
+    response::forecast::WeatherForecast Forecast(const std::string& q, int days, int hour) const;
 
-    response::WeatherHistory History(const std::string& q, const std::string& since,
-                                     std::string* until = nullptr) const;
+    response::WeatherHistory History(const std::string& q, const std::string& since) const;
+    response::WeatherHistory History(const std::string& q, const std::string& since, const std::string& until) const;
 
    private:
     const std::string api_key_;
@@ -41,8 +42,9 @@ class Apixu {
     const std::string doc_weather_conditions_url_ = "http://localhost:5000/conditions.json";
     const std::string user_agent_ = "Apixu C++/0.1.0";
 
+    response::forecast::WeatherForecast forecast(http::Parameters& params) const;
+    response::WeatherHistory history(http::Parameters& params) const;
     std::string url(const std::string& method) const;
-
     std::string get(const std::string& url, const http::Parameters& params = {}) const;
 };
 }  // namespace apixu

@@ -1,12 +1,12 @@
 // Copyright 2020 <Andrei Avram>
 #include "apixu/apixu.h"
 
-#include <map>
 #include <string>
 #include <utility>
 #include <vector>
 
 #include "apixu/exception/api_exception.h"
+#include "apixu/http/client.h"
 #include "apixu/response/error.h"
 
 namespace apixu {
@@ -38,7 +38,7 @@ std::vector<response::Condition> Apixu::Conditions() const
 
 response::CurrentWeather Apixu::Current(const std::string& q) const
 {
-    std::map<std::string, std::string> params;
+    http::Parameters params;
     params["key"] = api_key_;
     params["q"] = q;
 
@@ -55,7 +55,7 @@ response::CurrentWeather Apixu::Current(const std::string& q) const
 
 std::vector<response::Location> Apixu::Search(const std::string& q) const
 {
-    std::map<std::string, std::string> params;
+    http::Parameters params;
     params["key"] = api_key_;
     params["q"] = q;
 
@@ -70,16 +70,50 @@ std::vector<response::Location> Apixu::Search(const std::string& q) const
     }
 }
 
-response::forecast::WeatherForecast Apixu::Forecast(const std::string& q, const int days, const int* hour) const
+response::forecast::WeatherForecast Apixu::Forecast(const std::string& q, const int days) const
 {
-    std::map<std::string, std::string> params;
+    http::Parameters params;
     params["key"] = api_key_;
     params["q"] = q;
     params["days"] = std::to_string(days);
-    if (hour != nullptr) {
-        params["hour"] = std::to_string(*hour);
-    }
 
+    return forecast(params);
+}
+
+response::forecast::WeatherForecast Apixu::Forecast(const std::string& q, const int days, const int hour) const
+{
+    http::Parameters params;
+    params["key"] = api_key_;
+    params["q"] = q;
+    params["days"] = std::to_string(days);
+    params["hour"] = std::to_string(hour);
+
+    return forecast(params);
+}
+
+response::WeatherHistory Apixu::History(const std::string& q, const std::string& since) const
+{
+    http::Parameters params;
+    params["key"] = api_key_;
+    params["q"] = q;
+    params["dt"] = since;
+
+    return history(params);
+}
+
+response::WeatherHistory Apixu::History(const std::string& q, const std::string& since, const std::string& until) const
+{
+    http::Parameters params;
+    params["key"] = api_key_;
+    params["q"] = q;
+    params["dt"] = since;
+    params["end_dt"] = until;
+
+    return history(params);
+}
+
+response::forecast::WeatherForecast Apixu::forecast(http::Parameters& params) const
+{
     try {
         return nlohmann::json::parse(get(url("forecast"), params));
     }
@@ -91,16 +125,8 @@ response::forecast::WeatherForecast Apixu::Forecast(const std::string& q, const 
     }
 }
 
-response::WeatherHistory Apixu::History(const std::string& q, const std::string& since, std::string* until) const
+response::WeatherHistory Apixu::history(http::Parameters& params) const
 {
-    std::map<std::string, std::string> params;
-    params["key"] = api_key_;
-    params["q"] = q;
-    params["dt"] = since;
-    if (until != nullptr) {
-        params["end_dt"] = *until;
-    }
-
     try {
         return nlohmann::json::parse(get(url("history"), params));
     }
