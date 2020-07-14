@@ -1,4 +1,4 @@
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-gnu-zero-variadic-macro-arguments")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage -Wno-gnu-zero-variadic-macro-arguments")
 
 # Add a test
 macro(package_add_test TESTNAME)
@@ -64,6 +64,3 @@ FetchContent_Populate(googletest)
 include_directories(${googletest_SOURCE_DIR}/googletest/include/)
 include_directories(${googletest_SOURCE_DIR}/googlemock/include/)
 add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
-
-# Coverage
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
