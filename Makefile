@@ -18,7 +18,7 @@ dep:
 
 lint:
 	@python dev/cpplint.py --linelength=120 \
-		--filter=-runtime/indentation_namespace,-whitespace/indent \
+		--filter=-runtime/indentation_namespace,-whitespace/indent,-whitespace/braces,-whitespace/newline \
 		--quiet \
 		$(HEADERS) $(SOURCES) $(TESTS) $(EXAMPLES)
 
@@ -31,4 +31,5 @@ api-up:
 	docker run -tid --rm -p 5000:5000 --name=apixuapi apixuapi
 
 api-down:
-	docker stop apixuapi
+	docker stop apixuapi || true
+	docker rmi  apixuapi || true

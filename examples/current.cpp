@@ -1,97 +1,97 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
 #include <iostream>
-#include <vector>
 
-#include "Apixu/Apixu.h"
-#include "Apixu/Exception/ApiException.h"
+#include "apixu/apixu.h"
+#include "apixu/exception/api_exception.h"
 
 using std::cout;
 using std::endl;
 
-using Apixu::Response::CurrentWeather;
-using Apixu::Exception::ApiException;
-using Apixu::Exception::ApixuException;
-using Apixu::Response::Location;
-using Apixu::Response::Current;
+using apixu::exception::ApiException;
+using apixu::exception::ApixuException;
+using apixu::response::Current;
+using apixu::response::CurrentWeather;
+using apixu::response::Location;
 
-int main() {
-    const char *apiKey = getenv("APIXUKEY");
-    if (!apiKey) {
+int main()
+{
+    const char* api_key = getenv("APIXUKEY");
+    if (!api_key) {
         cout << "APIXUKEY not set";
         return 1;
     }
 
-    auto apixu = new Apixu::Apixu(apiKey);
+    apixu::Apixu apixu{api_key};
 
-    CurrentWeather currentWeather;
+    CurrentWeather current_weather;
     try {
-        currentWeather = apixu->Current("Paris");
-    } catch (ApiException &e) {
+        current_weather = apixu.Current("Paris");
+    }
+    catch (ApiException& e) {
         cout << "ApiException: " << e.what() << " (code: " << e.getCode() << ")";
         return 1;
-    } catch (ApixuException &e) {
+    }
+    catch (ApixuException& e) {
         cout << "ApixuException: " << e.what();
         return 1;
     }
 
     cout << "location" << endl;
 
-    const Location& location = currentWeather.getLocation();
+    const Location& location = current_weather.location;
 
-    cout << "\tname = " << location.getName() << endl;
-    cout << "\tregion = " << location.getRegion() << endl;
-    cout << "\tcountry = " << location.getCountry() << endl;
-    cout << "\tlat = " << location.getLat() << endl;
-    cout << "\tlon = " << location.getLon() << endl;
-    cout << "\ttimezone = " << *location.getTimezone() << endl;
-    cout << "\tlocaltime epoch = " << *location.getLocaltimeEpoch() << endl;
+    cout << "\tname = " << location.name << endl;
+    cout << "\tregion = " << location.region << endl;
+    cout << "\tcountry = " << location.country << endl;
+    cout << "\tlat = " << location.lat << endl;
+    cout << "\tlon = " << location.lon << endl;
+    cout << "\ttimezone = " << *location.timezone << endl;
+    cout << "\tlocaltime epoch = " << *location.localtime_epoch << endl;
 
-    auto localtime = location.getLocaltime();
+    auto localtime = location.localtime;
     cout << "\tlocaltime:" << endl;
-    cout << "\t\tyear = " << localtime.tm_year << ", month = " << localtime.tm_mon
-        << ", day = " << localtime.tm_mday << endl;
+    cout << "\t\tyear = " << localtime.tm_year << ", month = " << localtime.tm_mon << ", day = " << localtime.tm_mday
+         << endl;
     cout << "\t\thour = " << localtime.tm_hour << ", minute = " << localtime.tm_min << endl;
 
     cout << endl << "current weather" << endl;
 
-    const Current& current = currentWeather.getCurrent();
+    const Current& current = current_weather.current;
 
-    cout << "\tlast updated epoch = " << *current.getLastUpdatedEpoch() << endl;
+    cout << "\tlast updated epoch = " << *current.last_updated_epoch << endl;
 
-    auto lastUpdated = current.getLastUpdated();
+    auto last_updated = current.last_updated;
     cout << "\tlast updated:" << endl;
-    cout << "\t\tyear = " << lastUpdated.tm_year << ", month = " << lastUpdated.tm_mon
-         << ", day = " << lastUpdated.tm_mday << endl;
-    cout << "\t\thour = " << lastUpdated.tm_hour << ", minute = " << lastUpdated.tm_min << endl;
+    cout << "\t\tyear = " << last_updated.tm_year << ", month = " << last_updated.tm_mon
+         << ", day = " << last_updated.tm_mday << endl;
+    cout << "\t\thour = " << last_updated.tm_hour << ", minute = " << last_updated.tm_min << endl;
 
-        cout << "\ttemp C = " << *current.getTempC() << endl;
-    cout << "\ttemp F = " << *current.getTempF() << endl;
-    cout << "\tis day = " << *current.isDay() << endl;
+    cout << "\ttemp C = " << *current.temp_c << endl;
+    cout << "\ttemp F = " << *current.temp_f << endl;
+    cout << "\tis day = " << *current.is_day << endl;
 
     cout << "\tcondition " << endl;
-    cout << "\t\ttext = " << *current.getCondition().getText() << endl;
-    cout << "\t\ticon = " << *current.getCondition().getIcon() << endl;
-    cout << "\t\tcode = " << *current.getCondition().getCode() << endl;
+    cout << "\t\ttext = " << *current.condition.text << endl;
+    cout << "\t\ticon = " << *current.condition.icon << endl;
+    cout << "\t\tcode = " << *current.condition.code << endl;
 
-    cout << "\twind MPH = " << *current.getWindMph() << endl;
-    cout << "\twind KPH = " << *current.getWindKph() << endl;
-    cout << "\twind degree = " << *current.getWindDegree() << endl;
-    cout << "\twind direction = " << *current.getWindDir() << endl;
-    cout << "\tpressure MB = " << *current.getPressureMb() << endl;
-    cout << "\tpressure IN = " << *current.getPressureIn() << endl;
-    cout << "\tprecip MM = " << *current.getPrecipMm() << endl;
-    cout << "\tprecip IN = " << *current.getPrecipIn() << endl;
-    cout << "\thumidity = " << *current.getHumidity() << endl;
-    cout << "\tcloud = " << *current.getCloud() << endl;
-    cout << "\tfeels like C = " << *current.getFeelslikeC() << endl;
-    cout << "\tfeels like F = " << *current.getFeelslikeF() << endl;
-    cout << "\tvis KM = " << *current.getVisKm() << endl;
-    cout << "\tvis Miles = " << *current.getVisMiles() << endl;
-    cout << "\tUV = " << *current.getUv() << endl;
-    cout << "\tgust MPH = " << *current.getGustMph() << endl;
-    cout << "\tgust KPH = " << *current.getGustKph() << endl;
-
-    delete apixu;
+    cout << "\twind MPH = " << *current.wind_mph << endl;
+    cout << "\twind KPH = " << *current.wind_kph << endl;
+    cout << "\twind degree = " << *current.wind_degree << endl;
+    cout << "\twind direction = " << *current.wind_dir << endl;
+    cout << "\tpressure MB = " << *current.pressure_mb << endl;
+    cout << "\tpressure IN = " << *current.pressure_in << endl;
+    cout << "\tprecip MM = " << *current.precip_mm << endl;
+    cout << "\tprecip IN = " << *current.precip_in << endl;
+    cout << "\thumidity = " << *current.humidity << endl;
+    cout << "\tcloud = " << *current.cloud << endl;
+    cout << "\tfeels like C = " << *current.feelslike_c << endl;
+    cout << "\tfeels like F = " << *current.feelslike_f << endl;
+    cout << "\tvis KM = " << *current.vis_km << endl;
+    cout << "\tvis Miles = " << *current.vis_miles << endl;
+    cout << "\t_u_v = " << *current.uv << endl;
+    cout << "\tgust MPH = " << *current.gust_mph << endl;
+    cout << "\tgust KPH = " << *current.gust_kph << endl;
 
     return 0;
 }

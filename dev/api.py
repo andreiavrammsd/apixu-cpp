@@ -2,6 +2,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
+
 @app.route('/conditions.json')
 def conditions():
     res = '''
@@ -15,6 +16,7 @@ def conditions():
         ]
     '''
     return res
+
 
 @app.route('/current.json')
 def current():
@@ -62,6 +64,7 @@ def current():
         }
     '''
     return res
+
 
 @app.route('/forecast.json')
 def forecast():
@@ -176,6 +179,7 @@ def forecast():
     '''
     return res
 
+
 @app.route('/history.json')
 def history():
     res = '''
@@ -262,6 +266,7 @@ def history():
     '''
     return res
 
+
 @app.route('/search.json')
 def search():
     res = '''
@@ -282,5 +287,6 @@ def search():
     '''
     return res
 
+
 if __name__ == '__main__':
-    app.run(host= '0.0.0.0')
+    app.run(host='0.0.0.0')

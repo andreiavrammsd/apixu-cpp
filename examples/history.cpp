@@ -1,29 +1,30 @@
-// Copyright 2019 <Andrei Avram>
+// Copyright 2020 <Andrei Avram>
+#include <ctime>
+#include <iomanip>
 #include <iostream>
 #include <vector>
-#include <iomanip>
-#include <ctime>
 
-#include "Apixu/Apixu.h"
-#include "Apixu/Exception/ApiException.h"
+#include "apixu/apixu.h"
+#include "apixu/exception/api_exception.h"
 
 using std::cout;
 using std::endl;
 
-using Apixu::Response::WeatherHistory;
-using Apixu::Exception::ApiException;
-using Apixu::Exception::ApixuException;
-using Apixu::Response::Location;
-using Apixu::Response::Forecast::ForecastWeather;
+using apixu::exception::ApiException;
+using apixu::exception::ApixuException;
+using apixu::response::Location;
+using apixu::response::WeatherHistory;
+using apixu::response::forecast::ForecastWeather;
 
-int main() {
-    const char *apiKey = getenv("APIXUKEY");
-    if (!apiKey) {
+int main()
+{
+    const char* api_key = getenv("APIXUKEY");
+    if (!api_key) {
         cout << "APIXUKEY not set";
         return 1;
     }
 
-    auto apixu = new Apixu::Apixu(apiKey);
+    apixu::Apixu apixu{api_key};
 
     class WeatherHistory history;
     try {
@@ -33,60 +34,60 @@ int main() {
         std::ostringstream since;
         since << std::put_time(&tm, "%Y-%m-%d");
 
-        history = apixu->History("Prague", since.str());
-    } catch (ApiException &e) {
+        history = apixu.History("Prague", since.str());
+    }
+    catch (ApiException& e) {
         cout << "ApiException: " << e.what() << " (code: " << e.getCode() << ")";
         return 1;
-    } catch (ApixuException &e) {
+    }
+    catch (ApixuException& e) {
         cout << "ApixuException: " << e.what();
         return 1;
     }
 
     cout << "location" << endl;
 
-    const Location &location = history.getLocation();
+    const Location& location = history.location;
 
-    cout << "\tname = " << location.getName() << endl;
-    cout << "\tregion = " << location.getRegion() << endl;
-    cout << "\tcountry = " << location.getCountry() << endl;
-    cout << "\tlat = " << location.getLat() << endl;
-    cout << "\tlon = " << location.getLon() << endl;
-    cout << "\ttimezone = " << *location.getTimezone() << endl;
-    cout << "\tlocaltime epoch = " << *location.getLocaltimeEpoch() << endl;
+    cout << "\tname = " << location.name << endl;
+    cout << "\tregion = " << location.region << endl;
+    cout << "\tcountry = " << location.country << endl;
+    cout << "\tlat = " << location.lat << endl;
+    cout << "\tlon = " << location.lon << endl;
+    cout << "\ttimezone = " << *location.timezone << endl;
+    cout << "\tlocaltime epoch = " << *location.localtime_epoch << endl;
 
-    auto localtime = location.getLocaltime();
+    auto localtime = location.localtime;
     cout << "\tlocaltime:" << endl;
-    cout << "\t\tyear = " << localtime.tm_year << ", month = " << localtime.tm_mon
-         << ", day = " << localtime.tm_mday << endl;
+    cout << "\t\tyear = " << localtime.tm_year << ", month = " << localtime.tm_mon << ", day = " << localtime.tm_mday
+         << endl;
     cout << "\t\thour = " << localtime.tm_hour << ", minute = " << localtime.tm_min << endl;
 
     cout << endl << "forecast weather" << endl;
 
-    const ForecastWeather &forecast = history.getForecast();
+    const ForecastWeather& forecast = history.forecast;
 
-    for (const auto &f : forecast.getForecastDay()) {
-        cout << "\tdate = " << f.getDate() << endl;
-        cout << "\tdate epoch = " << f.getDateEpoch() << endl;
+    for (const auto& f : forecast.forecast_day) {
+        cout << "\tdate = " << f.date << endl;
+        cout << "\tdate epoch = " << f.date_epoch << endl;
 
         cout << "\tday" << endl;
-        cout << "\t\tmax temp C = " << f.getDay().getMaxTempCelsius() << endl;
-        cout << "\t\tmax temp F = " << f.getDay().getMaxTempFahrenheit() << endl;
+        cout << "\t\tmax temp C = " << f.day.max_temp_celsius << endl;
+        cout << "\t\tmax temp F = " << f.day.max_temp_fahrenheit << endl;
 
         cout << "\tastro" << endl;
-        cout << "\t\tsunrise = " << f.getAstro().getSunrise() << endl;
-        cout << "\t\tsunset = " << f.getAstro().getSunset() << endl;
+        cout << "\t\tsunrise = " << f.astro.sunrise << endl;
+        cout << "\t\tsunset = " << f.astro.sunset << endl;
 
         cout << "\thour" << endl;
-        for (const auto &h : f.getHour()) {
-            cout << "\t\ttime epoch = " << h.getTimeEpoch() << endl;
-            cout << "\t\ttime = " << h.getTime() << endl;
-            cout << "\t\ttemp C = " << h.getTempC() << endl;
-            cout << "\t\ttemp F = " << h.getTempF() << endl;
+        for (const auto& h : f.hour) {
+            cout << "\t\ttime epoch = " << h.time_epoch << endl;
+            cout << "\t\ttime = " << h.time << endl;
+            cout << "\t\ttemp C = " << h.temp_c << endl;
+            cout << "\t\ttemp F = " << h.temp_f << endl;
             cout << endl;
         }
     }
-
-    delete apixu;
 
     return 0;
 }

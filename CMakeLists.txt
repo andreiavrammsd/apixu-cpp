@@ -1,29 +1,16 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.12)
 project(apixu VERSION 0.1.0 LANGUAGES CXX)
+
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED YES)
+set(CXX_EXTENSIONS NO)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic -Werror")
 
 # Sources
 set(SOURCE_FILES
-        src/Http/Exception.cpp
-        src/Http/Http.cpp
-        src/Apixu.cpp
-        src/Exception/ApixuException.cpp
-        src/Exception/ApiException.cpp
-        src/Time.cpp
-        src/Response/Condition.cpp
-        src/Response/Current.cpp
-        src/Response/Error.cpp
-        src/Response/WeatherHistory.cpp
-        src/Response/CurrentWeather.cpp
-        src/Response/Forecast/WeatherForecast.cpp
-        src/Response/Forecast/ForecastDay.cpp
-        src/Response/Forecast/Day.cpp
-        src/Response/Forecast/ForecastWeather.cpp
-        src/Response/Forecast/Hour.cpp
-        src/Response/Forecast/Astro.cpp
-        src/Response/Location.cpp
-        src/Response/CurrentCondition.cpp
-)
+        include/apixu/http/exception.h
+        src/apixu.cpp
+        )
 
 # Include directory
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/)
