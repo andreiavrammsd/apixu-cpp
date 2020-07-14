@@ -1,6 +1,3 @@
-cmake_minimum_required(VERSION 3.14)
-set(CMAKE_CXX_STANDARD 14)
-
 # Add a test
 macro(package_add_test TESTNAME)
     add_executable(${TESTNAME} ${ARGN})
@@ -54,7 +51,6 @@ package_add_test(test_history
 package_add_test(test_forecast
         apixu_forecast_test.cpp
         ../src/apixu.cpp
-        ../src/time.cpp
         )
 
 # Dependencies
