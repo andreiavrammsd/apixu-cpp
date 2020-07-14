@@ -88,7 +88,7 @@ TEST_F(ApixuCurrentTest, success)
     struct tm expected {
     };
     expected.tm_sec = 0;
-    expected.tm_year = 2019 - 1900;
+    expected.tm_year = 2019;
     expected.tm_mon = 11 - 1;
     expected.tm_mday = 25;
     expected.tm_hour = 18;

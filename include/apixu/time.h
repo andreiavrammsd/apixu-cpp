@@ -19,7 +19,7 @@ class Time {
         const int number_of_fields_converted = 5;
 
         if (sscanf(input.c_str(), format, &year, &month, &day, &hour, &min) == number_of_fields_converted) {
-            time.tm_year = year - 1900;
+            time.tm_year = year;
             time.tm_mon = month - 1;
             time.tm_mday = day;
             time.tm_hour = hour;
